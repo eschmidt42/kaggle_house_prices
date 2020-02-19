@@ -15,8 +15,8 @@ modules = ["modelling.py",
            "preprocessing.py",
            "utils.py"]
 
-doc_url = "https://fastai.github.io/src/"
+doc_url = "https://eschmidt42.github.io/src/"
 
-git_url = "https://github.com/fastai/src/tree/master/"
+git_url = "https://github.com/eschmidt42/src/tree/master/"
 
 def custom_doc_links(name): return None
