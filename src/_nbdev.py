@@ -2,18 +2,18 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"mish": "modelling.ipynb",
-         "Mish": "modelling.ipynb",
-         "predictions_vs_true_distribution_plots": "modelling.ipynb",
-         "do_sample": "preprocessing.ipynb",
-         "get_split": "preprocessing.ipynb",
-         "extract_zip_files": "utils.ipynb",
-         "display_all": "utils.ipynb",
-         "show_leaderboard": "utils.ipynb"}
+index = {"extract_zip_files": "00_utils.ipynb",
+         "display_all": "00_utils.ipynb",
+         "show_leaderboard": "00_utils.ipynb",
+         "do_sample": "01_preprocessing.ipynb",
+         "get_split": "01_preprocessing.ipynb",
+         "mish": "02_modelling.ipynb",
+         "Mish": "02_modelling.ipynb",
+         "predictions_vs_true_distribution_plots": "02_modelling.ipynb"}
 
-modules = ["modelling.py",
+modules = ["utils.py",
            "preprocessing.py",
-           "utils.py"]
+           "modelling.py"]
 
 doc_url = "https://eschmidt42.github.io/src/"
 

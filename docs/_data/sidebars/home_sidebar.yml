@@ -10,14 +10,14 @@ entries:
       title: Overview
       url: /
     - output: web,pdf
-      title: Modelling tabular data
-      url: /modelling
+      title: Utils
+      url: /utils
     - output: web,pdf
       title: Preprocessing
       url: /preprocessing
     - output: web,pdf
-      title: Utils
-      url: /utils
+      title: Modelling tabular data
+      url: /modelling
     output: web
     title: src
   output: web
