@@ -1,7 +1,7 @@
-repository: fastai/nbdev_template
+repository: eschmidt42/kaggle_house_prices
 output: web
-topnav_title: nbdev_template
-site_title: nbdev_template
+topnav_title: kaggle_house_prices
+site_title: kaggle_house_prices
 company_name: eschmidt42
 description: Using fastai2 for the house prices competition on Kaggle
 # Set to false to disable KaTeX math
