@@ -1,11 +1,11 @@
 ---
 
-title: Title
+title: Preprocessing
 
 keywords: fastai
 sidebar: home_sidebar
 
-summary: "summary"
+summary: "Contains all the steps necessary to preprocess the Kaggle house prices data."
 ---
 <!--
 
@@ -37,22 +37,24 @@ summary: "summary"
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>The autoreload extension is already loaded. To reload it, use:
+  %reload_ext autoreload
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Preprocessing">Preprocessing<a class="anchor-link" href="#Preprocessing">&#182;</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Contains all the steps necessary to preprocess the Kaggle house prices data.</p>
-
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -1611,6 +1613,407 @@ summary: "summary"
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">dep_var</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">dep_var</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Cleaning-the-data">Cleaning the data<a class="anchor-link" href="#Cleaning-the-data">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Imputing continuous columns</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">col</span> <span class="o">=</span> <span class="s2">&quot;MasVnrArea&quot;</span>
+<span class="nb">sorted</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[0.0,
+ 1.0,
+ 11.0,
+ 14.0,
+ 16.0,
+ 18.0,
+ 22.0,
+ 24.0,
+ 27.0,
+ 28.0,
+ 30.0,
+ 31.0,
+ 32.0,
+ 34.0,
+ 36.0,
+ 38.0,
+ 40.0,
+ 41.0,
+ 42.0,
+ 44.0,
+ 45.0,
+ 46.0,
+ 48.0,
+ 50.0,
+ 51.0,
+ 53.0,
+ 54.0,
+ 56.0,
+ 57.0,
+ 60.0,
+ 63.0,
+ 64.0,
+ 65.0,
+ 66.0,
+ 67.0,
+ 68.0,
+ 70.0,
+ 72.0,
+ 74.0,
+ 75.0,
+ 76.0,
+ 80.0,
+ 81.0,
+ 82.0,
+ 84.0,
+ 85.0,
+ 86.0,
+ 88.0,
+ 89.0,
+ 90.0,
+ 92.0,
+ 94.0,
+ 95.0,
+ 96.0,
+ 97.0,
+ 98.0,
+ 99.0,
+ 100.0,
+ 101.0,
+ 102.0,
+ 104.0,
+ 105.0,
+ 106.0,
+ 108.0,
+ 109.0,
+ 110.0,
+ 112.0,
+ 113.0,
+ 114.0,
+ 115.0,
+ 116.0,
+ 117.0,
+ 119.0,
+ 120.0,
+ 122.0,
+ 123.0,
+ 125.0,
+ 126.0,
+ 127.0,
+ 128.0,
+ 130.0,
+ 132.0,
+ 135.0,
+ 136.0,
+ 137.0,
+ 138.0,
+ 140.0,
+ 142.0,
+ 143.0,
+ 144.0,
+ 145.0,
+ 146.0,
+ 147.0,
+ 148.0,
+ 149.0,
+ 150.0,
+ 151.0,
+ 153.0,
+ 154.0,
+ 156.0,
+ 157.0,
+ 158.0,
+ 160.0,
+ 161.0,
+ 162.0,
+ 163.0,
+ 164.0,
+ 165.0,
+ 166.0,
+ 167.0,
+ 168.0,
+ 169.0,
+ 170.0,
+ 171.0,
+ 172.0,
+ 174.0,
+ 175.0,
+ 176.0,
+ 178.0,
+ 180.0,
+ 182.0,
+ 183.0,
+ 184.0,
+ 186.0,
+ 188.0,
+ 189.0,
+ 192.0,
+ 194.0,
+ 196.0,
+ 200.0,
+ 202.0,
+ 203.0,
+ 204.0,
+ 205.0,
+ 206.0,
+ 207.0,
+ 208.0,
+ 209.0,
+ 210.0,
+ 212.0,
+ 215.0,
+ 216.0,
+ 218.0,
+ 219.0,
+ 220.0,
+ 223.0,
+ 224.0,
+ 225.0,
+ 226.0,
+ 228.0,
+ 230.0,
+ 232.0,
+ 233.0,
+ 234.0,
+ 236.0,
+ 237.0,
+ 238.0,
+ 240.0,
+ 243.0,
+ 244.0,
+ 245.0,
+ 246.0,
+ 247.0,
+ 248.0,
+ 250.0,
+ 252.0,
+ 254.0,
+ 255.0,
+ 256.0,
+ 258.0,
+ 259.0,
+ 260.0,
+ 261.0,
+ 262.0,
+ 263.0,
+ 266.0,
+ 268.0,
+ 270.0,
+ 272.0,
+ 274.0,
+ 275.0,
+ 278.0,
+ 280.0,
+ 281.0,
+ 284.0,
+ 285.0,
+ 286.0,
+ 287.0,
+ 288.0,
+ 289.0,
+ 290.0,
+ 292.0,
+ 293.0,
+ 294.0,
+ 295.0,
+ 296.0,
+ 297.0,
+ 298.0,
+ 299.0,
+ 300.0,
+ 302.0,
+ 304.0,
+ 305.0,
+ 306.0,
+ 309.0,
+ 310.0,
+ 312.0,
+ 315.0,
+ 318.0,
+ 320.0,
+ 324.0,
+ 328.0,
+ 333.0,
+ 335.0,
+ 336.0,
+ 337.0,
+ 338.0,
+ 340.0,
+ 342.0,
+ 344.0,
+ 348.0,
+ 350.0,
+ 351.0,
+ 359.0,
+ 360.0,
+ 361.0,
+ 362.0,
+ 365.0,
+ 366.0,
+ 368.0,
+ 370.0,
+ 375.0,
+ 376.0,
+ 378.0,
+ 380.0,
+ 381.0,
+ 387.0,
+ 388.0,
+ 391.0,
+ 396.0,
+ 399.0,
+ 408.0,
+ 410.0,
+ 412.0,
+ 415.0,
+ 420.0,
+ 423.0,
+ 424.0,
+ 425.0,
+ 426.0,
+ 428.0,
+ 432.0,
+ 435.0,
+ 436.0,
+ 438.0,
+ 442.0,
+ 443.0,
+ 448.0,
+ 450.0,
+ 451.0,
+ 452.0,
+ 456.0,
+ 459.0,
+ 464.0,
+ 466.0,
+ 468.0,
+ 472.0,
+ 473.0,
+ 479.0,
+ 480.0,
+ 481.0,
+ 491.0,
+ 500.0,
+ 506.0,
+ 510.0,
+ 513.0,
+ 528.0,
+ 530.0,
+ 541.0,
+ 554.0,
+ 562.0,
+ 564.0,
+ 567.0,
+ 571.0,
+ 573.0,
+ 576.0,
+ 579.0,
+ 584.0,
+ 594.0,
+ 600.0,
+ 603.0,
+ 604.0,
+ 616.0,
+ 621.0,
+ 630.0,
+ 632.0,
+ 640.0,
+ 650.0,
+ 651.0,
+ 653.0,
+ 660.0,
+ 664.0,
+ 673.0,
+ 705.0,
+ 731.0,
+ 748.0,
+ 760.0,
+ 762.0,
+ 766.0,
+ 768.0,
+ 772.0,
+ 788.0,
+ 796.0,
+ 816.0,
+ 860.0,
+ 870.0,
+ 894.0,
+ 921.0,
+ 922.0,
+ 975.0,
+ 1031.0,
+ 1047.0,
+ 1115.0,
+ 1129.0,
+ nan,
+ 1170.0,
+ 1378.0,
+ 1600.0]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cont_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;MasVnrArea&quot;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cont_cols</span><span class="p">:</span>
+    <span class="n">_x</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span>
+    <span class="n">ix_na</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">_x</span><span class="p">)</span>
+    <span class="n">ix_fin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">_x</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ix_na</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">_x</span><span class="p">[</span><span class="n">ix_fin</span><span class="p">])</span>
+    <span class="n">df</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{col}</span><span class="s2">_na&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ix_na</span>
 </pre></div>
 
     </div>

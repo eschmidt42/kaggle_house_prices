@@ -1,6 +1,8 @@
 {
   "src": {
     "Overview": "/",
-    "Title": "/utils"
+    "Modelling tabular data": "/modelling",
+    "Preprocessing": "/preprocessing",
+    "Utils": "/utils"
   }
 }
