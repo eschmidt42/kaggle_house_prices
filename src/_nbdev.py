@@ -3,12 +3,28 @@
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
 index = {"extract_zip_files": "00_utils.ipynb",
+         "dir_leaderboard": "00_utils.ipynb",
+         "competition": "00_utils.ipynb",
+         "compressed_leaderboard_file": "00_utils.ipynb",
+         "fname_leaderboard": "00_utils.ipynb",
          "display_all": "00_utils.ipynb",
          "show_leaderboard": "00_utils.ipynb",
+         "dir_raw_data": "01_preprocessing.ipynb",
+         "compressed_data_file": "01_preprocessing.ipynb",
+         "dep_var": "01_preprocessing.ipynb",
+         "show_dep_var": "01_preprocessing.ipynb",
+         "cont_names": "01_preprocessing.ipynb",
+         "show_na_share": "01_preprocessing.ipynb",
+         "impute_continuous": "01_preprocessing.ipynb",
+         "cat_names": "01_preprocessing.ipynb",
+         "impute_categorical": "01_preprocessing.ipynb",
          "do_sample": "01_preprocessing.ipynb",
          "get_split": "01_preprocessing.ipynb",
+         "clean_data_path": "01_preprocessing.ipynb",
+         "clean_test_data_path": "01_preprocessing.ipynb",
          "mish": "02_modelling.ipynb",
          "Mish": "02_modelling.ipynb",
+         "TabularModel.__init__": "02_modelling.ipynb",
          "predictions_vs_true_distribution_plots": "02_modelling.ipynb"}
 
 modules = ["utils.py",
