@@ -24,36 +24,6 @@ summary: "Contains all the steps necessary to preprocess the Kaggle house prices
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
-<span class="o">%</span><span class="k">autoreload</span> 2
-<span class="o">%</span><span class="k">matplotlib</span> inline
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>The autoreload extension is already loaded. To reload it, use:
-  %reload_ext autoreload
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
@@ -63,44 +33,6 @@ summary: "Contains all the steps necessary to preprocess the Kaggle house prices
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dir_raw_data</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;../data/raw&quot;</span><span class="p">)</span>
-<span class="n">competition</span> <span class="o">=</span> <span class="s2">&quot;house-prices-advanced-regression-techniques&quot;</span>
-<span class="n">compressed_data_file</span> <span class="o">=</span> <span class="n">dir_raw_data</span><span class="o">/</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{competition}</span><span class="s2">.zip&quot;</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># !kaggle competitions download -c {competition} -p {dir_raw_data}</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># extract_zip_files(compressed_data_file)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
@@ -110,26 +42,9 @@ summary: "Contains all the steps necessary to preprocess the Kaggle house prices
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_path</span> <span class="o">=</span> <span class="n">dir_raw_data</span><span class="o">/</span><span class="s2">&quot;train.csv&quot;</span>
 <span class="n">test_path</span> <span class="o">=</span> <span class="n">dir_raw_data</span><span class="o">/</span><span class="s2">&quot;test.csv&quot;</span>
-<span class="n">train_path</span><span class="p">,</span> <span class="n">test_path</span>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(PosixPath(&#39;../data/raw/train.csv&#39;), PosixPath(&#39;../data/raw/test.csv&#39;))</pre>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -141,30 +56,12 @@ summary: "Contains all the steps necessary to preprocess the Kaggle house prices
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">train_path</span><span class="p">)</span>
-<span class="n">df_test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">test_path</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
 
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display_all</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-</pre></div>
-
-    </div>
 </div>
-</div>
+<div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
 <div class="output">
@@ -172,684 +69,11 @@ summary: "Contains all the steps necessary to preprocess the Kaggle house prices
 <div class="output_area">
 
 
-<div class="output_html rendered_html output_subarea ">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="show_dep_var" class="doc_header"><code>show_dep_var</code><a href="https://github.com/eschmidt42/src/tree/master/src/preprocessing.py#L26" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>show_dep_var</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>dep_var</code></strong>:<code>str</code>, <strong><code>bins</code></strong>:<code>int</code>=<em><code>50</code></em>)</p>
+</blockquote>
+<p>Shows the <a href="/src/preprocessing#dep_var"><code>dep_var</code></a> distribution, linear and logarithmic, side by side.</p>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>0</th>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-      <th>4</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Id</th>
-      <td>1</td>
-      <td>2</td>
-      <td>3</td>
-      <td>4</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>MSSubClass</th>
-      <td>60</td>
-      <td>20</td>
-      <td>60</td>
-      <td>70</td>
-      <td>60</td>
-    </tr>
-    <tr>
-      <th>MSZoning</th>
-      <td>RL</td>
-      <td>RL</td>
-      <td>RL</td>
-      <td>RL</td>
-      <td>RL</td>
-    </tr>
-    <tr>
-      <th>LotFrontage</th>
-      <td>65</td>
-      <td>80</td>
-      <td>68</td>
-      <td>60</td>
-      <td>84</td>
-    </tr>
-    <tr>
-      <th>LotArea</th>
-      <td>8450</td>
-      <td>9600</td>
-      <td>11250</td>
-      <td>9550</td>
-      <td>14260</td>
-    </tr>
-    <tr>
-      <th>Street</th>
-      <td>Pave</td>
-      <td>Pave</td>
-      <td>Pave</td>
-      <td>Pave</td>
-      <td>Pave</td>
-    </tr>
-    <tr>
-      <th>Alley</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>LotShape</th>
-      <td>Reg</td>
-      <td>Reg</td>
-      <td>IR1</td>
-      <td>IR1</td>
-      <td>IR1</td>
-    </tr>
-    <tr>
-      <th>LandContour</th>
-      <td>Lvl</td>
-      <td>Lvl</td>
-      <td>Lvl</td>
-      <td>Lvl</td>
-      <td>Lvl</td>
-    </tr>
-    <tr>
-      <th>Utilities</th>
-      <td>AllPub</td>
-      <td>AllPub</td>
-      <td>AllPub</td>
-      <td>AllPub</td>
-      <td>AllPub</td>
-    </tr>
-    <tr>
-      <th>LotConfig</th>
-      <td>Inside</td>
-      <td>FR2</td>
-      <td>Inside</td>
-      <td>Corner</td>
-      <td>FR2</td>
-    </tr>
-    <tr>
-      <th>LandSlope</th>
-      <td>Gtl</td>
-      <td>Gtl</td>
-      <td>Gtl</td>
-      <td>Gtl</td>
-      <td>Gtl</td>
-    </tr>
-    <tr>
-      <th>Neighborhood</th>
-      <td>CollgCr</td>
-      <td>Veenker</td>
-      <td>CollgCr</td>
-      <td>Crawfor</td>
-      <td>NoRidge</td>
-    </tr>
-    <tr>
-      <th>Condition1</th>
-      <td>Norm</td>
-      <td>Feedr</td>
-      <td>Norm</td>
-      <td>Norm</td>
-      <td>Norm</td>
-    </tr>
-    <tr>
-      <th>Condition2</th>
-      <td>Norm</td>
-      <td>Norm</td>
-      <td>Norm</td>
-      <td>Norm</td>
-      <td>Norm</td>
-    </tr>
-    <tr>
-      <th>BldgType</th>
-      <td>1Fam</td>
-      <td>1Fam</td>
-      <td>1Fam</td>
-      <td>1Fam</td>
-      <td>1Fam</td>
-    </tr>
-    <tr>
-      <th>HouseStyle</th>
-      <td>2Story</td>
-      <td>1Story</td>
-      <td>2Story</td>
-      <td>2Story</td>
-      <td>2Story</td>
-    </tr>
-    <tr>
-      <th>OverallQual</th>
-      <td>7</td>
-      <td>6</td>
-      <td>7</td>
-      <td>7</td>
-      <td>8</td>
-    </tr>
-    <tr>
-      <th>OverallCond</th>
-      <td>5</td>
-      <td>8</td>
-      <td>5</td>
-      <td>5</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>YearBuilt</th>
-      <td>2003</td>
-      <td>1976</td>
-      <td>2001</td>
-      <td>1915</td>
-      <td>2000</td>
-    </tr>
-    <tr>
-      <th>YearRemodAdd</th>
-      <td>2003</td>
-      <td>1976</td>
-      <td>2002</td>
-      <td>1970</td>
-      <td>2000</td>
-    </tr>
-    <tr>
-      <th>RoofStyle</th>
-      <td>Gable</td>
-      <td>Gable</td>
-      <td>Gable</td>
-      <td>Gable</td>
-      <td>Gable</td>
-    </tr>
-    <tr>
-      <th>RoofMatl</th>
-      <td>CompShg</td>
-      <td>CompShg</td>
-      <td>CompShg</td>
-      <td>CompShg</td>
-      <td>CompShg</td>
-    </tr>
-    <tr>
-      <th>Exterior1st</th>
-      <td>VinylSd</td>
-      <td>MetalSd</td>
-      <td>VinylSd</td>
-      <td>Wd Sdng</td>
-      <td>VinylSd</td>
-    </tr>
-    <tr>
-      <th>Exterior2nd</th>
-      <td>VinylSd</td>
-      <td>MetalSd</td>
-      <td>VinylSd</td>
-      <td>Wd Shng</td>
-      <td>VinylSd</td>
-    </tr>
-    <tr>
-      <th>MasVnrType</th>
-      <td>BrkFace</td>
-      <td>None</td>
-      <td>BrkFace</td>
-      <td>None</td>
-      <td>BrkFace</td>
-    </tr>
-    <tr>
-      <th>MasVnrArea</th>
-      <td>196</td>
-      <td>0</td>
-      <td>162</td>
-      <td>0</td>
-      <td>350</td>
-    </tr>
-    <tr>
-      <th>ExterQual</th>
-      <td>Gd</td>
-      <td>TA</td>
-      <td>Gd</td>
-      <td>TA</td>
-      <td>Gd</td>
-    </tr>
-    <tr>
-      <th>ExterCond</th>
-      <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-    </tr>
-    <tr>
-      <th>Foundation</th>
-      <td>PConc</td>
-      <td>CBlock</td>
-      <td>PConc</td>
-      <td>BrkTil</td>
-      <td>PConc</td>
-    </tr>
-    <tr>
-      <th>BsmtQual</th>
-      <td>Gd</td>
-      <td>Gd</td>
-      <td>Gd</td>
-      <td>TA</td>
-      <td>Gd</td>
-    </tr>
-    <tr>
-      <th>BsmtCond</th>
-      <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-      <td>Gd</td>
-      <td>TA</td>
-    </tr>
-    <tr>
-      <th>BsmtExposure</th>
-      <td>No</td>
-      <td>Gd</td>
-      <td>Mn</td>
-      <td>No</td>
-      <td>Av</td>
-    </tr>
-    <tr>
-      <th>BsmtFinType1</th>
-      <td>GLQ</td>
-      <td>ALQ</td>
-      <td>GLQ</td>
-      <td>ALQ</td>
-      <td>GLQ</td>
-    </tr>
-    <tr>
-      <th>BsmtFinSF1</th>
-      <td>706</td>
-      <td>978</td>
-      <td>486</td>
-      <td>216</td>
-      <td>655</td>
-    </tr>
-    <tr>
-      <th>BsmtFinType2</th>
-      <td>Unf</td>
-      <td>Unf</td>
-      <td>Unf</td>
-      <td>Unf</td>
-      <td>Unf</td>
-    </tr>
-    <tr>
-      <th>BsmtFinSF2</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>BsmtUnfSF</th>
-      <td>150</td>
-      <td>284</td>
-      <td>434</td>
-      <td>540</td>
-      <td>490</td>
-    </tr>
-    <tr>
-      <th>TotalBsmtSF</th>
-      <td>856</td>
-      <td>1262</td>
-      <td>920</td>
-      <td>756</td>
-      <td>1145</td>
-    </tr>
-    <tr>
-      <th>Heating</th>
-      <td>GasA</td>
-      <td>GasA</td>
-      <td>GasA</td>
-      <td>GasA</td>
-      <td>GasA</td>
-    </tr>
-    <tr>
-      <th>HeatingQC</th>
-      <td>Ex</td>
-      <td>Ex</td>
-      <td>Ex</td>
-      <td>Gd</td>
-      <td>Ex</td>
-    </tr>
-    <tr>
-      <th>CentralAir</th>
-      <td>Y</td>
-      <td>Y</td>
-      <td>Y</td>
-      <td>Y</td>
-      <td>Y</td>
-    </tr>
-    <tr>
-      <th>Electrical</th>
-      <td>SBrkr</td>
-      <td>SBrkr</td>
-      <td>SBrkr</td>
-      <td>SBrkr</td>
-      <td>SBrkr</td>
-    </tr>
-    <tr>
-      <th>1stFlrSF</th>
-      <td>856</td>
-      <td>1262</td>
-      <td>920</td>
-      <td>961</td>
-      <td>1145</td>
-    </tr>
-    <tr>
-      <th>2ndFlrSF</th>
-      <td>854</td>
-      <td>0</td>
-      <td>866</td>
-      <td>756</td>
-      <td>1053</td>
-    </tr>
-    <tr>
-      <th>LowQualFinSF</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>GrLivArea</th>
-      <td>1710</td>
-      <td>1262</td>
-      <td>1786</td>
-      <td>1717</td>
-      <td>2198</td>
-    </tr>
-    <tr>
-      <th>BsmtFullBath</th>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>BsmtHalfBath</th>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>FullBath</th>
-      <td>2</td>
-      <td>2</td>
-      <td>2</td>
-      <td>1</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>HalfBath</th>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>BedroomAbvGr</th>
-      <td>3</td>
-      <td>3</td>
-      <td>3</td>
-      <td>3</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>KitchenAbvGr</th>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>KitchenQual</th>
-      <td>Gd</td>
-      <td>TA</td>
-      <td>Gd</td>
-      <td>Gd</td>
-      <td>Gd</td>
-    </tr>
-    <tr>
-      <th>TotRmsAbvGrd</th>
-      <td>8</td>
-      <td>6</td>
-      <td>6</td>
-      <td>7</td>
-      <td>9</td>
-    </tr>
-    <tr>
-      <th>Functional</th>
-      <td>Typ</td>
-      <td>Typ</td>
-      <td>Typ</td>
-      <td>Typ</td>
-      <td>Typ</td>
-    </tr>
-    <tr>
-      <th>Fireplaces</th>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>FireplaceQu</th>
-      <td>NaN</td>
-      <td>TA</td>
-      <td>TA</td>
-      <td>Gd</td>
-      <td>TA</td>
-    </tr>
-    <tr>
-      <th>GarageType</th>
-      <td>Attchd</td>
-      <td>Attchd</td>
-      <td>Attchd</td>
-      <td>Detchd</td>
-      <td>Attchd</td>
-    </tr>
-    <tr>
-      <th>GarageYrBlt</th>
-      <td>2003</td>
-      <td>1976</td>
-      <td>2001</td>
-      <td>1998</td>
-      <td>2000</td>
-    </tr>
-    <tr>
-      <th>GarageFinish</th>
-      <td>RFn</td>
-      <td>RFn</td>
-      <td>RFn</td>
-      <td>Unf</td>
-      <td>RFn</td>
-    </tr>
-    <tr>
-      <th>GarageCars</th>
-      <td>2</td>
-      <td>2</td>
-      <td>2</td>
-      <td>3</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>GarageArea</th>
-      <td>548</td>
-      <td>460</td>
-      <td>608</td>
-      <td>642</td>
-      <td>836</td>
-    </tr>
-    <tr>
-      <th>GarageQual</th>
-      <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-    </tr>
-    <tr>
-      <th>GarageCond</th>
-      <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-    </tr>
-    <tr>
-      <th>PavedDrive</th>
-      <td>Y</td>
-      <td>Y</td>
-      <td>Y</td>
-      <td>Y</td>
-      <td>Y</td>
-    </tr>
-    <tr>
-      <th>WoodDeckSF</th>
-      <td>0</td>
-      <td>298</td>
-      <td>0</td>
-      <td>0</td>
-      <td>192</td>
-    </tr>
-    <tr>
-      <th>OpenPorchSF</th>
-      <td>61</td>
-      <td>0</td>
-      <td>42</td>
-      <td>35</td>
-      <td>84</td>
-    </tr>
-    <tr>
-      <th>EnclosedPorch</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>272</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3SsnPorch</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>ScreenPorch</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>PoolArea</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>PoolQC</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>Fence</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>MiscFeature</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>MiscVal</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>MoSold</th>
-      <td>2</td>
-      <td>5</td>
-      <td>9</td>
-      <td>2</td>
-      <td>12</td>
-    </tr>
-    <tr>
-      <th>YrSold</th>
-      <td>2008</td>
-      <td>2007</td>
-      <td>2008</td>
-      <td>2006</td>
-      <td>2008</td>
-    </tr>
-    <tr>
-      <th>SaleType</th>
-      <td>WD</td>
-      <td>WD</td>
-      <td>WD</td>
-      <td>WD</td>
-      <td>WD</td>
-    </tr>
-    <tr>
-      <th>SaleCondition</th>
-      <td>Normal</td>
-      <td>Normal</td>
-      <td>Normal</td>
-      <td>Abnorml</td>
-      <td>Normal</td>
-    </tr>
-    <tr>
-      <th>SalePrice</th>
-      <td>208500</td>
-      <td>181500</td>
-      <td>223500</td>
-      <td>140000</td>
-      <td>250000</td>
-    </tr>
-  </tbody>
-</table>
-</div>
 </div>
 
 </div>
@@ -863,725 +87,7 @@ summary: "Contains all the steps necessary to preprocess the Kaggle house prices
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display_all</span><span class="p">(</span><span class="n">df_test</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_html rendered_html output_subarea ">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>0</th>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-      <th>4</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Id</th>
-      <td>1461</td>
-      <td>1462</td>
-      <td>1463</td>
-      <td>1464</td>
-      <td>1465</td>
-    </tr>
-    <tr>
-      <th>MSSubClass</th>
-      <td>20</td>
-      <td>20</td>
-      <td>60</td>
-      <td>60</td>
-      <td>120</td>
-    </tr>
-    <tr>
-      <th>MSZoning</th>
-      <td>RH</td>
-      <td>RL</td>
-      <td>RL</td>
-      <td>RL</td>
-      <td>RL</td>
-    </tr>
-    <tr>
-      <th>LotFrontage</th>
-      <td>80</td>
-      <td>81</td>
-      <td>74</td>
-      <td>78</td>
-      <td>43</td>
-    </tr>
-    <tr>
-      <th>LotArea</th>
-      <td>11622</td>
-      <td>14267</td>
-      <td>13830</td>
-      <td>9978</td>
-      <td>5005</td>
-    </tr>
-    <tr>
-      <th>Street</th>
-      <td>Pave</td>
-      <td>Pave</td>
-      <td>Pave</td>
-      <td>Pave</td>
-      <td>Pave</td>
-    </tr>
-    <tr>
-      <th>Alley</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>LotShape</th>
-      <td>Reg</td>
-      <td>IR1</td>
-      <td>IR1</td>
-      <td>IR1</td>
-      <td>IR1</td>
-    </tr>
-    <tr>
-      <th>LandContour</th>
-      <td>Lvl</td>
-      <td>Lvl</td>
-      <td>Lvl</td>
-      <td>Lvl</td>
-      <td>HLS</td>
-    </tr>
-    <tr>
-      <th>Utilities</th>
-      <td>AllPub</td>
-      <td>AllPub</td>
-      <td>AllPub</td>
-      <td>AllPub</td>
-      <td>AllPub</td>
-    </tr>
-    <tr>
-      <th>LotConfig</th>
-      <td>Inside</td>
-      <td>Corner</td>
-      <td>Inside</td>
-      <td>Inside</td>
-      <td>Inside</td>
-    </tr>
-    <tr>
-      <th>LandSlope</th>
-      <td>Gtl</td>
-      <td>Gtl</td>
-      <td>Gtl</td>
-      <td>Gtl</td>
-      <td>Gtl</td>
-    </tr>
-    <tr>
-      <th>Neighborhood</th>
-      <td>NAmes</td>
-      <td>NAmes</td>
-      <td>Gilbert</td>
-      <td>Gilbert</td>
-      <td>StoneBr</td>
-    </tr>
-    <tr>
-      <th>Condition1</th>
-      <td>Feedr</td>
-      <td>Norm</td>
-      <td>Norm</td>
-      <td>Norm</td>
-      <td>Norm</td>
-    </tr>
-    <tr>
-      <th>Condition2</th>
-      <td>Norm</td>
-      <td>Norm</td>
-      <td>Norm</td>
-      <td>Norm</td>
-      <td>Norm</td>
-    </tr>
-    <tr>
-      <th>BldgType</th>
-      <td>1Fam</td>
-      <td>1Fam</td>
-      <td>1Fam</td>
-      <td>1Fam</td>
-      <td>TwnhsE</td>
-    </tr>
-    <tr>
-      <th>HouseStyle</th>
-      <td>1Story</td>
-      <td>1Story</td>
-      <td>2Story</td>
-      <td>2Story</td>
-      <td>1Story</td>
-    </tr>
-    <tr>
-      <th>OverallQual</th>
-      <td>5</td>
-      <td>6</td>
-      <td>5</td>
-      <td>6</td>
-      <td>8</td>
-    </tr>
-    <tr>
-      <th>OverallCond</th>
-      <td>6</td>
-      <td>6</td>
-      <td>5</td>
-      <td>6</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>YearBuilt</th>
-      <td>1961</td>
-      <td>1958</td>
-      <td>1997</td>
-      <td>1998</td>
-      <td>1992</td>
-    </tr>
-    <tr>
-      <th>YearRemodAdd</th>
-      <td>1961</td>
-      <td>1958</td>
-      <td>1998</td>
-      <td>1998</td>
-      <td>1992</td>
-    </tr>
-    <tr>
-      <th>RoofStyle</th>
-      <td>Gable</td>
-      <td>Hip</td>
-      <td>Gable</td>
-      <td>Gable</td>
-      <td>Gable</td>
-    </tr>
-    <tr>
-      <th>RoofMatl</th>
-      <td>CompShg</td>
-      <td>CompShg</td>
-      <td>CompShg</td>
-      <td>CompShg</td>
-      <td>CompShg</td>
-    </tr>
-    <tr>
-      <th>Exterior1st</th>
-      <td>VinylSd</td>
-      <td>Wd Sdng</td>
-      <td>VinylSd</td>
-      <td>VinylSd</td>
-      <td>HdBoard</td>
-    </tr>
-    <tr>
-      <th>Exterior2nd</th>
-      <td>VinylSd</td>
-      <td>Wd Sdng</td>
-      <td>VinylSd</td>
-      <td>VinylSd</td>
-      <td>HdBoard</td>
-    </tr>
-    <tr>
-      <th>MasVnrType</th>
-      <td>None</td>
-      <td>BrkFace</td>
-      <td>None</td>
-      <td>BrkFace</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>MasVnrArea</th>
-      <td>0</td>
-      <td>108</td>
-      <td>0</td>
-      <td>20</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>ExterQual</th>
-      <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-      <td>Gd</td>
-    </tr>
-    <tr>
-      <th>ExterCond</th>
-      <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-    </tr>
-    <tr>
-      <th>Foundation</th>
-      <td>CBlock</td>
-      <td>CBlock</td>
-      <td>PConc</td>
-      <td>PConc</td>
-      <td>PConc</td>
-    </tr>
-    <tr>
-      <th>BsmtQual</th>
-      <td>TA</td>
-      <td>TA</td>
-      <td>Gd</td>
-      <td>TA</td>
-      <td>Gd</td>
-    </tr>
-    <tr>
-      <th>BsmtCond</th>
-      <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-    </tr>
-    <tr>
-      <th>BsmtExposure</th>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <th>BsmtFinType1</th>
-      <td>Rec</td>
-      <td>ALQ</td>
-      <td>GLQ</td>
-      <td>GLQ</td>
-      <td>ALQ</td>
-    </tr>
-    <tr>
-      <th>BsmtFinSF1</th>
-      <td>468</td>
-      <td>923</td>
-      <td>791</td>
-      <td>602</td>
-      <td>263</td>
-    </tr>
-    <tr>
-      <th>BsmtFinType2</th>
-      <td>LwQ</td>
-      <td>Unf</td>
-      <td>Unf</td>
-      <td>Unf</td>
-      <td>Unf</td>
-    </tr>
-    <tr>
-      <th>BsmtFinSF2</th>
-      <td>144</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>BsmtUnfSF</th>
-      <td>270</td>
-      <td>406</td>
-      <td>137</td>
-      <td>324</td>
-      <td>1017</td>
-    </tr>
-    <tr>
-      <th>TotalBsmtSF</th>
-      <td>882</td>
-      <td>1329</td>
-      <td>928</td>
-      <td>926</td>
-      <td>1280</td>
-    </tr>
-    <tr>
-      <th>Heating</th>
-      <td>GasA</td>
-      <td>GasA</td>
-      <td>GasA</td>
-      <td>GasA</td>
-      <td>GasA</td>
-    </tr>
-    <tr>
-      <th>HeatingQC</th>
-      <td>TA</td>
-      <td>TA</td>
-      <td>Gd</td>
-      <td>Ex</td>
-      <td>Ex</td>
-    </tr>
-    <tr>
-      <th>CentralAir</th>
-      <td>Y</td>
-      <td>Y</td>
-      <td>Y</td>
-      <td>Y</td>
-      <td>Y</td>
-    </tr>
-    <tr>
-      <th>Electrical</th>
-      <td>SBrkr</td>
-      <td>SBrkr</td>
-      <td>SBrkr</td>
-      <td>SBrkr</td>
-      <td>SBrkr</td>
-    </tr>
-    <tr>
-      <th>1stFlrSF</th>
-      <td>896</td>
-      <td>1329</td>
-      <td>928</td>
-      <td>926</td>
-      <td>1280</td>
-    </tr>
-    <tr>
-      <th>2ndFlrSF</th>
-      <td>0</td>
-      <td>0</td>
-      <td>701</td>
-      <td>678</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>LowQualFinSF</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>GrLivArea</th>
-      <td>896</td>
-      <td>1329</td>
-      <td>1629</td>
-      <td>1604</td>
-      <td>1280</td>
-    </tr>
-    <tr>
-      <th>BsmtFullBath</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>BsmtHalfBath</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>FullBath</th>
-      <td>1</td>
-      <td>1</td>
-      <td>2</td>
-      <td>2</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>HalfBath</th>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>BedroomAbvGr</th>
-      <td>2</td>
-      <td>3</td>
-      <td>3</td>
-      <td>3</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>KitchenAbvGr</th>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>KitchenQual</th>
-      <td>TA</td>
-      <td>Gd</td>
-      <td>TA</td>
-      <td>Gd</td>
-      <td>Gd</td>
-    </tr>
-    <tr>
-      <th>TotRmsAbvGrd</th>
-      <td>5</td>
-      <td>6</td>
-      <td>6</td>
-      <td>7</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>Functional</th>
-      <td>Typ</td>
-      <td>Typ</td>
-      <td>Typ</td>
-      <td>Typ</td>
-      <td>Typ</td>
-    </tr>
-    <tr>
-      <th>Fireplaces</th>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>FireplaceQu</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>TA</td>
-      <td>Gd</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>GarageType</th>
-      <td>Attchd</td>
-      <td>Attchd</td>
-      <td>Attchd</td>
-      <td>Attchd</td>
-      <td>Attchd</td>
-    </tr>
-    <tr>
-      <th>GarageYrBlt</th>
-      <td>1961</td>
-      <td>1958</td>
-      <td>1997</td>
-      <td>1998</td>
-      <td>1992</td>
-    </tr>
-    <tr>
-      <th>GarageFinish</th>
-      <td>Unf</td>
-      <td>Unf</td>
-      <td>Fin</td>
-      <td>Fin</td>
-      <td>RFn</td>
-    </tr>
-    <tr>
-      <th>GarageCars</th>
-      <td>1</td>
-      <td>1</td>
-      <td>2</td>
-      <td>2</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>GarageArea</th>
-      <td>730</td>
-      <td>312</td>
-      <td>482</td>
-      <td>470</td>
-      <td>506</td>
-    </tr>
-    <tr>
-      <th>GarageQual</th>
-      <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-    </tr>
-    <tr>
-      <th>GarageCond</th>
-      <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-    </tr>
-    <tr>
-      <th>PavedDrive</th>
-      <td>Y</td>
-      <td>Y</td>
-      <td>Y</td>
-      <td>Y</td>
-      <td>Y</td>
-    </tr>
-    <tr>
-      <th>WoodDeckSF</th>
-      <td>140</td>
-      <td>393</td>
-      <td>212</td>
-      <td>360</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>OpenPorchSF</th>
-      <td>0</td>
-      <td>36</td>
-      <td>34</td>
-      <td>36</td>
-      <td>82</td>
-    </tr>
-    <tr>
-      <th>EnclosedPorch</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3SsnPorch</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>ScreenPorch</th>
-      <td>120</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>144</td>
-    </tr>
-    <tr>
-      <th>PoolArea</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>PoolQC</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>Fence</th>
-      <td>MnPrv</td>
-      <td>NaN</td>
-      <td>MnPrv</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>MiscFeature</th>
-      <td>NaN</td>
-      <td>Gar2</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>MiscVal</th>
-      <td>0</td>
-      <td>12500</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>MoSold</th>
-      <td>6</td>
-      <td>6</td>
-      <td>3</td>
-      <td>6</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>YrSold</th>
-      <td>2010</td>
-      <td>2010</td>
-      <td>2010</td>
-      <td>2010</td>
-      <td>2010</td>
-    </tr>
-    <tr>
-      <th>SaleType</th>
-      <td>WD</td>
-      <td>WD</td>
-      <td>WD</td>
-      <td>WD</td>
-      <td>WD</td>
-    </tr>
-    <tr>
-      <th>SaleCondition</th>
-      <td>Normal</td>
-      <td>Normal</td>
-      <td>Normal</td>
-      <td>Normal</td>
-      <td>Normal</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dep_var</span> <span class="o">=</span> <span class="s2">&quot;SalePrice&quot;</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bins</span> <span class="o">=</span> <span class="mi">50</span>
-
-<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">dep_var</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{dep_var}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">dep_var</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">),</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;log(</span><span class="si">{dep_var}</span><span class="s2">)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">show_dep_var</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">dep_var</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1607,19 +113,6 @@ summary: "Contains all the steps necessary to preprocess the Kaggle house prices
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">dep_var</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">dep_var</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Cleaning-the-data">Cleaning the data<a class="anchor-link" href="#Cleaning-the-data">&#182;</a></h2>
@@ -1628,18 +121,20 @@ summary: "Contains all the steps necessary to preprocess the Kaggle house prices
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Imputing continuous columns</p>
+<p>Imputing NaN values for continuous columns and flagging of NaNs with new <code>_na</code> columns.</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">col</span> <span class="o">=</span> <span class="s2">&quot;MasVnrArea&quot;</span>
-<span class="nb">sorted</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display_all</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">cont_names</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1652,391 +147,197 @@ summary: "Contains all the steps necessary to preprocess the Kaggle house prices
 <div class="output_area">
 
 
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<div class="output_text output_subarea output_execute_result">
-<pre>[0.0,
- 1.0,
- 11.0,
- 14.0,
- 16.0,
- 18.0,
- 22.0,
- 24.0,
- 27.0,
- 28.0,
- 30.0,
- 31.0,
- 32.0,
- 34.0,
- 36.0,
- 38.0,
- 40.0,
- 41.0,
- 42.0,
- 44.0,
- 45.0,
- 46.0,
- 48.0,
- 50.0,
- 51.0,
- 53.0,
- 54.0,
- 56.0,
- 57.0,
- 60.0,
- 63.0,
- 64.0,
- 65.0,
- 66.0,
- 67.0,
- 68.0,
- 70.0,
- 72.0,
- 74.0,
- 75.0,
- 76.0,
- 80.0,
- 81.0,
- 82.0,
- 84.0,
- 85.0,
- 86.0,
- 88.0,
- 89.0,
- 90.0,
- 92.0,
- 94.0,
- 95.0,
- 96.0,
- 97.0,
- 98.0,
- 99.0,
- 100.0,
- 101.0,
- 102.0,
- 104.0,
- 105.0,
- 106.0,
- 108.0,
- 109.0,
- 110.0,
- 112.0,
- 113.0,
- 114.0,
- 115.0,
- 116.0,
- 117.0,
- 119.0,
- 120.0,
- 122.0,
- 123.0,
- 125.0,
- 126.0,
- 127.0,
- 128.0,
- 130.0,
- 132.0,
- 135.0,
- 136.0,
- 137.0,
- 138.0,
- 140.0,
- 142.0,
- 143.0,
- 144.0,
- 145.0,
- 146.0,
- 147.0,
- 148.0,
- 149.0,
- 150.0,
- 151.0,
- 153.0,
- 154.0,
- 156.0,
- 157.0,
- 158.0,
- 160.0,
- 161.0,
- 162.0,
- 163.0,
- 164.0,
- 165.0,
- 166.0,
- 167.0,
- 168.0,
- 169.0,
- 170.0,
- 171.0,
- 172.0,
- 174.0,
- 175.0,
- 176.0,
- 178.0,
- 180.0,
- 182.0,
- 183.0,
- 184.0,
- 186.0,
- 188.0,
- 189.0,
- 192.0,
- 194.0,
- 196.0,
- 200.0,
- 202.0,
- 203.0,
- 204.0,
- 205.0,
- 206.0,
- 207.0,
- 208.0,
- 209.0,
- 210.0,
- 212.0,
- 215.0,
- 216.0,
- 218.0,
- 219.0,
- 220.0,
- 223.0,
- 224.0,
- 225.0,
- 226.0,
- 228.0,
- 230.0,
- 232.0,
- 233.0,
- 234.0,
- 236.0,
- 237.0,
- 238.0,
- 240.0,
- 243.0,
- 244.0,
- 245.0,
- 246.0,
- 247.0,
- 248.0,
- 250.0,
- 252.0,
- 254.0,
- 255.0,
- 256.0,
- 258.0,
- 259.0,
- 260.0,
- 261.0,
- 262.0,
- 263.0,
- 266.0,
- 268.0,
- 270.0,
- 272.0,
- 274.0,
- 275.0,
- 278.0,
- 280.0,
- 281.0,
- 284.0,
- 285.0,
- 286.0,
- 287.0,
- 288.0,
- 289.0,
- 290.0,
- 292.0,
- 293.0,
- 294.0,
- 295.0,
- 296.0,
- 297.0,
- 298.0,
- 299.0,
- 300.0,
- 302.0,
- 304.0,
- 305.0,
- 306.0,
- 309.0,
- 310.0,
- 312.0,
- 315.0,
- 318.0,
- 320.0,
- 324.0,
- 328.0,
- 333.0,
- 335.0,
- 336.0,
- 337.0,
- 338.0,
- 340.0,
- 342.0,
- 344.0,
- 348.0,
- 350.0,
- 351.0,
- 359.0,
- 360.0,
- 361.0,
- 362.0,
- 365.0,
- 366.0,
- 368.0,
- 370.0,
- 375.0,
- 376.0,
- 378.0,
- 380.0,
- 381.0,
- 387.0,
- 388.0,
- 391.0,
- 396.0,
- 399.0,
- 408.0,
- 410.0,
- 412.0,
- 415.0,
- 420.0,
- 423.0,
- 424.0,
- 425.0,
- 426.0,
- 428.0,
- 432.0,
- 435.0,
- 436.0,
- 438.0,
- 442.0,
- 443.0,
- 448.0,
- 450.0,
- 451.0,
- 452.0,
- 456.0,
- 459.0,
- 464.0,
- 466.0,
- 468.0,
- 472.0,
- 473.0,
- 479.0,
- 480.0,
- 481.0,
- 491.0,
- 500.0,
- 506.0,
- 510.0,
- 513.0,
- 528.0,
- 530.0,
- 541.0,
- 554.0,
- 562.0,
- 564.0,
- 567.0,
- 571.0,
- 573.0,
- 576.0,
- 579.0,
- 584.0,
- 594.0,
- 600.0,
- 603.0,
- 604.0,
- 616.0,
- 621.0,
- 630.0,
- 632.0,
- 640.0,
- 650.0,
- 651.0,
- 653.0,
- 660.0,
- 664.0,
- 673.0,
- 705.0,
- 731.0,
- 748.0,
- 760.0,
- 762.0,
- 766.0,
- 768.0,
- 772.0,
- 788.0,
- 796.0,
- 816.0,
- 860.0,
- 870.0,
- 894.0,
- 921.0,
- 922.0,
- 975.0,
- 1031.0,
- 1047.0,
- 1115.0,
- 1129.0,
- nan,
- 1170.0,
- 1378.0,
- 1600.0]</pre>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>min</th>
+      <th>25%</th>
+      <th>50%</th>
+      <th>75%</th>
+      <th>max</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>LotArea</th>
+      <td>1460.0</td>
+      <td>10516.828082</td>
+      <td>9981.264932</td>
+      <td>1300.0</td>
+      <td>7553.50</td>
+      <td>9478.5</td>
+      <td>11601.50</td>
+      <td>215245.0</td>
+    </tr>
+    <tr>
+      <th>YearBuilt</th>
+      <td>1460.0</td>
+      <td>1971.267808</td>
+      <td>30.202904</td>
+      <td>1872.0</td>
+      <td>1954.00</td>
+      <td>1973.0</td>
+      <td>2000.00</td>
+      <td>2010.0</td>
+    </tr>
+    <tr>
+      <th>YearRemodAdd</th>
+      <td>1460.0</td>
+      <td>1984.865753</td>
+      <td>20.645407</td>
+      <td>1950.0</td>
+      <td>1967.00</td>
+      <td>1994.0</td>
+      <td>2004.00</td>
+      <td>2010.0</td>
+    </tr>
+    <tr>
+      <th>MasVnrArea</th>
+      <td>1452.0</td>
+      <td>103.685262</td>
+      <td>181.066207</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>166.00</td>
+      <td>1600.0</td>
+    </tr>
+    <tr>
+      <th>BsmtFinSF2</th>
+      <td>1460.0</td>
+      <td>46.549315</td>
+      <td>161.319273</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>1474.0</td>
+    </tr>
+    <tr>
+      <th>BsmtUnfSF</th>
+      <td>1460.0</td>
+      <td>567.240411</td>
+      <td>441.866955</td>
+      <td>0.0</td>
+      <td>223.00</td>
+      <td>477.5</td>
+      <td>808.00</td>
+      <td>2336.0</td>
+    </tr>
+    <tr>
+      <th>TotalBsmtSF</th>
+      <td>1460.0</td>
+      <td>1057.429452</td>
+      <td>438.705324</td>
+      <td>0.0</td>
+      <td>795.75</td>
+      <td>991.5</td>
+      <td>1298.25</td>
+      <td>6110.0</td>
+    </tr>
+    <tr>
+      <th>1stFlrSF</th>
+      <td>1460.0</td>
+      <td>1162.626712</td>
+      <td>386.587738</td>
+      <td>334.0</td>
+      <td>882.00</td>
+      <td>1087.0</td>
+      <td>1391.25</td>
+      <td>4692.0</td>
+    </tr>
+    <tr>
+      <th>2ndFlrSF</th>
+      <td>1460.0</td>
+      <td>346.992466</td>
+      <td>436.528436</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>728.00</td>
+      <td>2065.0</td>
+    </tr>
+    <tr>
+      <th>GrLivArea</th>
+      <td>1460.0</td>
+      <td>1515.463699</td>
+      <td>525.480383</td>
+      <td>334.0</td>
+      <td>1129.50</td>
+      <td>1464.0</td>
+      <td>1776.75</td>
+      <td>5642.0</td>
+    </tr>
+    <tr>
+      <th>GarageYrBlt</th>
+      <td>1379.0</td>
+      <td>1978.506164</td>
+      <td>24.689725</td>
+      <td>1900.0</td>
+      <td>1961.00</td>
+      <td>1980.0</td>
+      <td>2002.00</td>
+      <td>2010.0</td>
+    </tr>
+    <tr>
+      <th>GarageArea</th>
+      <td>1460.0</td>
+      <td>472.980137</td>
+      <td>213.804841</td>
+      <td>0.0</td>
+      <td>334.50</td>
+      <td>480.0</td>
+      <td>576.00</td>
+      <td>1418.0</td>
+    </tr>
+    <tr>
+      <th>WoodDeckSF</th>
+      <td>1460.0</td>
+      <td>94.244521</td>
+      <td>125.338794</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>168.00</td>
+      <td>857.0</td>
+    </tr>
+    <tr>
+      <th>OpenPorchSF</th>
+      <td>1460.0</td>
+      <td>46.660274</td>
+      <td>66.256028</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>25.0</td>
+      <td>68.00</td>
+      <td>547.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 </div>
 
 </div>
 
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cont_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;MasVnrArea&quot;</span><span class="p">]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cont_cols</span><span class="p">:</span>
-    <span class="n">_x</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span>
-    <span class="n">ix_na</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">_x</span><span class="p">)</span>
-    <span class="n">ix_fin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">_x</span><span class="p">)</span>
-    <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ix_na</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">_x</span><span class="p">[</span><span class="n">ix_fin</span><span class="p">])</span>
-    <span class="n">df</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{col}</span><span class="s2">_na&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ix_na</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Sampling">Sampling<a class="anchor-link" href="#Sampling">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">small_sample</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
-</pre></div>
-
-    </div>
 </div>
 </div>
 
@@ -2053,8 +354,214 @@ summary: "Contains all the steps necessary to preprocess the Kaggle house prices
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="do_sample" class="doc_header"><code>do_sample</code><a href="https://github.com/eschmidt42/src/tree/master/src/preprocessing.py#L15" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>do_sample</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>small_sample</code></strong>:<code>bool</code>, <strong><code>n</code></strong>:<code>int</code>=<em><code>100</code></em>)</p>
+<h4 id="show_na_share" class="doc_header"><code>show_na_share</code><a href="https://github.com/eschmidt42/src/tree/master/src/preprocessing.py#L45" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>show_na_share</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>cols</code></strong>:<code>List</code>[<code>str</code>])</p>
 </blockquote>
+<p>Prints the share of NaN values by column</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">show_na_share</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">cont_names</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>MasVnrArea: 0.55 %
+GarageYrBlt: 5.55 %
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="impute_continuous" class="doc_header"><code>impute_continuous</code><a href="https://github.com/eschmidt42/src/tree/master/src/preprocessing.py#L52" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>impute_continuous</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>cont_cols</code></strong>:<code>List</code>[<code>str</code>])</p>
+</blockquote>
+<p>Going through columns in <a href="/src/preprocessing#cont_names"><code>cont_names</code></a> this function replaces NaNs with the median adding a column flagging NaNs.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">impute_continuous</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">cont_names</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">show_na_share</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">cont_names</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">show_na_share</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">cat_names</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>LotFrontage: 17.74 %
+Alley: 93.77 %
+MasVnrType: 0.55 %
+BsmtQual: 2.53 %
+BsmtCond: 2.53 %
+BsmtExposure: 2.60 %
+BsmtFinType1: 2.53 %
+BsmtFinType2: 2.60 %
+Electrical: 0.07 %
+FireplaceQu: 47.26 %
+GarageType: 5.55 %
+GarageFinish: 5.55 %
+GarageQual: 5.55 %
+GarageCond: 5.55 %
+PoolQC: 99.52 %
+Fence: 80.75 %
+MiscFeature: 96.30 %
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="impute_categorical" class="doc_header"><code>impute_categorical</code><a href="https://github.com/eschmidt42/src/tree/master/src/preprocessing.py#L82" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>impute_categorical</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>cat_names</code></strong>:<code>List</code>[<code>str</code>], <strong><code>fill_val</code></strong>:<code>str</code>=<em><code>'NA'</code></em>)</p>
+</blockquote>
+<p>Going through columns in <a href="/src/preprocessing#cat_names"><code>cat_names</code></a> this function replaces NaNs with <code>fill_val</code> adding a column flagging NaNs.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">impute_categorical</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">cat_names</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">show_na_share</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">cat_names</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Sub-sampling">Sub-sampling<a class="anchor-link" href="#Sub-sampling">&#182;</a></h2><p>To accelerate the turnaround time during model development lets do some sub-sampling of <code>n</code> samples, without replacement.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="do_sample" class="doc_header"><code>do_sample</code><a href="https://github.com/eschmidt42/src/tree/master/src/preprocessing.py#L91" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>do_sample</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>small_sample</code></strong>:<code>bool</code>, <strong><code>n</code></strong>:<code>int</code>=<em><code>100</code></em>)</p>
+</blockquote>
+<p>Generates samples from <code>df</code>.</p>
 
 </div>
 
@@ -2100,6 +607,13 @@ summary: "Contains all the steps necessary to preprocess the Kaggle house prices
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Using <a href="/src/preprocessing#get_split"><code>get_split</code></a>, the data is split using the underlying order adding a <code>valid</code> columns indicating the set affiliation. If the dataframe is ordered, e.g. increasingly along a time column, then <code>valid_pct</code> determines the number of the last rows to use in the validation set. All values before are then training samples.</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
@@ -2112,7 +626,7 @@ summary: "Contains all the steps necessary to preprocess the Kaggle house prices
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_split" class="doc_header"><code>get_split</code><a href="https://github.com/eschmidt42/src/tree/master/src/preprocessing.py#L23" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_split</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>valid_pct</code></strong>:<code>float</code>=<em><code>0.2</code></em>)</p>
+<h4 id="get_split" class="doc_header"><code>get_split</code><a href="https://github.com/eschmidt42/src/tree/master/src/preprocessing.py#L100" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_split</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>valid_pct</code></strong>:<code>float</code>=<em><code>0.2</code></em>)</p>
 </blockquote>
 <p>Splitting the data frame into train and validation set, creating a new <code>valid</code> column</p>
 
@@ -2176,14 +690,14 @@ Name: valid, dtype: int64</pre>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">clean_data_path</span> <span class="o">=</span> <span class="n">dir_raw_data</span><span class="o">.</span><span class="n">parent</span><span class="o">/</span><span class="s2">&quot;train_clean.csv&quot;</span>
-<span class="n">clean_test_data_path</span> <span class="o">=</span> <span class="n">dir_raw_data</span><span class="o">.</span><span class="n">parent</span><span class="o">/</span><span class="s2">&quot;test_clean.csv&quot;</span>
-
-<span class="n">clean_data_path</span><span class="p">,</span> <span class="n">clean_test_data_path</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">clean_data_path</span><span class="p">,</span> <span class="n">clean_test_data_path</span>
 </pre></div>
 
     </div>
