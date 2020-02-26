@@ -22,6 +22,7 @@ index = {"extract_zip_files": "00_utils.ipynb",
          "get_split": "01_preprocessing.ipynb",
          "clean_data_path": "01_preprocessing.ipynb",
          "clean_test_data_path": "01_preprocessing.ipynb",
+         "model_data_path": "02_modelling.ipynb",
          "mish": "02_modelling.ipynb",
          "Mish": "02_modelling.ipynb",
          "TabularModel.__init__": "02_modelling.ipynb",
@@ -29,7 +30,8 @@ index = {"extract_zip_files": "00_utils.ipynb",
 
 modules = ["utils.py",
            "preprocessing.py",
-           "modelling.py"]
+           "modelling.py",
+           "inspection.py"]
 
 doc_url = "https://eschmidt42.github.io/src/"
 
