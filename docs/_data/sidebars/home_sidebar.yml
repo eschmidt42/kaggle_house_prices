@@ -18,6 +18,9 @@ entries:
     - output: web,pdf
       title: Modelling tabular data
       url: /modelling
+    - output: web,pdf
+      title: Model inspection <a class="tocSkip">
+      url: /model_inspection
     output: web
     title: src
   output: web
