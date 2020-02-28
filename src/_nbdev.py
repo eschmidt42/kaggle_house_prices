@@ -26,7 +26,14 @@ index = {"extract_zip_files": "00_utils.ipynb",
          "mish": "02_modelling.ipynb",
          "Mish": "02_modelling.ipynb",
          "TabularModel.__init__": "02_modelling.ipynb",
-         "predictions_vs_true_distribution_plots": "02_modelling.ipynb"}
+         "predictions_vs_true_distribution_plots": "02_modelling.ipynb",
+         "get_df_preds": "03_model_inspection.ipynb",
+         "element_comp": "03_model_inspection.ipynb",
+         "get_cat_freqs": "03_model_inspection.ipynb",
+         "plot_best_vs_worst_categorical": "03_model_inspection.ipynb",
+         "distribution_similarity": "03_model_inspection.ipynb",
+         "get_cont_freqs": "03_model_inspection.ipynb",
+         "plot_best_vs_worst_continuous": "03_model_inspection.ipynb"}
 
 modules = ["utils.py",
            "preprocessing.py",
