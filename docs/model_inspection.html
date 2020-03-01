@@ -114,7 +114,7 @@ summary: "After generating a model we inspect it here to find its flaws."
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;fastai2.tabular.learner.TabularLearner at 0x7f46fe7ee910&gt;</pre>
+<pre>&lt;fastai2.tabular.learner.TabularLearner at 0x7ffc85aec810&gt;</pre>
 </div>
 
 </div>
@@ -148,7 +148,7 @@ summary: "After generating a model we inspect it here to find its flaws."
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_df_preds" class="doc_header"><code>get_df_preds</code><a href="https://github.com/eschmidt42/src/tree/master/src/inspection.py#L20" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_df_preds</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>learn</code></strong>:<code>Learner</code>, <strong><code>cat_names</code></strong>:<code>List</code>[<code>str</code>], <strong><code>cont_names</code></strong>:<code>List</code>[<code>str</code>])</p>
+<h4 id="get_df_preds" class="doc_header"><code>get_df_preds</code><a href="https://github.com/eschmidt42/src/tree/master/src/inspection.py#L21" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_df_preds</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>learn</code></strong>:<code>Learner</code>, <strong><code>cat_names</code></strong>:<code>List</code>[<code>str</code>], <strong><code>cont_names</code></strong>:<code>List</code>[<code>str</code>])</p>
 </blockquote>
 <p><code>df</code> is the <code>TabularPandas.valid.xs</code> attribute</p>
 
@@ -186,8 +186,8 @@ summary: "After generating a model we inspect it here to find its flaws."
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 0 ns, sys: 0 ns, total: 0 ns
-Wall time: 7.16 ms
+<pre>CPU times: user 15.6 ms, sys: 0 ns, total: 15.6 ms
+Wall time: 12.5 ms
 </pre>
 </div>
 </div>
@@ -223,7 +223,7 @@ Wall time: 7.16 ms
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
-<span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span> <span class="o">=</span> <span class="n">learn</span><span class="o">.</span><span class="n">get_preds</span><span class="p">(</span><span class="n">dl</span><span class="o">=</span><span class="n">dls</span><span class="o">.</span><span class="n">valid</span><span class="p">);</span> <span class="n">y_pred1</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span> <span class="o">=</span> <span class="n">learn</span><span class="o">.</span><span class="n">get_preds</span><span class="p">(</span><span class="n">dl</span><span class="o">=</span><span class="n">dls</span><span class="o">.</span><span class="n">valid</span><span class="p">);</span> <span class="n">y_pred</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -244,14 +244,25 @@ Wall time: 7.16 ms
 
 <div class="output_area">
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;timed exec&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-
-<span class="ansi-red-fg">NameError</span>: name &#39;y_pred1&#39; is not defined</pre>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 78.1 ms, sys: 0 ns, total: 78.1 ms
+Wall time: 32.5 ms
+</pre>
 </div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[10.2952],
+        [11.1078],
+        [11.5308],
+        [ 8.7183],
+        [11.1293]])</pre>
+</div>
+
 </div>
 
 </div>
@@ -318,8 +329,8 @@ Wall time: 7.16 ms
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 3.05 s, sys: 125 ms, total: 3.17 s
-Wall time: 794 ms
+<pre>CPU times: user 3.3 s, sys: 31.2 ms, total: 3.33 s
+Wall time: 839 ms
 </pre>
 </div>
 </div>
@@ -372,22 +383,10 @@ Wall time: 794 ms
   </thead>
   <tbody>
     <tr>
-      <th>14</th>
-      <td>BldgType</td>
-      <td>11.551427</td>
-      <td>4.820223</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>Exterior2nd</td>
-      <td>11.495073</td>
-      <td>4.763870</td>
-    </tr>
-    <tr>
-      <th>33</th>
-      <td>HeatingQC</td>
-      <td>8.242323</td>
-      <td>1.511119</td>
+      <th>41</th>
+      <td>BedroomAbvGr</td>
+      <td>8.571332</td>
+      <td>1.840128</td>
     </tr>
     <tr>
       <th>37</th>
@@ -396,10 +395,22 @@ Wall time: 794 ms
       <td>1.079493</td>
     </tr>
     <tr>
-      <th>81</th>
-      <td>YearRemodAdd</td>
-      <td>7.627167</td>
-      <td>0.895963</td>
+      <th>15</th>
+      <td>HouseStyle</td>
+      <td>7.655418</td>
+      <td>0.924214</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>MasVnrType</td>
+      <td>7.592121</td>
+      <td>0.860918</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>GarageCars</td>
+      <td>7.429509</td>
+      <td>0.698305</td>
     </tr>
   </tbody>
 </table>
@@ -423,19 +434,38 @@ Wall time: 794 ms
 <p>In order to find out where the model goes most spectacularly wrong let's plot the worst predictions against the best predictions and compare them by individual features.</p>
 <p>Steps:</p>
 <ol>
+<li>decode the feature values to make it interpretable</li>
 <li>get samples with largest ("worst") and smallest ("best") prediction errors over the validation set</li>
 <li>plot feature distributions for those two groups</li>
 <li>select/sort the feature distributions shows by largest deviation between the distribution of the two groups</li>
-<li>decode the feature values to make it interpretable</li>
 </ol>
-<p>shap: <a href="https://github.com/slundberg/shap">https://github.com/slundberg/shap</a></p>
 
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">decoded_xs</span> <span class="o">=</span> <span class="n">to</span><span class="o">.</span><span class="n">valid</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Categorical-columns">Categorical columns<a class="anchor-link" href="#Categorical-columns">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Categorical-columns">Categorical columns<a class="anchor-link" href="#Categorical-columns">&#182;</a></h3>
+<p>Visualizing the difference distribution of <a href="/src/preprocessing#dep_var"><code>dep_var</code></a></p>
+
 </div>
 </div>
 </div>
@@ -520,6 +550,67 @@ Wall time: 794 ms
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>Distribution similarity</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="distribution_similarity" class="doc_header"><code>distribution_similarity</code><a href="https://github.com/eschmidt42/src/tree/master/src/inspection.py#L29" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>distribution_similarity</code>(<strong><code>best</code></strong>:<code>Series</code>, <strong><code>worst</code></strong>:<code>Series</code>)</p>
+</blockquote>
+<p>Computing distribution similarity using <code>stats.wassertain_distance</code> assuming index based order</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">distribution_similarity</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">],</span> <span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="o">.</span><span class="mi">1</span><span class="p">,</span> <span class="o">.</span><span class="mi">8</span><span class="p">,</span> <span class="o">.</span><span class="mi">1</span><span class="p">]),</span>
+                        <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">],</span> <span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="o">.</span><span class="mi">1</span><span class="p">,</span> <span class="o">.</span><span class="mi">8</span><span class="p">,</span> <span class="o">.</span><span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.0</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Defining functions for the comparison of best/worst distributions</p>
 
 </div>
@@ -537,8 +628,9 @@ Wall time: 794 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="element_comp" class="doc_header"><code>element_comp</code><a href="https://github.com/eschmidt42/src/tree/master/src/inspection.py#L28" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>element_comp</code>(<strong><code>x</code></strong>:<code>ndarray</code>, <strong><code>y</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>str</code>])</p>
+<h4 id="element_comp" class="doc_header"><code>element_comp</code><a href="https://github.com/eschmidt42/src/tree/master/src/inspection.py#L35" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>element_comp</code>(<strong><code>x</code></strong>:<code>ndarray</code>, <strong><code>y</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>str</code>])</p>
 </blockquote>
+<p>Element-wise comparison</p>
 
 </div>
 
@@ -557,7 +649,7 @@ Wall time: 794 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_cat_freqs" class="doc_header"><code>get_cat_freqs</code><a href="https://github.com/eschmidt42/src/tree/master/src/inspection.py#L31" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_cat_freqs</code>(<strong><code>col</code></strong>:<code>str</code>, <strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>best</code></strong>:<code>ndarray</code>, <strong><code>worst</code></strong>:<code>ndarray</code>)</p>
+<h4 id="get_categorical_freqs_single_col" class="doc_header"><code>get_categorical_freqs_single_col</code><a href="https://github.com/eschmidt42/src/tree/master/src/inspection.py#L39" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_categorical_freqs_single_col</code>(<strong><code>col</code></strong>:<code>str</code>, <strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>best</code></strong>:<code>ndarray</code>, <strong><code>worst</code></strong>:<code>ndarray</code>)</p>
 </blockquote>
 <p>Computing the frequencies of categorical variables</p>
 
@@ -578,7 +670,7 @@ Wall time: 794 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="plot_best_vs_worst_categorical" class="doc_header"><code>plot_best_vs_worst_categorical</code><a href="https://github.com/eschmidt42/src/tree/master/src/inspection.py#L46" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_best_vs_worst_categorical</code>(<strong><code>col</code></strong>:<code>str</code>, <strong><code>best</code></strong>:<code>Series</code>, <strong><code>worst</code></strong>:<code>Series</code>, <strong><code>best_nas</code></strong>:<code>int</code>=<em><code>0</code></em>, <strong><code>worst_nas</code></strong>:<code>int</code>=<em><code>0</code></em>, <strong><code>w</code></strong>:<code>float</code>=<em><code>0.4</code></em>)</p>
+<h4 id="plot_best_vs_worst_categorical" class="doc_header"><code>plot_best_vs_worst_categorical</code><a href="https://github.com/eschmidt42/src/tree/master/src/inspection.py#L54" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_best_vs_worst_categorical</code>(<strong><code>col</code></strong>:<code>str</code>, <strong><code>best</code></strong>:<code>Series</code>, <strong><code>worst</code></strong>:<code>Series</code>, <strong><code>best_nas</code></strong>:<code>int</code>=<em><code>0</code></em>, <strong><code>worst_nas</code></strong>:<code>int</code>=<em><code>0</code></em>, <strong><code>w</code></strong>:<code>float</code>=<em><code>0.4</code></em>)</p>
 </blockquote>
 <p>Plotting best/worst distribution for a categorical variable</p>
 
@@ -590,72 +682,9 @@ Wall time: 794 ms
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="distribution_similarity" class="doc_header"><code>distribution_similarity</code><a href="https://github.com/eschmidt42/src/tree/master/src/inspection.py#L70" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>distribution_similarity</code>(<strong><code>best</code></strong>:<code>Series</code>, <strong><code>worst</code></strong>:<code>Series</code>)</p>
-</blockquote>
-<p>Computing distribution similarity using <code>stats.wassertain_distance</code></p>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_cont_freqs" class="doc_header"><code>get_cont_freqs</code><a href="https://github.com/eschmidt42/src/tree/master/src/inspection.py#L75" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_cont_freqs</code>(<strong><code>col</code></strong>:<code>str</code>, <strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>best</code></strong>:<code>ndarray</code>, <strong><code>worst</code></strong>:<code>ndarray</code>, <strong><code>nbins</code></strong>:<code>int</code>=<em><code>50</code></em>)</p>
-</blockquote>
-<p>Computing the frequencies of continuous variables</p>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="plot_best_vs_worst_continuous" class="doc_header"><code>plot_best_vs_worst_continuous</code><a href="https://github.com/eschmidt42/src/tree/master/src/inspection.py#L98" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_best_vs_worst_continuous</code>(<strong><code>col</code></strong>:<code>str</code>, <strong><code>best</code></strong>:<code>Series</code>, <strong><code>worst</code></strong>:<code>Series</code>, <strong><code>best_nas</code></strong>:<code>int</code>=<em><code>0</code></em>, <strong><code>worst_nas</code></strong>:<code>int</code>=<em><code>0</code></em>)</p>
-</blockquote>
-<p>Plotting best/worst distribution for a continuous variable</p>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Iterating over the columns computing the distributions and their similarities</p>
+<p>Iterating over the categorical columns computing the distributions and their similarities</p>
 
 </div>
 </div>
@@ -665,25 +694,15 @@ Wall time: 794 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_best_vs_worst_feature_distributions</span><span class="p">(</span><span class="n">to</span><span class="p">:</span><span class="n">TabularPandas</span><span class="p">,</span> <span class="n">best</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
-                                            <span class="n">worst</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
-    <span class="n">decoded_xs</span> <span class="o">=</span> <span class="n">to</span><span class="o">.</span><span class="n">valid</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_all_categorical_freqs</span><span class="p">(</span><span class="n">decoded_xs</span><span class="p">:</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">best</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">worst</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+    
     <span class="n">cat_freqs</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">to</span><span class="o">.</span><span class="n">cat_names</span><span class="p">:</span>
-        <span class="n">_best</span><span class="p">,</span> <span class="n">_worst</span><span class="p">,</span> <span class="n">_best_nas</span><span class="p">,</span> <span class="n">_worst_nas</span> <span class="o">=</span> <span class="n">get_cat_freqs</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">decoded_xs</span><span class="p">,</span> <span class="n">best</span><span class="p">,</span> <span class="n">worst</span><span class="p">)</span>
+        <span class="n">_best</span><span class="p">,</span> <span class="n">_worst</span><span class="p">,</span> <span class="n">_best_nas</span><span class="p">,</span> <span class="n">_worst_nas</span> <span class="o">=</span> <span class="n">get_categorical_freqs_single_col</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">decoded_xs</span><span class="p">,</span> <span class="n">best</span><span class="p">,</span> <span class="n">worst</span><span class="p">)</span>
         <span class="n">_score</span> <span class="o">=</span> <span class="n">distribution_similarity</span><span class="p">(</span><span class="n">_best</span><span class="p">,</span> <span class="n">_worst</span><span class="p">)</span>
         <span class="n">cat_freqs</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;best&quot;</span><span class="p">:</span> <span class="n">_best</span><span class="p">,</span> <span class="s2">&quot;worst&quot;</span><span class="p">:</span><span class="n">_worst</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="n">_score</span><span class="p">,</span>
                           <span class="s2">&quot;best_nas&quot;</span><span class="p">:</span> <span class="n">_best_nas</span><span class="p">,</span> <span class="s2">&quot;worst_nas&quot;</span><span class="p">:</span> <span class="n">_worst_nas</span><span class="p">}</span>
-        
-    <span class="n">cont_freqs</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">to</span><span class="o">.</span><span class="n">cont_names</span><span class="p">:</span>
-        <span class="c1"># to.valid.xs</span>
-        <span class="n">_best</span><span class="p">,</span> <span class="n">_worst</span><span class="p">,</span> <span class="n">_best_nas</span><span class="p">,</span> <span class="n">_worst_nas</span> <span class="o">=</span> <span class="n">get_cont_freqs</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">decoded_xs</span><span class="p">,</span> <span class="n">best</span><span class="p">,</span> <span class="n">worst</span><span class="p">,</span> <span class="n">nbins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
-        <span class="n">_score</span> <span class="o">=</span> <span class="n">distribution_similarity</span><span class="p">(</span><span class="n">_best</span><span class="p">,</span> <span class="n">_worst</span><span class="p">)</span>
-        <span class="n">cont_freqs</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;best&quot;</span><span class="p">:</span> <span class="n">_best</span><span class="p">,</span> <span class="s2">&quot;worst&quot;</span><span class="p">:</span><span class="n">_worst</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="n">_score</span><span class="p">,</span>
-                           <span class="s2">&quot;best_nas&quot;</span><span class="p">:</span> <span class="n">_best_nas</span><span class="p">,</span> <span class="s2">&quot;worst_nas&quot;</span><span class="p">:</span> <span class="n">_worst_nas</span><span class="p">}</span>
-        
-    <span class="k">return</span> <span class="n">cat_freqs</span><span class="p">,</span> <span class="n">cont_freqs</span>
+    <span class="k">return</span> <span class="n">cat_freqs</span>
 </pre></div>
 
     </div>
@@ -697,7 +716,7 @@ Wall time: 794 ms
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
-<span class="n">cat_freqs</span><span class="p">,</span> <span class="n">cont_freqs</span> <span class="o">=</span> <span class="n">get_best_vs_worst_feature_distributions</span><span class="p">(</span><span class="n">to</span><span class="p">,</span> <span class="n">best_ix</span><span class="p">,</span> <span class="n">worst_ix</span><span class="p">)</span>
+<span class="n">cat_freqs</span> <span class="o">=</span> <span class="n">get_all_categorical_freqs</span><span class="p">(</span><span class="n">decoded_xs</span><span class="p">,</span> <span class="n">best_ix</span><span class="p">,</span> <span class="n">worst_ix</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -710,8 +729,8 @@ Wall time: 794 ms
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 469 ms, sys: 15.6 ms, total: 484 ms
-Wall time: 465 ms
+<pre>CPU times: user 375 ms, sys: 0 ns, total: 375 ms
+Wall time: 369 ms
 </pre>
 </div>
 </div>
@@ -808,29 +827,25 @@ Wall time: 465 ms
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
 
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">plot_top_distributions</span><span class="p">(</span><span class="n">cat_freqs</span><span class="p">:</span><span class="nb">dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cont_freqs</span><span class="p">:</span><span class="nb">dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">top_n</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
-    <span class="n">all_freqs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;cat&quot;</span><span class="p">:</span> <span class="n">cat_freqs</span><span class="p">,</span> <span class="s2">&quot;cont&quot;</span><span class="p">:</span> <span class="n">cont_freqs</span><span class="p">}</span>
-    <span class="k">for</span> <span class="n">kind</span><span class="p">,</span> <span class="n">freqs</span> <span class="ow">in</span> <span class="n">all_freqs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">freqs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="k">continue</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">freqs</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="s2">&quot;score&quot;</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)):</span>
-            <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">top_n</span><span class="p">:</span> <span class="k">break</span>
-            <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s2">&quot;cat&quot;</span><span class="p">:</span> <span class="n">plot_best_vs_worst_categorical</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> 
-                                                             <span class="n">freqs</span><span class="p">[</span><span class="n">col</span><span class="p">][</span><span class="s2">&quot;best&quot;</span><span class="p">],</span> 
-                                                             <span class="n">freqs</span><span class="p">[</span><span class="n">col</span><span class="p">][</span><span class="s2">&quot;worst&quot;</span><span class="p">],</span>
-                                                             <span class="n">best_nas</span><span class="o">=</span><span class="n">freqs</span><span class="p">[</span><span class="n">col</span><span class="p">][</span><span class="s2">&quot;best_nas&quot;</span><span class="p">],</span>
-                                                             <span class="n">worst_nas</span><span class="o">=</span><span class="n">freqs</span><span class="p">[</span><span class="n">col</span><span class="p">][</span><span class="s2">&quot;worst_nas&quot;</span><span class="p">])</span>
-            <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s2">&quot;cont&quot;</span><span class="p">:</span> <span class="n">plot_best_vs_worst_continuous</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> 
-                                                             <span class="n">freqs</span><span class="p">[</span><span class="n">col</span><span class="p">][</span><span class="s2">&quot;best&quot;</span><span class="p">],</span> 
-                                                             <span class="n">freqs</span><span class="p">[</span><span class="n">col</span><span class="p">][</span><span class="s2">&quot;worst&quot;</span><span class="p">],</span>
-                                                             <span class="n">best_nas</span><span class="o">=</span><span class="n">freqs</span><span class="p">[</span><span class="n">col</span><span class="p">][</span><span class="s2">&quot;best_nas&quot;</span><span class="p">],</span>
-                                                             <span class="n">worst_nas</span><span class="o">=</span><span class="n">freqs</span><span class="p">[</span><span class="n">col</span><span class="p">][</span><span class="s2">&quot;worst_nas&quot;</span><span class="p">])</span>
-</pre></div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
 
-    </div>
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="plot_top_distributions" class="doc_header"><code>plot_top_distributions</code><a href="https://github.com/eschmidt42/src/tree/master/src/inspection.py#L79" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_top_distributions</code>(<strong><code>cat_freqs</code></strong>:<code>dict</code>=<em><code>None</code></em>, <strong><code>cont_freqs</code></strong>:<code>dict</code>=<em><code>None</code></em>, <strong><code>top_n</code></strong>:<code>int</code>=<em><code>5</code></em>)</p>
+</blockquote>
+<p>Calling <a href="/src/model_inspection#plot_best_vs_worst_categorical"><code>plot_best_vs_worst_categorical</code></a> and <a href="/src/model_inspection#plot_best_vs_worst_continuous"><code>plot_best_vs_worst_continuous</code></a> showing distributions with the worst scores</p>
+
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -907,6 +922,107 @@ MiscFeature has no finite values among the &#39;best&#39; chosen samples!
 <h3 id="Continuous-columns">Continuous columns<a class="anchor-link" href="#Continuous-columns">&#182;</a></h3>
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="get_continuous_freqs_single_col" class="doc_header"><code>get_continuous_freqs_single_col</code><a href="https://github.com/eschmidt42/src/tree/master/src/inspection.py#L98" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_continuous_freqs_single_col</code>(<strong><code>col</code></strong>:<code>str</code>, <strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>best</code></strong>:<code>ndarray</code>, <strong><code>worst</code></strong>:<code>ndarray</code>, <strong><code>nbins</code></strong>:<code>int</code>=<em><code>50</code></em>)</p>
+</blockquote>
+<p>Computing the frequencies of continuous variables</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="plot_best_vs_worst_continuous" class="doc_header"><code>plot_best_vs_worst_continuous</code><a href="https://github.com/eschmidt42/src/tree/master/src/inspection.py#L121" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_best_vs_worst_continuous</code>(<strong><code>col</code></strong>:<code>str</code>, <strong><code>best</code></strong>:<code>Series</code>, <strong><code>worst</code></strong>:<code>Series</code>, <strong><code>best_nas</code></strong>:<code>int</code>=<em><code>0</code></em>, <strong><code>worst_nas</code></strong>:<code>int</code>=<em><code>0</code></em>)</p>
+</blockquote>
+<p>Plotting best/worst distribution for a continuous variable</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="get_all_continuous_freqs" class="doc_header"><code>get_all_continuous_freqs</code><a href="https://github.com/eschmidt42/src/tree/master/src/inspection.py#L138" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_all_continuous_freqs</code>(<strong><code>decoded_xs</code></strong>:<code>DataFrame</code>, <strong><code>best</code></strong>:<code>ndarray</code>, <strong><code>worst</code></strong>:<code>ndarray</code>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Iterating over the categorical columns computing the distributions and their similarities</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="n">cont_freqs</span> <span class="o">=</span> <span class="n">get_all_continuous_freqs</span><span class="p">(</span><span class="n">decoded_xs</span><span class="p">,</span> <span class="n">best_ix</span><span class="p">,</span> <span class="n">worst_ix</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 31.2 ms, sys: 0 ns, total: 31.2 ms
+Wall time: 42.3 ms
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -1044,13 +1160,13 @@ MiscFeature has no finite values among the &#39;best&#39; chosen samples!
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>LotArea</td>
-      <td>0.04</td>
+      <th>12</th>
+      <td>WoodDeckSF</td>
+      <td>0.08</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>YearBuilt</td>
+      <th>2</th>
+      <td>YearRemodAdd</td>
       <td>0.04</td>
     </tr>
     <tr>
@@ -1059,13 +1175,13 @@ MiscFeature has no finite values among the &#39;best&#39; chosen samples!
       <td>0.04</td>
     </tr>
     <tr>
-      <th>5</th>
-      <td>BsmtUnfSF</td>
+      <th>4</th>
+      <td>BsmtFinSF2</td>
       <td>0.04</td>
     </tr>
     <tr>
-      <th>6</th>
-      <td>TotalBsmtSF</td>
+      <th>8</th>
+      <td>2ndFlrSF</td>
       <td>0.04</td>
     </tr>
   </tbody>
@@ -1079,1494 +1195,16 @@ MiscFeature has no finite values among the &#39;best&#39; chosen samples!
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">to</span><span class="o">.</span><span class="n">procs</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>Pipeline: FillMissing -&gt; RegressionSetup -&gt; Categorify -&gt; Normalize</pre>
-</div>
-
-</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="SHAP">SHAP<a class="anchor-link" href="#SHAP">&#182;</a></h2><p>shap:</p>
+<ul>
+<li>git: <a href="https://github.com/slundberg/shap">https://github.com/slundberg/shap</a></li>
+<li>arXiv: <a href="https://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions">https://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions</a></li>
+</ul>
 
 </div>
 </div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">doc</span><span class="p">(</span><span class="n">compose</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">to</span><span class="o">.</span><span class="n">procs</span><span class="p">[</span><span class="mi">0</span><span class="p">](</span><span class="n">to</span><span class="o">.</span><span class="n">valid</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>      Id MSSubClass MSZoning LotFrontage  LotArea Street Alley LotShape  \
-80  #na#         80       RL        #na#   8385.0   Pave  #na#      Reg   
-81  #na#         20       RL          68   8814.0   Pave  #na#      Reg   
-82  #na#         70       RL          60   9084.0   Pave  #na#      Reg   
-83  #na#         30       RM          50   6000.0   Pave  #na#      Reg   
-84  #na#         20       RL        #na#   9591.0   Pave  #na#      Reg   
-85  #na#         30       RL        #na#  25339.0   Pave  #na#      Reg   
-86  #na#         80       RL        #na#  17871.0   Pave  #na#      IR1   
-87  #na#         20       RL          73  10921.0   Pave  #na#      Reg   
-88  #na#        120       RM          32   4500.0   Pave  #na#      Reg   
-89  #na#         50       RL        #na#   5400.0   Pave  #na#      Reg   
-90  #na#         50       RM          50   6000.0   Pave  #na#      Reg   
-91  #na#         90       RM          68   8930.0   Pave  #na#      Reg   
-92  #na#         20       RL        #na#  13704.0   Pave  #na#      IR1   
-93  #na#        120       RM        #na#   4500.0   Pave  #na#      Reg   
-94  #na#         20       RL        #na#  14803.0   Pave  #na#      Reg   
-95  #na#         60       RL          57  21872.0   Pave  #na#      IR2   
-96  #na#         20       RL          50   7207.0   Pave  #na#      IR1   
-97  #na#         50       RL          60   9060.0   Pave  #na#      Reg   
-98  #na#         20       RL        #na#  16158.0   Pave  #na#      IR1   
-99  #na#         20       RL          60  10434.0   Pave  #na#      Reg   
-
-   LandContour Utilities  ... ScreenPorch_na PoolArea_na PoolQC_na Fence_na  \
-80         Lvl    AllPub  ...          False       False      True     True   
-81         Lvl    AllPub  ...          False       False      True     True   
-82         Lvl    AllPub  ...          False       False      True    False   
-83         Lvl    AllPub  ...          False       False      True    False   
-84         Lvl    AllPub  ...          False       False      True     True   
-85         Lvl    AllPub  ...          False       False      True     True   
-86         Lvl    AllPub  ...          False       False      True     True   
-87        #na#    AllPub  ...          False       False      True     True   
-88         Lvl    AllPub  ...          False       False      True     True   
-89         Lvl    AllPub  ...          False       False      True     True   
-90         Lvl    AllPub  ...          False       False      True     True   
-91         Lvl    AllPub  ...          False       False      True     True   
-92         Lvl    AllPub  ...          False       False      True     True   
-93         Lvl    AllPub  ...          False       False      True     True   
-94         Lvl    AllPub  ...          False       False      True     True   
-95        #na#    AllPub  ...          False       False      True     True   
-96         Lvl    AllPub  ...          False       False      True     True   
-97         Lvl    AllPub  ...          False       False      True    False   
-98         Low    AllPub  ...          False       False      True     True   
-99         Lvl    AllPub  ...          False       False      True     True   
-
-   MiscFeature_na MiscVal_na MoSold_na SaleType_na SaleCondition_na  valid  
-80           True      False     False       False            False   True  
-81           True      False     False       False            False   True  
-82           True      False     False       False            False   True  
-83           True      False     False       False            False   True  
-84           True      False     False       False            False   True  
-85           True      False     False       False            False   True  
-86           True      False     False       False            False   True  
-87           True      False     False       False            False   True  
-88           True      False     False       False            False   True  
-89           True      False     False       False            False   True  
-90           True      False     False       False            False   True  
-91           True      False     False       False            False   True  
-92           True      False     False       False            False   True  
-93           True      False     False       False            False   True  
-94           True      False     False       False            False   True  
-95           True      False     False       False            False   True  
-96           True      False     False       False            False   True  
-97           True      False     False       False            False   True  
-98           True      False     False       False            False   True  
-99           True      False     False       False            False   True  
-
-[20 rows x 161 columns]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">to</span><span class="o">.</span><span class="n">valid</span><span class="o">.</span><span class="n">xs</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Id</th>
-      <th>MSSubClass</th>
-      <th>MSZoning</th>
-      <th>LotFrontage</th>
-      <th>Street</th>
-      <th>Alley</th>
-      <th>LotShape</th>
-      <th>LandContour</th>
-      <th>Utilities</th>
-      <th>LotConfig</th>
-      <th>...</th>
-      <th>BsmtFinSF2</th>
-      <th>BsmtUnfSF</th>
-      <th>TotalBsmtSF</th>
-      <th>1stFlrSF</th>
-      <th>2ndFlrSF</th>
-      <th>GrLivArea</th>
-      <th>GarageYrBlt</th>
-      <th>GarageArea</th>
-      <th>WoodDeckSF</th>
-      <th>OpenPorchSF</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>80</th>
-      <td>0</td>
-      <td>8</td>
-      <td>2</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>4</td>
-      <td>3</td>
-      <td>1</td>
-      <td>4</td>
-      <td>...</td>
-      <td>-0.219295</td>
-      <td>-0.351932</td>
-      <td>-0.147713</td>
-      <td>-0.538062</td>
-      <td>-0.699373</td>
-      <td>-1.127443</td>
-      <td>-0.005901</td>
-      <td>-0.696164</td>
-      <td>0.931444</td>
-      <td>-0.784382</td>
-    </tr>
-    <tr>
-      <th>81</th>
-      <td>0</td>
-      <td>1</td>
-      <td>2</td>
-      <td>21</td>
-      <td>1</td>
-      <td>0</td>
-      <td>4</td>
-      <td>3</td>
-      <td>1</td>
-      <td>4</td>
-      <td>...</td>
-      <td>-0.219295</td>
-      <td>-0.630575</td>
-      <td>1.229569</td>
-      <td>1.189541</td>
-      <td>-0.699373</td>
-      <td>0.371898</td>
-      <td>1.363213</td>
-      <td>1.039508</td>
-      <td>0.208879</td>
-      <td>1.187216</td>
-    </tr>
-    <tr>
-      <th>82</th>
-      <td>0</td>
-      <td>6</td>
-      <td>2</td>
-      <td>17</td>
-      <td>1</td>
-      <td>0</td>
-      <td>4</td>
-      <td>3</td>
-      <td>1</td>
-      <td>4</td>
-      <td>...</td>
-      <td>-0.219295</td>
-      <td>0.495607</td>
-      <td>-0.659466</td>
-      <td>-1.179982</td>
-      <td>1.357005</td>
-      <td>0.144212</td>
-      <td>-1.752702</td>
-      <td>-0.863458</td>
-      <td>0.183963</td>
-      <td>-0.784382</td>
-    </tr>
-    <tr>
-      <th>83</th>
-      <td>0</td>
-      <td>2</td>
-      <td>3</td>
-      <td>11</td>
-      <td>1</td>
-      <td>0</td>
-      <td>4</td>
-      <td>3</td>
-      <td>1</td>
-      <td>4</td>
-      <td>...</td>
-      <td>-0.219295</td>
-      <td>0.381828</td>
-      <td>0.114838</td>
-      <td>-0.208729</td>
-      <td>-0.699373</td>
-      <td>-0.841623</td>
-      <td>-0.053112</td>
-      <td>-0.110636</td>
-      <td>0.566009</td>
-      <td>1.366452</td>
-    </tr>
-    <tr>
-      <th>84</th>
-      <td>0</td>
-      <td>1</td>
-      <td>2</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>4</td>
-      <td>3</td>
-      <td>1</td>
-      <td>4</td>
-      <td>...</td>
-      <td>-0.219295</td>
-      <td>0.193744</td>
-      <td>1.472096</td>
-      <td>1.493756</td>
-      <td>-0.699373</td>
-      <td>0.635918</td>
-      <td>1.268791</td>
-      <td>2.064182</td>
-      <td>-0.812678</td>
-      <td>-0.318368</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 93 columns</p>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">to</span><span class="o">.</span><span class="n">procs</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">decodes</span><span class="p">(</span><span class="n">to</span><span class="o">.</span><span class="n">procs</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">decodes</span><span class="p">(</span><span class="n">to</span><span class="o">.</span><span class="n">procs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">decodes</span><span class="p">(</span><span class="n">to</span><span class="o">.</span><span class="n">valid</span><span class="p">))))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>None
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">to</span><span class="o">.</span><span class="n">procs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">to</span><span class="o">.</span><span class="n">valid</span><span class="o">.</span><span class="n">xs</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Id</th>
-      <th>MSSubClass</th>
-      <th>MSZoning</th>
-      <th>LotFrontage</th>
-      <th>Street</th>
-      <th>Alley</th>
-      <th>LotShape</th>
-      <th>LandContour</th>
-      <th>Utilities</th>
-      <th>LotConfig</th>
-      <th>...</th>
-      <th>BsmtFinSF2</th>
-      <th>BsmtUnfSF</th>
-      <th>TotalBsmtSF</th>
-      <th>1stFlrSF</th>
-      <th>2ndFlrSF</th>
-      <th>GrLivArea</th>
-      <th>GarageYrBlt</th>
-      <th>GarageArea</th>
-      <th>WoodDeckSF</th>
-      <th>OpenPorchSF</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>80</th>
-      <td>0</td>
-      <td>8</td>
-      <td>2</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>4</td>
-      <td>3</td>
-      <td>1</td>
-      <td>4</td>
-      <td>...</td>
-      <td>-0.219295</td>
-      <td>-0.351932</td>
-      <td>-0.147713</td>
-      <td>-0.538062</td>
-      <td>-0.699373</td>
-      <td>-1.127443</td>
-      <td>-0.005901</td>
-      <td>-0.696164</td>
-      <td>0.931444</td>
-      <td>-0.784382</td>
-    </tr>
-    <tr>
-      <th>81</th>
-      <td>0</td>
-      <td>1</td>
-      <td>2</td>
-      <td>21</td>
-      <td>1</td>
-      <td>0</td>
-      <td>4</td>
-      <td>3</td>
-      <td>1</td>
-      <td>4</td>
-      <td>...</td>
-      <td>-0.219295</td>
-      <td>-0.630575</td>
-      <td>1.229569</td>
-      <td>1.189541</td>
-      <td>-0.699373</td>
-      <td>0.371898</td>
-      <td>1.363213</td>
-      <td>1.039508</td>
-      <td>0.208879</td>
-      <td>1.187216</td>
-    </tr>
-    <tr>
-      <th>82</th>
-      <td>0</td>
-      <td>6</td>
-      <td>2</td>
-      <td>17</td>
-      <td>1</td>
-      <td>0</td>
-      <td>4</td>
-      <td>3</td>
-      <td>1</td>
-      <td>4</td>
-      <td>...</td>
-      <td>-0.219295</td>
-      <td>0.495607</td>
-      <td>-0.659466</td>
-      <td>-1.179982</td>
-      <td>1.357005</td>
-      <td>0.144212</td>
-      <td>-1.752702</td>
-      <td>-0.863458</td>
-      <td>0.183963</td>
-      <td>-0.784382</td>
-    </tr>
-    <tr>
-      <th>83</th>
-      <td>0</td>
-      <td>2</td>
-      <td>3</td>
-      <td>11</td>
-      <td>1</td>
-      <td>0</td>
-      <td>4</td>
-      <td>3</td>
-      <td>1</td>
-      <td>4</td>
-      <td>...</td>
-      <td>-0.219295</td>
-      <td>0.381828</td>
-      <td>0.114838</td>
-      <td>-0.208729</td>
-      <td>-0.699373</td>
-      <td>-0.841623</td>
-      <td>-0.053112</td>
-      <td>-0.110636</td>
-      <td>0.566009</td>
-      <td>1.366452</td>
-    </tr>
-    <tr>
-      <th>84</th>
-      <td>0</td>
-      <td>1</td>
-      <td>2</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>4</td>
-      <td>3</td>
-      <td>1</td>
-      <td>4</td>
-      <td>...</td>
-      <td>-0.219295</td>
-      <td>0.193744</td>
-      <td>1.472096</td>
-      <td>1.493756</td>
-      <td>-0.699373</td>
-      <td>0.635918</td>
-      <td>1.268791</td>
-      <td>2.064182</td>
-      <td>-0.812678</td>
-      <td>-0.318368</td>
-    </tr>
-    <tr>
-      <th>85</th>
-      <td>0</td>
-      <td>2</td>
-      <td>2</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>4</td>
-      <td>3</td>
-      <td>1</td>
-      <td>4</td>
-      <td>...</td>
-      <td>-0.219295</td>
-      <td>0.637250</td>
-      <td>-0.523740</td>
-      <td>0.664841</td>
-      <td>-0.699373</td>
-      <td>-0.083475</td>
-      <td>1.410424</td>
-      <td>0.600362</td>
-      <td>-0.812678</td>
-      <td>-0.784382</td>
-    </tr>
-    <tr>
-      <th>86</th>
-      <td>0</td>
-      <td>8</td>
-      <td>2</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>3</td>
-      <td>1</td>
-      <td>2</td>
-      <td>...</td>
-      <td>-0.219295</td>
-      <td>1.417450</td>
-      <td>1.398670</td>
-      <td>1.524456</td>
-      <td>-0.699373</td>
-      <td>0.662562</td>
-      <td>-0.478010</td>
-      <td>0.098481</td>
-      <td>-0.812678</td>
-      <td>-0.784382</td>
-    </tr>
-    <tr>
-      <th>87</th>
-      <td>0</td>
-      <td>1</td>
-      <td>2</td>
-      <td>23</td>
-      <td>1</td>
-      <td>0</td>
-      <td>4</td>
-      <td>0</td>
-      <td>1</td>
-      <td>4</td>
-      <td>...</td>
-      <td>-0.219295</td>
-      <td>-0.235831</td>
-      <td>-0.203338</td>
-      <td>-0.607836</td>
-      <td>-0.699373</td>
-      <td>-1.187998</td>
-      <td>-0.572431</td>
-      <td>-0.152459</td>
-      <td>0.183963</td>
-      <td>-0.784382</td>
-    </tr>
-    <tr>
-      <th>88</th>
-      <td>0</td>
-      <td>10</td>
-      <td>3</td>
-      <td>3</td>
-      <td>1</td>
-      <td>0</td>
-      <td>4</td>
-      <td>3</td>
-      <td>1</td>
-      <td>3</td>
-      <td>...</td>
-      <td>-0.219295</td>
-      <td>-0.516795</td>
-      <td>0.366265</td>
-      <td>0.106649</td>
-      <td>-0.699373</td>
-      <td>-0.567915</td>
-      <td>0.985526</td>
-      <td>-0.309297</td>
-      <td>-0.812678</td>
-      <td>1.456070</td>
-    </tr>
-    <tr>
-      <th>89</th>
-      <td>0</td>
-      <td>4</td>
-      <td>2</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>4</td>
-      <td>3</td>
-      <td>1</td>
-      <td>1</td>
-      <td>...</td>
-      <td>1.419566</td>
-      <td>-0.282271</td>
-      <td>-0.470340</td>
-      <td>-0.942751</td>
-      <td>0.755072</td>
-      <td>-0.185207</td>
-      <td>-0.478010</td>
-      <td>-0.643885</td>
-      <td>-0.812678</td>
-      <td>-0.784382</td>
-    </tr>
-    <tr>
-      <th>90</th>
-      <td>0</td>
-      <td>4</td>
-      <td>3</td>
-      <td>11</td>
-      <td>1</td>
-      <td>0</td>
-      <td>4</td>
-      <td>3</td>
-      <td>1</td>
-      <td>4</td>
-      <td>...</td>
-      <td>-0.219295</td>
-      <td>0.363252</td>
-      <td>-0.786291</td>
-      <td>-1.093462</td>
-      <td>0.362862</td>
-      <td>-0.664803</td>
-      <td>1.032737</td>
-      <td>0.851303</td>
-      <td>0.931444</td>
-      <td>-0.784382</td>
-    </tr>
-    <tr>
-      <th>91</th>
-      <td>0</td>
-      <td>9</td>
-      <td>3</td>
-      <td>21</td>
-      <td>1</td>
-      <td>0</td>
-      <td>4</td>
-      <td>3</td>
-      <td>1</td>
-      <td>4</td>
-      <td>...</td>
-      <td>-0.219295</td>
-      <td>-1.257521</td>
-      <td>-2.339350</td>
-      <td>0.391327</td>
-      <td>0.891256</td>
-      <td>1.093714</td>
-      <td>0.041309</td>
-      <td>0.406929</td>
-      <td>-0.812678</td>
-      <td>-0.784382</td>
-    </tr>
-    <tr>
-      <th>92</th>
-      <td>0</td>
-      <td>1</td>
-      <td>2</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>3</td>
-      <td>1</td>
-      <td>1</td>
-      <td>...</td>
-      <td>-0.219295</td>
-      <td>2.320717</td>
-      <td>1.089394</td>
-      <td>1.013711</td>
-      <td>-0.699373</td>
-      <td>0.219300</td>
-      <td>1.127159</td>
-      <td>1.996219</td>
-      <td>3.074222</td>
-      <td>0.667431</td>
-    </tr>
-    <tr>
-      <th>93</th>
-      <td>0</td>
-      <td>10</td>
-      <td>3</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>4</td>
-      <td>3</td>
-      <td>1</td>
-      <td>3</td>
-      <td>...</td>
-      <td>-0.219295</td>
-      <td>-0.465711</td>
-      <td>0.384065</td>
-      <td>0.128977</td>
-      <td>-0.699373</td>
-      <td>-0.548537</td>
-      <td>1.032737</td>
-      <td>-0.309297</td>
-      <td>-0.812678</td>
-      <td>4.664398</td>
-    </tr>
-    <tr>
-      <th>94</th>
-      <td>0</td>
-      <td>1</td>
-      <td>2</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>4</td>
-      <td>3</td>
-      <td>1</td>
-      <td>4</td>
-      <td>...</td>
-      <td>-0.219295</td>
-      <td>-0.231186</td>
-      <td>2.284225</td>
-      <td>2.529201</td>
-      <td>-0.699373</td>
-      <td>1.534554</td>
-      <td>1.410424</td>
-      <td>3.967147</td>
-      <td>0.748727</td>
-      <td>0.022180</td>
-    </tr>
-    <tr>
-      <th>95</th>
-      <td>0</td>
-      <td>5</td>
-      <td>2</td>
-      <td>15</td>
-      <td>1</td>
-      <td>0</td>
-      <td>2</td>
-      <td>0</td>
-      <td>1</td>
-      <td>3</td>
-      <td>...</td>
-      <td>-0.219295</td>
-      <td>-0.967268</td>
-      <td>-0.717316</td>
-      <td>-1.252547</td>
-      <td>1.253506</td>
-      <td>-0.010809</td>
-      <td>0.891104</td>
-      <td>-0.288386</td>
-      <td>1.379933</td>
-      <td>-0.390063</td>
-    </tr>
-    <tr>
-      <th>96</th>
-      <td>0</td>
-      <td>1</td>
-      <td>2</td>
-      <td>11</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>3</td>
-      <td>1</td>
-      <td>4</td>
-      <td>...</td>
-      <td>-0.219295</td>
-      <td>-0.881353</td>
-      <td>-0.430290</td>
-      <td>-0.892513</td>
-      <td>-0.699373</td>
-      <td>-1.435062</td>
-      <td>0.135731</td>
-      <td>-2.410924</td>
-      <td>0.159047</td>
-      <td>-0.784382</td>
-    </tr>
-    <tr>
-      <th>97</th>
-      <td>0</td>
-      <td>4</td>
-      <td>2</td>
-      <td>17</td>
-      <td>1</td>
-      <td>0</td>
-      <td>4</td>
-      <td>3</td>
-      <td>1</td>
-      <td>4</td>
-      <td>...</td>
-      <td>-0.219295</td>
-      <td>-0.430880</td>
-      <td>-1.093343</td>
-      <td>-1.339067</td>
-      <td>0.825888</td>
-      <td>-0.466182</td>
-      <td>-1.799913</td>
-      <td>-0.947104</td>
-      <td>-0.812678</td>
-      <td>-0.784382</td>
-    </tr>
-    <tr>
-      <th>98</th>
-      <td>0</td>
-      <td>1</td>
-      <td>2</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>2</td>
-      <td>1</td>
-      <td>4</td>
-      <td>...</td>
-      <td>-0.219295</td>
-      <td>-0.663083</td>
-      <td>1.064919</td>
-      <td>0.983010</td>
-      <td>-0.699373</td>
-      <td>0.192656</td>
-      <td>1.316002</td>
-      <td>-0.162915</td>
-      <td>0.582620</td>
-      <td>-0.139132</td>
-    </tr>
-    <tr>
-      <th>99</th>
-      <td>0</td>
-      <td>1</td>
-      <td>2</td>
-      <td>17</td>
-      <td>1</td>
-      <td>0</td>
-      <td>4</td>
-      <td>3</td>
-      <td>1</td>
-      <td>4</td>
-      <td>...</td>
-      <td>-0.219295</td>
-      <td>1.076113</td>
-      <td>-0.103213</td>
-      <td>-0.482243</td>
-      <td>-0.699373</td>
-      <td>-1.078999</td>
-      <td>-0.005901</td>
-      <td>1.102243</td>
-      <td>-0.812678</td>
-      <td>-0.784382</td>
-    </tr>
-  </tbody>
-</table>
-<p>20 rows × 93 columns</p>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">decoded_valid</span> <span class="o">=</span> <span class="n">to</span><span class="o">.</span><span class="n">valid</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">decoded_valid</span><span class="o">.</span><span class="n">xs</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Id</th>
-      <th>MSSubClass</th>
-      <th>MSZoning</th>
-      <th>LotFrontage</th>
-      <th>Street</th>
-      <th>Alley</th>
-      <th>LotShape</th>
-      <th>LandContour</th>
-      <th>Utilities</th>
-      <th>LotConfig</th>
-      <th>...</th>
-      <th>BsmtFinSF2</th>
-      <th>BsmtUnfSF</th>
-      <th>TotalBsmtSF</th>
-      <th>1stFlrSF</th>
-      <th>2ndFlrSF</th>
-      <th>GrLivArea</th>
-      <th>GarageYrBlt</th>
-      <th>GarageArea</th>
-      <th>WoodDeckSF</th>
-      <th>OpenPorchSF</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>80</th>
-      <td>#na#</td>
-      <td>80</td>
-      <td>RL</td>
-      <td>#na#</td>
-      <td>Pave</td>
-      <td>#na#</td>
-      <td>Reg</td>
-      <td>Lvl</td>
-      <td>AllPub</td>
-      <td>Inside</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>390.0</td>
-      <td>985.0</td>
-      <td>985.0</td>
-      <td>0.0</td>
-      <td>985.0</td>
-      <td>1977.0</td>
-      <td>328.0</td>
-      <td>210.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>81</th>
-      <td>#na#</td>
-      <td>20</td>
-      <td>RL</td>
-      <td>68</td>
-      <td>Pave</td>
-      <td>#na#</td>
-      <td>Reg</td>
-      <td>Lvl</td>
-      <td>AllPub</td>
-      <td>Inside</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>270.0</td>
-      <td>1604.0</td>
-      <td>1604.0</td>
-      <td>0.0</td>
-      <td>1604.0</td>
-      <td>2006.0</td>
-      <td>660.0</td>
-      <td>123.0</td>
-      <td>110.0</td>
-    </tr>
-    <tr>
-      <th>82</th>
-      <td>#na#</td>
-      <td>70</td>
-      <td>RL</td>
-      <td>60</td>
-      <td>Pave</td>
-      <td>#na#</td>
-      <td>Reg</td>
-      <td>Lvl</td>
-      <td>AllPub</td>
-      <td>Inside</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>755.0</td>
-      <td>755.0</td>
-      <td>755.0</td>
-      <td>755.0</td>
-      <td>1510.0</td>
-      <td>1940.0</td>
-      <td>296.0</td>
-      <td>120.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>83</th>
-      <td>#na#</td>
-      <td>30</td>
-      <td>RM</td>
-      <td>50</td>
-      <td>Pave</td>
-      <td>#na#</td>
-      <td>Reg</td>
-      <td>Lvl</td>
-      <td>AllPub</td>
-      <td>Inside</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>706.0</td>
-      <td>1103.0</td>
-      <td>1103.0</td>
-      <td>0.0</td>
-      <td>1103.0</td>
-      <td>1976.0</td>
-      <td>440.0</td>
-      <td>166.0</td>
-      <td>120.0</td>
-    </tr>
-    <tr>
-      <th>84</th>
-      <td>#na#</td>
-      <td>20</td>
-      <td>RL</td>
-      <td>#na#</td>
-      <td>Pave</td>
-      <td>#na#</td>
-      <td>Reg</td>
-      <td>Lvl</td>
-      <td>AllPub</td>
-      <td>Inside</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>625.0</td>
-      <td>1713.0</td>
-      <td>1713.0</td>
-      <td>0.0</td>
-      <td>1713.0</td>
-      <td>2004.0</td>
-      <td>856.0</td>
-      <td>0.0</td>
-      <td>26.0</td>
-    </tr>
-    <tr>
-      <th>85</th>
-      <td>#na#</td>
-      <td>30</td>
-      <td>RL</td>
-      <td>#na#</td>
-      <td>Pave</td>
-      <td>#na#</td>
-      <td>Reg</td>
-      <td>Lvl</td>
-      <td>AllPub</td>
-      <td>Inside</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>816.0</td>
-      <td>816.0</td>
-      <td>1416.0</td>
-      <td>0.0</td>
-      <td>1416.0</td>
-      <td>2007.0</td>
-      <td>576.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>86</th>
-      <td>#na#</td>
-      <td>80</td>
-      <td>RL</td>
-      <td>#na#</td>
-      <td>Pave</td>
-      <td>#na#</td>
-      <td>IR1</td>
-      <td>Lvl</td>
-      <td>AllPub</td>
-      <td>CulDSac</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>1152.0</td>
-      <td>1680.0</td>
-      <td>1724.0</td>
-      <td>0.0</td>
-      <td>1724.0</td>
-      <td>1967.0</td>
-      <td>480.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>87</th>
-      <td>#na#</td>
-      <td>20</td>
-      <td>RL</td>
-      <td>73</td>
-      <td>Pave</td>
-      <td>#na#</td>
-      <td>Reg</td>
-      <td>#na#</td>
-      <td>AllPub</td>
-      <td>Inside</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>440.0</td>
-      <td>960.0</td>
-      <td>960.0</td>
-      <td>0.0</td>
-      <td>960.0</td>
-      <td>1965.0</td>
-      <td>432.0</td>
-      <td>120.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>88</th>
-      <td>#na#</td>
-      <td>120</td>
-      <td>RM</td>
-      <td>32</td>
-      <td>Pave</td>
-      <td>#na#</td>
-      <td>Reg</td>
-      <td>Lvl</td>
-      <td>AllPub</td>
-      <td>FR2</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>319.0</td>
-      <td>1216.0</td>
-      <td>1216.0</td>
-      <td>0.0</td>
-      <td>1216.0</td>
-      <td>1998.0</td>
-      <td>402.0</td>
-      <td>0.0</td>
-      <td>125.0</td>
-    </tr>
-    <tr>
-      <th>89</th>
-      <td>#na#</td>
-      <td>50</td>
-      <td>RL</td>
-      <td>#na#</td>
-      <td>Pave</td>
-      <td>#na#</td>
-      <td>Reg</td>
-      <td>Lvl</td>
-      <td>AllPub</td>
-      <td>Corner</td>
-      <td>...</td>
-      <td>105.0</td>
-      <td>420.0</td>
-      <td>840.0</td>
-      <td>840.0</td>
-      <td>534.0</td>
-      <td>1374.0</td>
-      <td>1967.0</td>
-      <td>338.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>90</th>
-      <td>#na#</td>
-      <td>50</td>
-      <td>RM</td>
-      <td>50</td>
-      <td>Pave</td>
-      <td>#na#</td>
-      <td>Reg</td>
-      <td>Lvl</td>
-      <td>AllPub</td>
-      <td>Inside</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>698.0</td>
-      <td>698.0</td>
-      <td>786.0</td>
-      <td>390.0</td>
-      <td>1176.0</td>
-      <td>1999.0</td>
-      <td>624.0</td>
-      <td>210.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>91</th>
-      <td>#na#</td>
-      <td>90</td>
-      <td>RM</td>
-      <td>68</td>
-      <td>Pave</td>
-      <td>#na#</td>
-      <td>Reg</td>
-      <td>Lvl</td>
-      <td>AllPub</td>
-      <td>Inside</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1318.0</td>
-      <td>584.0</td>
-      <td>1902.0</td>
-      <td>1978.0</td>
-      <td>539.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>92</th>
-      <td>#na#</td>
-      <td>20</td>
-      <td>RL</td>
-      <td>#na#</td>
-      <td>Pave</td>
-      <td>#na#</td>
-      <td>IR1</td>
-      <td>Lvl</td>
-      <td>AllPub</td>
-      <td>Corner</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>1541.0</td>
-      <td>1541.0</td>
-      <td>1541.0</td>
-      <td>0.0</td>
-      <td>1541.0</td>
-      <td>2001.0</td>
-      <td>843.0</td>
-      <td>468.0</td>
-      <td>81.0</td>
-    </tr>
-    <tr>
-      <th>93</th>
-      <td>#na#</td>
-      <td>120</td>
-      <td>RM</td>
-      <td>#na#</td>
-      <td>Pave</td>
-      <td>#na#</td>
-      <td>Reg</td>
-      <td>Lvl</td>
-      <td>AllPub</td>
-      <td>FR2</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>341.0</td>
-      <td>1224.0</td>
-      <td>1224.0</td>
-      <td>0.0</td>
-      <td>1224.0</td>
-      <td>1999.0</td>
-      <td>402.0</td>
-      <td>0.0</td>
-      <td>304.0</td>
-    </tr>
-    <tr>
-      <th>94</th>
-      <td>#na#</td>
-      <td>20</td>
-      <td>RL</td>
-      <td>#na#</td>
-      <td>Pave</td>
-      <td>#na#</td>
-      <td>Reg</td>
-      <td>Lvl</td>
-      <td>AllPub</td>
-      <td>Inside</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>442.0</td>
-      <td>2078.0</td>
-      <td>2084.0</td>
-      <td>0.0</td>
-      <td>2084.0</td>
-      <td>2007.0</td>
-      <td>1220.0</td>
-      <td>188.0</td>
-      <td>45.0</td>
-    </tr>
-    <tr>
-      <th>95</th>
-      <td>#na#</td>
-      <td>60</td>
-      <td>RL</td>
-      <td>57</td>
-      <td>Pave</td>
-      <td>#na#</td>
-      <td>IR2</td>
-      <td>#na#</td>
-      <td>AllPub</td>
-      <td>FR2</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>125.0</td>
-      <td>729.0</td>
-      <td>729.0</td>
-      <td>717.0</td>
-      <td>1446.0</td>
-      <td>1996.0</td>
-      <td>406.0</td>
-      <td>264.0</td>
-      <td>22.0</td>
-    </tr>
-    <tr>
-      <th>96</th>
-      <td>#na#</td>
-      <td>20</td>
-      <td>RL</td>
-      <td>50</td>
-      <td>Pave</td>
-      <td>#na#</td>
-      <td>IR1</td>
-      <td>Lvl</td>
-      <td>AllPub</td>
-      <td>Inside</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>162.0</td>
-      <td>858.0</td>
-      <td>858.0</td>
-      <td>0.0</td>
-      <td>858.0</td>
-      <td>1980.0</td>
-      <td>0.0</td>
-      <td>117.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>97</th>
-      <td>#na#</td>
-      <td>50</td>
-      <td>RL</td>
-      <td>60</td>
-      <td>Pave</td>
-      <td>#na#</td>
-      <td>Reg</td>
-      <td>Lvl</td>
-      <td>AllPub</td>
-      <td>Inside</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>356.0</td>
-      <td>560.0</td>
-      <td>698.0</td>
-      <td>560.0</td>
-      <td>1258.0</td>
-      <td>1939.0</td>
-      <td>280.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>98</th>
-      <td>#na#</td>
-      <td>20</td>
-      <td>RL</td>
-      <td>#na#</td>
-      <td>Pave</td>
-      <td>#na#</td>
-      <td>IR1</td>
-      <td>Low</td>
-      <td>AllPub</td>
-      <td>Inside</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>256.0</td>
-      <td>1530.0</td>
-      <td>1530.0</td>
-      <td>0.0</td>
-      <td>1530.0</td>
-      <td>2005.0</td>
-      <td>430.0</td>
-      <td>168.0</td>
-      <td>36.0</td>
-    </tr>
-    <tr>
-      <th>99</th>
-      <td>#na#</td>
-      <td>20</td>
-      <td>RL</td>
-      <td>60</td>
-      <td>Pave</td>
-      <td>#na#</td>
-      <td>Reg</td>
-      <td>Lvl</td>
-      <td>AllPub</td>
-      <td>Inside</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>1005.0</td>
-      <td>1005.0</td>
-      <td>1005.0</td>
-      <td>0.0</td>
-      <td>1005.0</td>
-      <td>1977.0</td>
-      <td>672.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-  </tbody>
-</table>
-<p>20 rows × 93 columns</p>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
     {% endraw %}
 </div>
