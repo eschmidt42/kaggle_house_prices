@@ -331,6 +331,39 @@ summary: "Contains all the steps necessary to preprocess the Kaggle house prices
       <td>68.00</td>
       <td>547.0</td>
     </tr>
+    <tr>
+      <th>LotFrontage</th>
+      <td>1201.0</td>
+      <td>70.049958</td>
+      <td>24.284752</td>
+      <td>21.0</td>
+      <td>59.00</td>
+      <td>69.0</td>
+      <td>80.00</td>
+      <td>313.0</td>
+    </tr>
+    <tr>
+      <th>BsmtFinSF1</th>
+      <td>1460.0</td>
+      <td>443.639726</td>
+      <td>456.098091</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>383.5</td>
+      <td>712.25</td>
+      <td>5644.0</td>
+    </tr>
+    <tr>
+      <th>LowQualFinSF</th>
+      <td>1460.0</td>
+      <td>5.844521</td>
+      <td>48.623081</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>572.0</td>
+    </tr>
   </tbody>
 </table>
 </div>
@@ -386,6 +419,7 @@ summary: "Contains all the steps necessary to preprocess the Kaggle house prices
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>MasVnrArea: 0.55 %
 GarageYrBlt: 5.55 %
+LotFrontage: 17.74 %
 </pre>
 </div>
 </div>
@@ -479,8 +513,7 @@ GarageYrBlt: 5.55 %
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>LotFrontage: 17.74 %
-Alley: 93.77 %
+<pre>Alley: 93.77 %
 MasVnrType: 0.55 %
 BsmtQual: 2.53 %
 BsmtCond: 2.53 %
@@ -547,6 +580,118 @@ MiscFeature: 96.30 %
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">show_na_share</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">cat_names</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Setting categories</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display_all</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">cat_names</span><span class="p">]</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>Id               object
+MSSubClass       object
+MSZoning         object
+Street           object
+Alley            object
+LotShape         object
+LandContour      object
+Utilities        object
+LotConfig        object
+LandSlope        object
+Neighborhood     object
+Condition1       object
+Condition2       object
+BldgType         object
+HouseStyle       object
+OverallQual      object
+OverallCond      object
+RoofStyle        object
+RoofMatl         object
+Exterior1st      object
+Exterior2nd      object
+MasVnrType       object
+ExterQual        object
+ExterCond        object
+Foundation       object
+BsmtQual         object
+BsmtCond         object
+BsmtExposure     object
+BsmtFinType1     object
+BsmtFinType2     object
+Heating          object
+HeatingQC        object
+CentralAir       object
+Electrical       object
+BsmtFullBath     object
+BsmtHalfBath     object
+FullBath         object
+HalfBath         object
+BedroomAbvGr     object
+KitchenAbvGr     object
+KitchenQual      object
+TotRmsAbvGrd     object
+Functional       object
+Fireplaces       object
+FireplaceQu      object
+GarageType       object
+GarageFinish     object
+GarageCars       object
+GarageQual       object
+GarageCond       object
+PavedDrive       object
+EnclosedPorch    object
+3SsnPorch        object
+ScreenPorch      object
+PoolArea         object
+PoolQC           object
+Fence            object
+MiscFeature      object
+MiscVal          object
+MoSold           object
+SaleType         object
+SaleCondition    object
+dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cat_names</span><span class="p">:</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -742,6 +887,20 @@ Name: valid, dtype: int64</pre>
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_s</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">clean_data_path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf8&quot;</span><span class="p">)</span>
 <span class="n">df_test</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">clean_test_data_path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf8&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_s</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">to_feather</span><span class="p">(</span><span class="n">clean_data_path_feather</span><span class="p">)</span>
+<span class="n">df_test</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">to_feather</span><span class="p">(</span><span class="n">clean_test_data_path_feather</span><span class="p">)</span>
 </pre></div>
 
     </div>

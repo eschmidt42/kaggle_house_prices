@@ -2,7 +2,7 @@
 
 __all__ = ['dir_raw_data', 'compressed_data_file', 'dep_var', 'show_dep_var', 'cont_names', 'show_na_share',
            'impute_continuous', 'cat_names', 'impute_categorical', 'do_sample', 'get_split', 'clean_data_path',
-           'clean_test_data_path']
+           'clean_test_data_path', 'clean_data_path_feather', 'clean_test_data_path_feather']
 
 # Cell
 from zipfile import ZipFile
@@ -39,7 +39,7 @@ def show_dep_var(df:pd.DataFrame, dep_var:str, bins:int=50):
 # Cell
 cont_names = ['LotArea', 'YearBuilt', 'YearRemodAdd', 'MasVnrArea', 'BsmtFinSF2', 'BsmtUnfSF',
               'TotalBsmtSF', '1stFlrSF', '2ndFlrSF', 'GrLivArea', 'GarageYrBlt', 'GarageArea',
-              'WoodDeckSF', 'OpenPorchSF']
+              'WoodDeckSF', 'OpenPorchSF', 'LotFrontage', 'BsmtFinSF1', 'LowQualFinSF',]
 
 # Cell
 def show_na_share(df:pd.DataFrame, cols:List[str]):
@@ -60,16 +60,16 @@ def impute_continuous(df:pd.DataFrame, cont_cols:List[str]) -> pd.DataFrame:
     return df
 
 # Cell
-cat_names = ['Id', 'MSSubClass', 'MSZoning', 'LotFrontage', 'Street',
+cat_names = ['Id', 'MSSubClass', 'MSZoning', 'Street',
        'Alley', 'LotShape', 'LandContour', 'Utilities', 'LotConfig',
        'LandSlope', 'Neighborhood', 'Condition1', 'Condition2', 'BldgType',
        'HouseStyle', 'OverallQual', 'OverallCond',
        'RoofStyle', 'RoofMatl', 'Exterior1st', 'Exterior2nd', 'MasVnrType',
        'ExterQual', 'ExterCond', 'Foundation', 'BsmtQual',
-       'BsmtCond', 'BsmtExposure', 'BsmtFinType1', 'BsmtFinSF1',
+       'BsmtCond', 'BsmtExposure', 'BsmtFinType1',
        'BsmtFinType2', 'Heating',
        'HeatingQC', 'CentralAir', 'Electrical',
-       'LowQualFinSF', 'BsmtFullBath', 'BsmtHalfBath', 'FullBath',
+       'BsmtFullBath', 'BsmtHalfBath', 'FullBath',
        'HalfBath', 'BedroomAbvGr', 'KitchenAbvGr', 'KitchenQual',
        'TotRmsAbvGrd', 'Functional', 'Fireplaces', 'FireplaceQu', 'GarageType',
        'GarageFinish', 'GarageCars', 'GarageQual',
@@ -108,3 +108,5 @@ def get_split(df:pd.DataFrame, valid_pct:float=.2) -> pd.DataFrame:
 # Cell
 clean_data_path = dir_raw_data.parent/"train_clean.csv"
 clean_test_data_path = dir_raw_data.parent/"test_clean.csv"
+clean_data_path_feather = dir_raw_data.parent/"train_clean.feather"
+clean_test_data_path_feather = dir_raw_data.parent/"test_clean.feather"

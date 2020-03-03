@@ -2,7 +2,7 @@
 
 __all__ = ['get_df_preds', 'distribution_similarity', 'element_comp', 'get_categorical_freqs_single_col',
            'plot_best_vs_worst_categorical', 'plot_top_distributions', 'get_continuous_freqs_single_col',
-           'plot_best_vs_worst_continuous', 'get_all_continuous_freqs']
+           'plot_best_vs_worst_continuous', 'get_all_continuous_freqs', 'FastaiModel']
 
 # Cell
 import pandas as pd
@@ -71,7 +71,7 @@ def plot_best_vs_worst_categorical(col:str, best:pd.Series,
 
     ax.set_xlabel(col)
     ax.set_ylabel("Category frequency")
-    ax.set_title(f"Frequecies of '{col}': best ({best_nas:d} nas) vs worst ({worst_nas:d} nas) loss", fontsize=16)
+    ax.set_title(f"Frequecies of '{col}': best ({int(best_nas):d} nas) vs worst ({int(worst_nas):d} nas) loss", fontsize=16)
     ax.legend(title="Set")
     plt.show()
 
@@ -126,8 +126,8 @@ def plot_best_vs_worst_continuous(col:str, best:pd.Series,
 
     assert np.allclose(best.index, worst.index)
     w = best.index[1] - best.index[0]  # assumes regular grid
-    ax.bar(best.index-w/2, best.values, label="best", alpha=.5, width=w)
-    ax.bar(worst.index+w/2, worst.values, label="worst", alpha=.5, width=w)
+    ax.bar(best.index-w/2, best.values, label="best", alpha=.9, width=w)
+    ax.bar(worst.index+w/2, worst.values, label="worst", alpha=.9, width=w)
 
     ax.set_xlabel(col)
     ax.set_ylabel("Continuous value frequency")
@@ -144,3 +144,18 @@ def get_all_continuous_freqs(decoded_xs:pd.DataFrame, best:np.ndarray, worst:np.
                            "best_nas": _best_nas, "worst_nas": _worst_nas}
 
     return cont_freqs
+
+# Cell
+class FastaiModel(torch.nn.Module):
+
+    def __init__(self, learn:Learner, to:TabularPandas):
+        super().__init__()
+        self.cat_ix = [_i for _i,_v in enumerate(to.valid.xs.columns) if _v in to.cat_names]
+        self.cont_ix = [_i for _i,_v in enumerate(to.valid.xs.columns) if _v in to.cont_names]
+        print(self.cat_ix)
+        print(self.cont_ix)
+        self.learn = learn
+
+    def forward(self, X):
+        # return self.learn.model(torch.from_numpy(X[:,self.cat_ix]).long(), torch.from_numpy(X[:,self.cont_ix]).float())
+        return self.learn.model(X[:,self.cat_ix].long(), X[:,self.cont_ix].float())

@@ -22,6 +22,8 @@ index = {"extract_zip_files": "00_utils.ipynb",
          "get_split": "01_preprocessing.ipynb",
          "clean_data_path": "01_preprocessing.ipynb",
          "clean_test_data_path": "01_preprocessing.ipynb",
+         "clean_data_path_feather": "01_preprocessing.ipynb",
+         "clean_test_data_path_feather": "01_preprocessing.ipynb",
          "model_data_path": "02_modelling.ipynb",
          "mish": "02_modelling.ipynb",
          "Mish": "02_modelling.ipynb",
@@ -35,7 +37,8 @@ index = {"extract_zip_files": "00_utils.ipynb",
          "plot_top_distributions": "03_model_inspection.ipynb",
          "get_continuous_freqs_single_col": "03_model_inspection.ipynb",
          "plot_best_vs_worst_continuous": "03_model_inspection.ipynb",
-         "get_all_continuous_freqs": "03_model_inspection.ipynb"}
+         "get_all_continuous_freqs": "03_model_inspection.ipynb",
+         "FastaiModel": "03_model_inspection.ipynb"}
 
 modules = ["utils.py",
            "preprocessing.py",
