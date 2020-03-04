@@ -70,9 +70,9 @@ summary: "Contains all the steps necessary to preprocess the Kaggle house prices
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="show_dep_var" class="doc_header"><code>show_dep_var</code><a href="https://github.com/eschmidt42/src/tree/master/src/preprocessing.py#L26" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>show_dep_var</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>dep_var</code></strong>:<code>str</code>, <strong><code>bins</code></strong>:<code>int</code>=<em><code>50</code></em>)</p>
+<h4 id="show_dep_var" class="doc_header"><code>show_dep_var</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/preprocessing.py#L26" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>show_dep_var</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>dep_var</code></strong>:<code>str</code>, <strong><code>bins</code></strong>:<code>int</code>=<em><code>50</code></em>)</p>
 </blockquote>
-<p>Shows the <a href="/src/preprocessing#dep_var"><code>dep_var</code></a> distribution, linear and logarithmic, side by side.</p>
+<p>Shows the <a href="/kaggle_house_prices/preprocessing#dep_var"><code>dep_var</code></a> distribution, linear and logarithmic, side by side.</p>
 
 </div>
 
@@ -387,7 +387,7 @@ summary: "Contains all the steps necessary to preprocess the Kaggle house prices
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="show_na_share" class="doc_header"><code>show_na_share</code><a href="https://github.com/eschmidt42/src/tree/master/src/preprocessing.py#L45" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>show_na_share</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>cols</code></strong>:<code>List</code>[<code>str</code>])</p>
+<h4 id="show_na_share" class="doc_header"><code>show_na_share</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/preprocessing.py#L45" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>show_na_share</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>cols</code></strong>:<code>List</code>[<code>str</code>])</p>
 </blockquote>
 <p>Prints the share of NaN values by column</p>
 
@@ -440,9 +440,9 @@ LotFrontage: 17.74 %
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="impute_continuous" class="doc_header"><code>impute_continuous</code><a href="https://github.com/eschmidt42/src/tree/master/src/preprocessing.py#L52" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>impute_continuous</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>cont_cols</code></strong>:<code>List</code>[<code>str</code>])</p>
+<h4 id="impute_continuous" class="doc_header"><code>impute_continuous</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/preprocessing.py#L52" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>impute_continuous</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>cont_cols</code></strong>:<code>List</code>[<code>str</code>])</p>
 </blockquote>
-<p>Going through columns in <a href="/src/preprocessing#cont_names"><code>cont_names</code></a> this function replaces NaNs with the median adding a column flagging NaNs.</p>
+<p>Going through columns in <a href="/kaggle_house_prices/preprocessing#cont_names"><code>cont_names</code></a> this function replaces NaNs with the median adding a column flagging NaNs.</p>
 
 </div>
 
@@ -549,9 +549,9 @@ MiscFeature: 96.30 %
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="impute_categorical" class="doc_header"><code>impute_categorical</code><a href="https://github.com/eschmidt42/src/tree/master/src/preprocessing.py#L82" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>impute_categorical</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>cat_names</code></strong>:<code>List</code>[<code>str</code>], <strong><code>fill_val</code></strong>:<code>str</code>=<em><code>'NA'</code></em>)</p>
+<h4 id="impute_categorical" class="doc_header"><code>impute_categorical</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/preprocessing.py#L82" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>impute_categorical</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>cat_names</code></strong>:<code>List</code>[<code>str</code>], <strong><code>fill_val</code></strong>:<code>str</code>=<em><code>'NA'</code></em>)</p>
 </blockquote>
-<p>Going through columns in <a href="/src/preprocessing#cat_names"><code>cat_names</code></a> this function replaces NaNs with <code>fill_val</code> adding a column flagging NaNs.</p>
+<p>Going through columns in <a href="/kaggle_house_prices/preprocessing#cat_names"><code>cat_names</code></a> this function replaces NaNs with <code>fill_val</code> adding a column flagging NaNs.</p>
 
 </div>
 
@@ -718,7 +718,7 @@ dtype: object</pre>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="do_sample" class="doc_header"><code>do_sample</code><a href="https://github.com/eschmidt42/src/tree/master/src/preprocessing.py#L91" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>do_sample</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>small_sample</code></strong>:<code>bool</code>, <strong><code>n</code></strong>:<code>int</code>=<em><code>100</code></em>)</p>
+<h4 id="do_sample" class="doc_header"><code>do_sample</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/preprocessing.py#L91" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>do_sample</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>small_sample</code></strong>:<code>bool</code>, <strong><code>n</code></strong>:<code>int</code>=<em><code>100</code></em>)</p>
 </blockquote>
 <p>Generates samples from <code>df</code>.</p>
 
@@ -768,7 +768,7 @@ dtype: object</pre>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Using <a href="/src/preprocessing#get_split"><code>get_split</code></a>, the data is split using the underlying order adding a <code>valid</code> columns indicating the set affiliation. If the dataframe is ordered, e.g. increasingly along a time column, then <code>valid_pct</code> determines the number of the last rows to use in the validation set. All values before are then training samples.</p>
+<p>Using <a href="/kaggle_house_prices/preprocessing#get_split"><code>get_split</code></a>, the data is split using the underlying order adding a <code>valid</code> columns indicating the set affiliation. If the dataframe is ordered, e.g. increasingly along a time column, then <code>valid_pct</code> determines the number of the last rows to use in the validation set. All values before are then training samples.</p>
 
 </div>
 </div>
@@ -785,7 +785,7 @@ dtype: object</pre>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_split" class="doc_header"><code>get_split</code><a href="https://github.com/eschmidt42/src/tree/master/src/preprocessing.py#L100" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_split</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>valid_pct</code></strong>:<code>float</code>=<em><code>0.2</code></em>)</p>
+<h4 id="get_split" class="doc_header"><code>get_split</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/preprocessing.py#L100" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_split</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>valid_pct</code></strong>:<code>float</code>=<em><code>0.2</code></em>)</p>
 </blockquote>
 <p>Splitting the data frame into train and validation set, creating a new <code>valid</code> column</p>
 

@@ -1,5 +1,5 @@
 {
-  "src": {
+  "kaggle_house_prices": {
     "Overview": "/",
     "Utils": "/utils",
     "Preprocessing": "/preprocessing",

@@ -148,7 +148,7 @@ summary: "After generating a model we inspect it here to find its flaws."
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_df_preds" class="doc_header"><code>get_df_preds</code><a href="https://github.com/eschmidt42/src/tree/master/src/inspection.py#L21" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_df_preds</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>learn</code></strong>:<code>Learner</code>, <strong><code>cat_names</code></strong>:<code>List</code>[<code>str</code>], <strong><code>cont_names</code></strong>:<code>List</code>[<code>str</code>])</p>
+<h4 id="get_df_preds" class="doc_header"><code>get_df_preds</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/inspection.py#L21" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_df_preds</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>learn</code></strong>:<code>Learner</code>, <strong><code>cat_names</code></strong>:<code>List</code>[<code>str</code>], <strong><code>cont_names</code></strong>:<code>List</code>[<code>str</code>])</p>
 </blockquote>
 <p><code>df</code> is the <code>TabularPandas.valid.xs</code> attribute</p>
 
@@ -162,7 +162,7 @@ summary: "After generating a model we inspect it here to find its flaws."
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Making predictions over the validation set using <a href="/src/model_inspection#get_df_preds"><code>get_df_preds</code></a> and not  <code>Learner.get_preds</code> because we want to be able to perturb individual features.</p>
+<p>Making predictions over the validation set using <a href="/kaggle_house_prices/model_inspection#get_df_preds"><code>get_df_preds</code></a> and not  <code>Learner.get_preds</code> because we want to be able to perturb individual features.</p>
 
 </div>
 </div>
@@ -464,7 +464,7 @@ Wall time: 870 ms
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Visualizing the difference distribution of <a href="/src/preprocessing#dep_var"><code>dep_var</code></a></p>
+<p>Visualizing the difference distribution of <a href="/kaggle_house_prices/preprocessing#dep_var"><code>dep_var</code></a></p>
 
 </div>
 </div>
@@ -571,7 +571,7 @@ Wall time: 870 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="distribution_similarity" class="doc_header"><code>distribution_similarity</code><a href="https://github.com/eschmidt42/src/tree/master/src/inspection.py#L29" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>distribution_similarity</code>(<strong><code>best</code></strong>:<code>Series</code>, <strong><code>worst</code></strong>:<code>Series</code>)</p>
+<h4 id="distribution_similarity" class="doc_header"><code>distribution_similarity</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/inspection.py#L29" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>distribution_similarity</code>(<strong><code>best</code></strong>:<code>Series</code>, <strong><code>worst</code></strong>:<code>Series</code>)</p>
 </blockquote>
 <p>Computing distribution similarity using <code>stats.wassertain_distance</code> assuming index based order</p>
 
@@ -632,7 +632,7 @@ Wall time: 870 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="element_comp" class="doc_header"><code>element_comp</code><a href="https://github.com/eschmidt42/src/tree/master/src/inspection.py#L35" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>element_comp</code>(<strong><code>x</code></strong>:<code>ndarray</code>, <strong><code>y</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>str</code>])</p>
+<h4 id="element_comp" class="doc_header"><code>element_comp</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/inspection.py#L35" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>element_comp</code>(<strong><code>x</code></strong>:<code>ndarray</code>, <strong><code>y</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>str</code>])</p>
 </blockquote>
 <p>Element-wise comparison</p>
 
@@ -653,7 +653,7 @@ Wall time: 870 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_categorical_freqs_single_col" class="doc_header"><code>get_categorical_freqs_single_col</code><a href="https://github.com/eschmidt42/src/tree/master/src/inspection.py#L39" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_categorical_freqs_single_col</code>(<strong><code>col</code></strong>:<code>str</code>, <strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>best</code></strong>:<code>ndarray</code>, <strong><code>worst</code></strong>:<code>ndarray</code>)</p>
+<h4 id="get_categorical_freqs_single_col" class="doc_header"><code>get_categorical_freqs_single_col</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/inspection.py#L39" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_categorical_freqs_single_col</code>(<strong><code>col</code></strong>:<code>str</code>, <strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>best</code></strong>:<code>ndarray</code>, <strong><code>worst</code></strong>:<code>ndarray</code>)</p>
 </blockquote>
 <p>Computing the frequencies of categorical variables</p>
 
@@ -674,7 +674,7 @@ Wall time: 870 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="plot_best_vs_worst_categorical" class="doc_header"><code>plot_best_vs_worst_categorical</code><a href="https://github.com/eschmidt42/src/tree/master/src/inspection.py#L54" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_best_vs_worst_categorical</code>(<strong><code>col</code></strong>:<code>str</code>, <strong><code>best</code></strong>:<code>Series</code>, <strong><code>worst</code></strong>:<code>Series</code>, <strong><code>best_nas</code></strong>:<code>int</code>=<em><code>0</code></em>, <strong><code>worst_nas</code></strong>:<code>int</code>=<em><code>0</code></em>, <strong><code>w</code></strong>:<code>float</code>=<em><code>0.4</code></em>)</p>
+<h4 id="plot_best_vs_worst_categorical" class="doc_header"><code>plot_best_vs_worst_categorical</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/inspection.py#L54" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_best_vs_worst_categorical</code>(<strong><code>col</code></strong>:<code>str</code>, <strong><code>best</code></strong>:<code>Series</code>, <strong><code>worst</code></strong>:<code>Series</code>, <strong><code>best_nas</code></strong>:<code>int</code>=<em><code>0</code></em>, <strong><code>worst_nas</code></strong>:<code>int</code>=<em><code>0</code></em>, <strong><code>w</code></strong>:<code>float</code>=<em><code>0.4</code></em>)</p>
 </blockquote>
 <p>Plotting best/worst distribution for a categorical variable</p>
 
@@ -842,9 +842,9 @@ Wall time: 362 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="plot_top_distributions" class="doc_header"><code>plot_top_distributions</code><a href="https://github.com/eschmidt42/src/tree/master/src/inspection.py#L79" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_top_distributions</code>(<strong><code>cat_freqs</code></strong>:<code>dict</code>=<em><code>None</code></em>, <strong><code>cont_freqs</code></strong>:<code>dict</code>=<em><code>None</code></em>, <strong><code>top_n</code></strong>:<code>int</code>=<em><code>5</code></em>)</p>
+<h4 id="plot_top_distributions" class="doc_header"><code>plot_top_distributions</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/inspection.py#L79" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_top_distributions</code>(<strong><code>cat_freqs</code></strong>:<code>dict</code>=<em><code>None</code></em>, <strong><code>cont_freqs</code></strong>:<code>dict</code>=<em><code>None</code></em>, <strong><code>top_n</code></strong>:<code>int</code>=<em><code>5</code></em>)</p>
 </blockquote>
-<p>Calling <a href="/src/model_inspection#plot_best_vs_worst_categorical"><code>plot_best_vs_worst_categorical</code></a> and <a href="/src/model_inspection#plot_best_vs_worst_continuous"><code>plot_best_vs_worst_continuous</code></a> showing distributions with the worst scores</p>
+<p>Calling <a href="/kaggle_house_prices/model_inspection#plot_best_vs_worst_categorical"><code>plot_best_vs_worst_categorical</code></a> and <a href="/kaggle_house_prices/model_inspection#plot_best_vs_worst_continuous"><code>plot_best_vs_worst_continuous</code></a> showing distributions with the worst scores</p>
 
 </div>
 
@@ -987,7 +987,7 @@ Wall time: 362 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_continuous_freqs_single_col" class="doc_header"><code>get_continuous_freqs_single_col</code><a href="https://github.com/eschmidt42/src/tree/master/src/inspection.py#L98" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_continuous_freqs_single_col</code>(<strong><code>col</code></strong>:<code>str</code>, <strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>best</code></strong>:<code>ndarray</code>, <strong><code>worst</code></strong>:<code>ndarray</code>, <strong><code>nbins</code></strong>:<code>int</code>=<em><code>50</code></em>)</p>
+<h4 id="get_continuous_freqs_single_col" class="doc_header"><code>get_continuous_freqs_single_col</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/inspection.py#L98" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_continuous_freqs_single_col</code>(<strong><code>col</code></strong>:<code>str</code>, <strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>best</code></strong>:<code>ndarray</code>, <strong><code>worst</code></strong>:<code>ndarray</code>, <strong><code>nbins</code></strong>:<code>int</code>=<em><code>50</code></em>)</p>
 </blockquote>
 <p>Computing the frequencies of continuous variables</p>
 
@@ -1008,7 +1008,7 @@ Wall time: 362 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="plot_best_vs_worst_continuous" class="doc_header"><code>plot_best_vs_worst_continuous</code><a href="https://github.com/eschmidt42/src/tree/master/src/inspection.py#L121" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_best_vs_worst_continuous</code>(<strong><code>col</code></strong>:<code>str</code>, <strong><code>best</code></strong>:<code>Series</code>, <strong><code>worst</code></strong>:<code>Series</code>, <strong><code>best_nas</code></strong>:<code>int</code>=<em><code>0</code></em>, <strong><code>worst_nas</code></strong>:<code>int</code>=<em><code>0</code></em>)</p>
+<h4 id="plot_best_vs_worst_continuous" class="doc_header"><code>plot_best_vs_worst_continuous</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/inspection.py#L121" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_best_vs_worst_continuous</code>(<strong><code>col</code></strong>:<code>str</code>, <strong><code>best</code></strong>:<code>Series</code>, <strong><code>worst</code></strong>:<code>Series</code>, <strong><code>best_nas</code></strong>:<code>int</code>=<em><code>0</code></em>, <strong><code>worst_nas</code></strong>:<code>int</code>=<em><code>0</code></em>)</p>
 </blockquote>
 <p>Plotting best/worst distribution for a continuous variable</p>
 
@@ -1029,7 +1029,7 @@ Wall time: 362 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_all_continuous_freqs" class="doc_header"><code>get_all_continuous_freqs</code><a href="https://github.com/eschmidt42/src/tree/master/src/inspection.py#L138" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_all_continuous_freqs</code>(<strong><code>decoded_xs</code></strong>:<code>DataFrame</code>, <strong><code>best</code></strong>:<code>ndarray</code>, <strong><code>worst</code></strong>:<code>ndarray</code>)</p>
+<h4 id="get_all_continuous_freqs" class="doc_header"><code>get_all_continuous_freqs</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/inspection.py#L138" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_all_continuous_freqs</code>(<strong><code>decoded_xs</code></strong>:<code>DataFrame</code>, <strong><code>best</code></strong>:<code>ndarray</code>, <strong><code>worst</code></strong>:<code>ndarray</code>)</p>
 </blockquote>
 
 </div>
@@ -1291,7 +1291,7 @@ Wall time: 60.4 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="FastaiModel" class="doc_header"><code>class</code> <code>FastaiModel</code><a href="https://github.com/eschmidt42/src/tree/master/src/inspection.py#L149" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>FastaiModel</code>(<strong><code>learn</code></strong>:<code>Learner</code>, <strong><code>to</code></strong>:<code>TabularPandas</code>) :: <code>Module</code></p>
+<h2 id="FastaiModel" class="doc_header"><code>class</code> <code>FastaiModel</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/inspection.py#L149" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>FastaiModel</code>(<strong><code>learn</code></strong>:<code>Learner</code>, <strong><code>to</code></strong>:<code>TabularPandas</code>) :: <code>Module</code></p>
 </blockquote>
 <p>Base class for all neural network modules.</p>
 <p>Your models should also subclass this class.</p>
