@@ -19,7 +19,7 @@ entries:
       title: Modelling tabular data
       url: /modelling
     - output: web,pdf
-      title: Model inspection <a class="tocSkip">
+      title: 'Model inspection '
       url: /model_inspection
     output: web
     title: kaggle_house_prices

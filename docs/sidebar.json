@@ -4,6 +4,6 @@
     "Utils": "/utils",
     "Preprocessing": "/preprocessing",
     "Modelling tabular data": "/modelling",
-    "Model inspection <a class=\"tocSkip\">": "/model_inspection"
+    "Model inspection ": "/model_inspection"
   }
 }
