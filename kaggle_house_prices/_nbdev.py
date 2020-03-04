@@ -45,8 +45,8 @@ modules = ["utils.py",
            "modelling.py",
            "inspection.py"]
 
-doc_url = "https://eschmidt42.github.io/src/"
+doc_url = "https://eschmidt42.github.io/kaggle_house_prices/"
 
-git_url = "https://github.com/eschmidt42/src/tree/master/"
+git_url = "https://github.com/eschmidt42/kaggle_house_prices/tree/master/"
 
 def custom_doc_links(name): return None
