@@ -16,6 +16,7 @@ from .modelling import *
 from typing import List, Union
 import matplotlib.pyplot as plt
 from scipy import stats
+import shap
 
 # Cell
 def get_df_preds(df:pd.DataFrame, learn:Learner, cat_names:List[str], cont_names:List[str]) -> torch.Tensor:
@@ -152,10 +153,7 @@ class FastaiModel(torch.nn.Module):
         super().__init__()
         self.cat_ix = [_i for _i,_v in enumerate(to.valid.xs.columns) if _v in to.cat_names]
         self.cont_ix = [_i for _i,_v in enumerate(to.valid.xs.columns) if _v in to.cont_names]
-        print(self.cat_ix)
-        print(self.cont_ix)
         self.learn = learn
 
     def forward(self, X):
-        # return self.learn.model(torch.from_numpy(X[:,self.cat_ix]).long(), torch.from_numpy(X[:,self.cont_ix]).float())
         return self.learn.model(X[:,self.cat_ix].long(), X[:,self.cont_ix].float())
