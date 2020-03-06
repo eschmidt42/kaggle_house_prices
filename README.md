@@ -713,10 +713,6 @@ show_na_share(df, cont_names)
 
 
 ```python
-df = impute_continuous(df, cont_names)
-```
-
-```python
 show_na_share(df, cat_names)
 ```
 
@@ -739,34 +735,74 @@ show_na_share(df, cat_names)
 
 
 ```python
-df = impute_categorical(df, cat_names)
-```
-
-```python
-df = get_split(df, valid_pct=.2)
-display(df["valid"].value_counts())
+val_col = "is_valid"
+df = get_split(df, valid_pct=.2, val_col=val_col)
+display(df[val_col].value_counts())
 ```
 
 
     False    1168
     True      292
-    Name: valid, dtype: int64
+    Name: is_valid, dtype: int64
 
 
 ```python
 df[dep_var] = df[dep_var].apply(np.log)
 ```
 
+Anticipating columns with missing values
+
+```python
+%%time
+cont_fill_vals = {col: np.nanmedian(df.loc[df[val_col]==False, col]) for col in cont_names}
+cont_fill_vals
+```
+
+    CPU times: user 10.5 ms, sys: 0 ns, total: 10.5 ms
+    Wall time: 10.7 ms
+
+
+
+
+
+    {'LotArea': 9423.0,
+     'YearBuilt': 1973.0,
+     'YearRemodAdd': 1994.0,
+     'MasVnrArea': 0.0,
+     'BsmtFinSF2': 0.0,
+     'BsmtUnfSF': 469.0,
+     'TotalBsmtSF': 1002.5,
+     '1stFlrSF': 1086.0,
+     '2ndFlrSF': 0.0,
+     'GrLivArea': 1456.0,
+     'GarageYrBlt': 1980.0,
+     'GarageArea': 478.0,
+     'WoodDeckSF': 0.0,
+     'OpenPorchSF': 24.0,
+     'LotFrontage': 70.0,
+     'BsmtFinSF1': 384.0,
+     'LowQualFinSF': 0.0}
+
+
+
 ```python
 procs = [Categorify, FillMissing, Normalize]
 ```
 
 ```python
-splits = ColSplitter(col="valid")(df)
+splits = ColSplitter(col=val_col)(df)
+```
+
+Substituting potential unexpected nans in the valdiation set
+
+```python
+ix_train = df[val_col]==False
+df.loc[~ix_train,:] = deal_with_continuous_nans(df.loc[ix_train,:], df.loc[~ix_train,:], 
+                                                cont_names, cont_fill_vals)
 ```
 
 ```python
-to = TabularPandas(df, procs=procs, cat_names=cat_names, cont_names=cont_names,
+to = TabularPandas(df, procs=procs, cat_names=list(cat_names), cont_names=list(cont_names),
                    y_names=dep_var, splits=splits)
 ```
 
@@ -855,23 +891,6 @@ display_all(df.iloc[splits[1]][cat_names].head())
       <th>MoSold</th>
       <th>SaleType</th>
       <th>SaleCondition</th>
-      <th>LotArea_na</th>
-      <th>YearBuilt_na</th>
-      <th>YearRemodAdd_na</th>
-      <th>MasVnrArea_na</th>
-      <th>BsmtFinSF2_na</th>
-      <th>BsmtUnfSF_na</th>
-      <th>TotalBsmtSF_na</th>
-      <th>1stFlrSF_na</th>
-      <th>2ndFlrSF_na</th>
-      <th>GrLivArea_na</th>
-      <th>GarageYrBlt_na</th>
-      <th>GarageArea_na</th>
-      <th>WoodDeckSF_na</th>
-      <th>OpenPorchSF_na</th>
-      <th>LotFrontage_na</th>
-      <th>BsmtFinSF1_na</th>
-      <th>LowQualFinSF_na</th>
     </tr>
   </thead>
   <tbody>
@@ -881,7 +900,7 @@ display_all(df.iloc[splits[1]][cat_names].head())
       <td>70</td>
       <td>RL</td>
       <td>Pave</td>
-      <td>NA</td>
+      <td>NaN</td>
       <td>Reg</td>
       <td>Lvl</td>
       <td>AllPub</td>
@@ -932,30 +951,13 @@ display_all(df.iloc[splits[1]][cat_names].head())
       <td>0</td>
       <td>90</td>
       <td>0</td>
-      <td>NA</td>
-      <td>NA</td>
-      <td>NA</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>0</td>
       <td>7</td>
       <td>WD</td>
       <td>Normal</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
     </tr>
     <tr>
       <th>1169</th>
@@ -963,7 +965,7 @@ display_all(df.iloc[splits[1]][cat_names].head())
       <td>60</td>
       <td>RL</td>
       <td>Pave</td>
-      <td>NA</td>
+      <td>NaN</td>
       <td>IR1</td>
       <td>Lvl</td>
       <td>AllPub</td>
@@ -1014,30 +1016,13 @@ display_all(df.iloc[splits[1]][cat_names].head())
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>NA</td>
-      <td>NA</td>
-      <td>NA</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>0</td>
       <td>7</td>
       <td>WD</td>
       <td>Normal</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
     </tr>
     <tr>
       <th>1170</th>
@@ -1045,7 +1030,7 @@ display_all(df.iloc[splits[1]][cat_names].head())
       <td>80</td>
       <td>RL</td>
       <td>Pave</td>
-      <td>NA</td>
+      <td>NaN</td>
       <td>Reg</td>
       <td>Lvl</td>
       <td>AllPub</td>
@@ -1098,28 +1083,11 @@ display_all(df.iloc[splits[1]][cat_names].head())
       <td>576</td>
       <td>Gd</td>
       <td>GdPrv</td>
-      <td>NA</td>
+      <td>NaN</td>
       <td>0</td>
       <td>7</td>
       <td>WD</td>
       <td>Normal</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
     </tr>
     <tr>
       <th>1171</th>
@@ -1127,7 +1095,7 @@ display_all(df.iloc[splits[1]][cat_names].head())
       <td>20</td>
       <td>RL</td>
       <td>Pave</td>
-      <td>NA</td>
+      <td>NaN</td>
       <td>Reg</td>
       <td>Lvl</td>
       <td>AllPub</td>
@@ -1178,30 +1146,13 @@ display_all(df.iloc[splits[1]][cat_names].head())
       <td>0</td>
       <td>288</td>
       <td>0</td>
-      <td>NA</td>
-      <td>NA</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>Shed</td>
       <td>1400</td>
       <td>11</td>
       <td>WD</td>
       <td>Normal</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
     </tr>
     <tr>
       <th>1172</th>
@@ -1249,7 +1200,7 @@ display_all(df.iloc[splits[1]][cat_names].head())
       <td>5</td>
       <td>Typ</td>
       <td>0</td>
-      <td>NA</td>
+      <td>NaN</td>
       <td>Detchd</td>
       <td>Fin</td>
       <td>2</td>
@@ -1260,30 +1211,13 @@ display_all(df.iloc[splits[1]][cat_names].head())
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>NA</td>
-      <td>NA</td>
-      <td>NA</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>0</td>
       <td>3</td>
       <td>WD</td>
       <td>Normal</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
     </tr>
   </tbody>
 </table>
@@ -1375,23 +1309,6 @@ display_all(to.valid.xs[cat_names].head())
       <th>MoSold</th>
       <th>SaleType</th>
       <th>SaleCondition</th>
-      <th>LotArea_na</th>
-      <th>YearBuilt_na</th>
-      <th>YearRemodAdd_na</th>
-      <th>MasVnrArea_na</th>
-      <th>BsmtFinSF2_na</th>
-      <th>BsmtUnfSF_na</th>
-      <th>TotalBsmtSF_na</th>
-      <th>1stFlrSF_na</th>
-      <th>2ndFlrSF_na</th>
-      <th>GrLivArea_na</th>
-      <th>GarageYrBlt_na</th>
-      <th>GarageArea_na</th>
-      <th>WoodDeckSF_na</th>
-      <th>OpenPorchSF_na</th>
-      <th>LotFrontage_na</th>
-      <th>BsmtFinSF1_na</th>
-      <th>LowQualFinSF_na</th>
     </tr>
   </thead>
   <tbody>
@@ -1401,7 +1318,7 @@ display_all(to.valid.xs[cat_names].head())
       <td>7</td>
       <td>4</td>
       <td>2</td>
-      <td>2</td>
+      <td>0</td>
       <td>4</td>
       <td>4</td>
       <td>1</td>
@@ -1418,64 +1335,47 @@ display_all(to.valid.xs[cat_names].head())
       <td>1</td>
       <td>10</td>
       <td>12</td>
-      <td>4</td>
+      <td>3</td>
       <td>4</td>
       <td>5</td>
       <td>2</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
       <td>5</td>
+      <td>6</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
       <td>5</td>
+      <td>1</td>
+      <td>1</td>
+      <td>3</td>
+      <td>1</td>
       <td>5</td>
+      <td>2</td>
+      <td>3</td>
       <td>6</td>
       <td>7</td>
-      <td>1</td>
-      <td>1</td>
-      <td>2</td>
+      <td>3</td>
       <td>5</td>
-      <td>1</td>
-      <td>1</td>
       <td>3</td>
-      <td>1</td>
+      <td>3</td>
+      <td>3</td>
       <td>5</td>
-      <td>2</td>
-      <td>3</td>
-      <td>6</td>
-      <td>7</td>
-      <td>3</td>
-      <td>6</td>
-      <td>3</td>
-      <td>4</td>
-      <td>3</td>
-      <td>6</td>
-      <td>6</td>
+      <td>5</td>
       <td>3</td>
       <td>1</td>
       <td>1</td>
       <td>5</td>
       <td>1</td>
-      <td>3</td>
-      <td>5</td>
-      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>1</td>
       <td>7</td>
       <td>9</td>
       <td>5</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
     </tr>
     <tr>
       <th>1169</th>
@@ -1483,7 +1383,7 @@ display_all(to.valid.xs[cat_names].head())
       <td>6</td>
       <td>4</td>
       <td>2</td>
-      <td>2</td>
+      <td>0</td>
       <td>1</td>
       <td>4</td>
       <td>1</td>
@@ -1505,10 +1405,10 @@ display_all(to.valid.xs[cat_names].head())
       <td>3</td>
       <td>3</td>
       <td>1</td>
-      <td>5</td>
+      <td>4</td>
       <td>2</td>
       <td>3</td>
-      <td>7</td>
+      <td>6</td>
       <td>1</td>
       <td>1</td>
       <td>2</td>
@@ -1523,41 +1423,24 @@ display_all(to.valid.xs[cat_names].head())
       <td>9</td>
       <td>7</td>
       <td>2</td>
-      <td>6</td>
+      <td>5</td>
       <td>2</td>
       <td>1</td>
       <td>4</td>
-      <td>6</td>
-      <td>6</td>
-      <td>3</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>3</td>
       <td>5</td>
-      <td>2</td>
+      <td>5</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>1</td>
       <td>7</td>
       <td>9</td>
       <td>5</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
     </tr>
     <tr>
       <th>1170</th>
@@ -1565,7 +1448,7 @@ display_all(to.valid.xs[cat_names].head())
       <td>9</td>
       <td>4</td>
       <td>2</td>
-      <td>2</td>
+      <td>0</td>
       <td>4</td>
       <td>4</td>
       <td>1</td>
@@ -1582,35 +1465,35 @@ display_all(to.valid.xs[cat_names].head())
       <td>1</td>
       <td>8</td>
       <td>10</td>
-      <td>4</td>
-      <td>4</td>
-      <td>5</td>
-      <td>2</td>
-      <td>5</td>
-      <td>5</td>
-      <td>1</td>
-      <td>1</td>
-      <td>7</td>
-      <td>1</td>
-      <td>5</td>
-      <td>2</td>
-      <td>5</td>
-      <td>2</td>
-      <td>1</td>
-      <td>2</td>
-      <td>1</td>
-      <td>4</td>
-      <td>2</td>
+      <td>3</td>
       <td>4</td>
       <td>5</td>
-      <td>7</td>
       <td>2</td>
-      <td>5</td>
-      <td>2</td>
+      <td>4</td>
+      <td>4</td>
       <td>1</td>
-      <td>2</td>
+      <td>1</td>
       <td>6</td>
-      <td>6</td>
+      <td>1</td>
+      <td>5</td>
+      <td>2</td>
+      <td>5</td>
+      <td>2</td>
+      <td>1</td>
+      <td>2</td>
+      <td>1</td>
+      <td>4</td>
+      <td>2</td>
+      <td>4</td>
+      <td>5</td>
+      <td>7</td>
+      <td>2</td>
+      <td>4</td>
+      <td>2</td>
+      <td>1</td>
+      <td>2</td>
+      <td>5</td>
+      <td>5</td>
       <td>3</td>
       <td>1</td>
       <td>1</td>
@@ -1618,28 +1501,11 @@ display_all(to.valid.xs[cat_names].head())
       <td>0</td>
       <td>0</td>
       <td>1</td>
-      <td>2</td>
+      <td>0</td>
       <td>1</td>
       <td>7</td>
       <td>9</td>
       <td>5</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
     </tr>
     <tr>
       <th>1171</th>
@@ -1647,7 +1513,7 @@ display_all(to.valid.xs[cat_names].head())
       <td>1</td>
       <td>4</td>
       <td>2</td>
-      <td>2</td>
+      <td>0</td>
       <td>4</td>
       <td>4</td>
       <td>1</td>
@@ -1664,64 +1530,47 @@ display_all(to.valid.xs[cat_names].head())
       <td>1</td>
       <td>7</td>
       <td>8</td>
-      <td>4</td>
-      <td>4</td>
-      <td>5</td>
-      <td>2</td>
-      <td>5</td>
-      <td>5</td>
-      <td>5</td>
-      <td>1</td>
-      <td>7</td>
-      <td>1</td>
-      <td>1</td>
-      <td>2</td>
-      <td>5</td>
-      <td>2</td>
-      <td>1</td>
-      <td>2</td>
-      <td>1</td>
-      <td>4</td>
-      <td>2</td>
+      <td>3</td>
       <td>4</td>
       <td>5</td>
-      <td>7</td>
       <td>2</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>1</td>
       <td>6</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>5</td>
+      <td>2</td>
+      <td>1</td>
+      <td>2</td>
+      <td>1</td>
+      <td>4</td>
+      <td>2</td>
+      <td>4</td>
+      <td>5</td>
+      <td>7</td>
+      <td>2</td>
+      <td>5</td>
+      <td>2</td>
       <td>2</td>
       <td>3</td>
-      <td>3</td>
-      <td>6</td>
-      <td>6</td>
+      <td>5</td>
+      <td>5</td>
       <td>3</td>
       <td>1</td>
       <td>1</td>
       <td>0</td>
       <td>1</td>
+      <td>0</td>
+      <td>0</td>
       <td>3</td>
-      <td>5</td>
-      <td>4</td>
       <td>0</td>
       <td>11</td>
       <td>9</td>
       <td>5</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
     </tr>
     <tr>
       <th>1172</th>
@@ -1729,7 +1578,7 @@ display_all(to.valid.xs[cat_names].head())
       <td>13</td>
       <td>2</td>
       <td>2</td>
-      <td>3</td>
+      <td>2</td>
       <td>1</td>
       <td>4</td>
       <td>1</td>
@@ -1746,15 +1595,15 @@ display_all(to.valid.xs[cat_names].head())
       <td>1</td>
       <td>7</td>
       <td>8</td>
+      <td>3</td>
+      <td>3</td>
+      <td>5</td>
+      <td>3</td>
+      <td>3</td>
       <td>4</td>
-      <td>3</td>
-      <td>5</td>
-      <td>3</td>
-      <td>3</td>
-      <td>5</td>
-      <td>5</td>
-      <td>7</td>
-      <td>7</td>
+      <td>4</td>
+      <td>6</td>
+      <td>6</td>
       <td>1</td>
       <td>1</td>
       <td>2</td>
@@ -1769,41 +1618,24 @@ display_all(to.valid.xs[cat_names].head())
       <td>4</td>
       <td>7</td>
       <td>1</td>
-      <td>4</td>
+      <td>0</td>
       <td>6</td>
       <td>1</td>
       <td>3</td>
-      <td>6</td>
-      <td>6</td>
-      <td>3</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>3</td>
       <td>5</td>
-      <td>2</td>
+      <td>5</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>1</td>
       <td>3</td>
       <td>9</td>
       <td>5</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
     </tr>
   </tbody>
 </table>
@@ -1838,8 +1670,8 @@ learn = tabular_learner(dls, n_out=1, loss_func=loss_fun, config=dict(active_fun
                         y_range=y_range)
 ```
 
-    CPU times: user 78.1 ms, sys: 0 ns, total: 78.1 ms
-    Wall time: 26.1 ms
+    CPU times: user 14.3 ms, sys: 0 ns, total: 14.3 ms
+    Wall time: 14.4 ms
 
 
 ```python
@@ -1851,19 +1683,19 @@ learn.lr_find()
 
 
 
-    CPU times: user 21.2 s, sys: 17.9 s, total: 39.2 s
-    Wall time: 5.82 s
+    CPU times: user 3.24 s, sys: 14.7 ms, total: 3.25 s
+    Wall time: 3.33 s
 
 
 
 
 
-    (0.006918309628963471, 3.019951861915615e-07)
+    (0.003981071710586548, 2.5118865210060903e-07)
 
 
 
 
-![png](docs/images/output_24_3.png)
+![png](docs/images/output_26_3.png)
 
 
 ```python
@@ -1884,40 +1716,40 @@ learn.fit_one_cycle(5, 1e-3)
   <tbody>
     <tr>
       <td>0</td>
-      <td>0.096877</td>
-      <td>0.107682</td>
-      <td>00:01</td>
+      <td>0.081267</td>
+      <td>0.120376</td>
+      <td>00:00</td>
     </tr>
     <tr>
       <td>1</td>
-      <td>0.055077</td>
-      <td>0.090318</td>
-      <td>00:01</td>
+      <td>0.046442</td>
+      <td>0.091020</td>
+      <td>00:00</td>
     </tr>
     <tr>
       <td>2</td>
-      <td>0.036028</td>
-      <td>0.079071</td>
-      <td>00:01</td>
+      <td>0.031388</td>
+      <td>0.077165</td>
+      <td>00:00</td>
     </tr>
     <tr>
       <td>3</td>
-      <td>0.024554</td>
-      <td>0.053626</td>
-      <td>00:01</td>
+      <td>0.021588</td>
+      <td>0.055759</td>
+      <td>00:00</td>
     </tr>
     <tr>
       <td>4</td>
-      <td>0.017457</td>
-      <td>0.032267</td>
-      <td>00:01</td>
+      <td>0.015393</td>
+      <td>0.029812</td>
+      <td>00:00</td>
     </tr>
   </tbody>
 </table>
 
 
-    CPU times: user 23.7 s, sys: 20.3 s, total: 44 s
-    Wall time: 6.6 s
+    CPU times: user 3.57 s, sys: 40.6 ms, total: 3.61 s
+    Wall time: 3.74 s
 
 
 ```python
@@ -1933,11 +1765,11 @@ y_pred[:5], y_true[:5]
 
 
 
-    (tensor([[12.1513],
-             [12.8520],
-             [11.8932],
-             [11.9280],
-             [11.9397]]),
+    (tensor([[12.2211],
+             [12.9197],
+             [11.9060],
+             [12.0202],
+             [11.9555]]),
      tensor([[12.3673],
              [13.3455],
              [12.0494],
@@ -2019,7 +1851,7 @@ show_leaderboard(fname_leaderboard, score_bounds=(None, 1.25), bins=100, user_sc
 
 
 
-![png](docs/images/output_27_1.png)
+![png](docs/images/output_29_1.png)
 
 
 Computing SHAP values
@@ -2035,8 +1867,8 @@ explainer = shap.DeepExplainer(model, X)
 shap_values = explainer.shap_values(X)
 ```
 
-    CPU times: user 53.5 s, sys: 47 s, total: 1min 40s
-    Wall time: 15.1 s
+    CPU times: user 13.2 s, sys: 678 ms, total: 13.9 s
+    Wall time: 14 s
 
 
 ## Fitting an ensemble method using `RandomForestRegressor`
@@ -2050,8 +1882,8 @@ ens = ensemble.RandomForestRegressor(n_estimators=100, max_features="sqrt", max_
 ens.fit(to.train.xs.values, to.train.ys.values.ravel())
 ```
 
-    CPU times: user 312 ms, sys: 0 ns, total: 312 ms
-    Wall time: 299 ms
+    CPU times: user 408 ms, sys: 7.97 ms, total: 416 ms
+    Wall time: 416 ms
 
 
 
@@ -2072,8 +1904,8 @@ ens.fit(to.train.xs.values, to.train.ys.values.ravel())
 y_pred_ens = ens.predict(to.valid.xs.values)
 ```
 
-    CPU times: user 15.6 ms, sys: 0 ns, total: 15.6 ms
-    Wall time: 14.3 ms
+    CPU times: user 16 ms, sys: 0 ns, total: 16 ms
+    Wall time: 16.1 ms
 
 
 ```python
@@ -2150,7 +1982,7 @@ show_leaderboard(fname_leaderboard, score_bounds=(None, 1.25), bins=100, user_sc
 
 
 
-![png](docs/images/output_35_1.png)
+![png](docs/images/output_37_1.png)
 
 
 Computing SHAP values
@@ -2162,10 +1994,10 @@ ens_explainer = shap.TreeExplainer(ens, _X)
 ens_shap_values = ens_explainer.shap_values(_X)
 ```
 
-     99%|===================| 289/292 [00:30<00:00]        
+     99%|===================| 290/292 [00:40<00:00]        
 
-    CPU times: user 29.8 s, sys: 15.6 ms, total: 29.8 s
-    Wall time: 29.8 s
+    CPU times: user 39.4 s, sys: 102 ms, total: 39.5 s
+    Wall time: 39.7 s
 
 
 ## SHAP summary plots
@@ -2177,7 +2009,7 @@ shap.summary_plot(shap_values, to.valid.xs)
 ```
 
 
-![png](docs/images/output_40_0.png)
+![png](docs/images/output_42_0.png)
 
 
 ### Ensemble
@@ -2187,5 +2019,129 @@ shap.summary_plot(ens_shap_values, to.valid.xs)
 ```
 
 
-![png](docs/images/output_42_0.png)
+![png](docs/images/output_44_0.png)
 
+
+## Making predictions over the test set
+
+Taking care of any unexpected nan values in `df_test`
+
+```python
+df_test = deal_with_continuous_nans(df.loc[ix_train,:], df_test, cont_names, cont_fill_vals)
+```
+
+Creating `dl` for `learn.get_preds`
+
+```python
+dl = learn.dls.test_dl(df_test)
+```
+
+Making predictions
+
+```python
+res = learn.get_preds(dl=dl)
+```
+
+
+
+
+
+```python
+res
+```
+
+
+
+
+    (tensor([[11.7512],
+             [11.9980],
+             [12.1427],
+             ...,
+             [12.0335],
+             [11.7913],
+             [12.2374]]),
+     None)
+
+
+
+```python
+preds = np.exp(res[0].detach().numpy()); preds
+```
+
+
+
+
+    array([[126903.9 ],
+           [162426.06],
+           [187725.38],
+           ...,
+           [168300.19],
+           [132091.77],
+           [206372.11]], dtype=float32)
+
+
+
+```python
+preds = pd.DataFrame({"Id": df_test["Id"], "SalePrice":preds.ravel()}); preds.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Id</th>
+      <th>SalePrice</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1461</td>
+      <td>126903.898438</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1462</td>
+      <td>162426.062500</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1463</td>
+      <td>187725.375000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1464</td>
+      <td>198973.656250</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1465</td>
+      <td>180530.468750</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+```python
+preds.to_csv("../data/submission.csv", index=False)
+```
