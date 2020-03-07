@@ -1,8 +1,10 @@
-# Kaggle house prices with fastai v2
-> Kaggling with fastai2
+# Kaggle house prices with fastai v2 & nbdev
+> This repo purpose is to highlight the [`nbdev` tool](https://github.com/fastai/nbdev) on the kagge house prices data set using the fastai2 package.
 
 
 ## Get leaderboard and competition data
+
+First you will need to collect the train and test data from kaggle. Because it is instructive to visualize where the field is in terms of scores we also download the leaderboard data. The following assumed you have set up a kaggle account. If that's not the case check out this site [here](https://github.com/Kaggle/kaggle-api).
 
 ```python
 # !kaggle competitions leaderboard {competition} -d -p {dir_leaderboard}
@@ -28,7 +30,7 @@ df_test = pd.read_csv(test_path)
 ```
 
 ```python
-display_all(df_test.head().T)
+display_all(df_test.head())
 ```
 
 
@@ -50,652 +52,502 @@ display_all(df_test.head().T)
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>0</th>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-      <th>4</th>
+      <th>Id</th>
+      <th>MSSubClass</th>
+      <th>MSZoning</th>
+      <th>LotFrontage</th>
+      <th>LotArea</th>
+      <th>Street</th>
+      <th>Alley</th>
+      <th>LotShape</th>
+      <th>LandContour</th>
+      <th>Utilities</th>
+      <th>LotConfig</th>
+      <th>LandSlope</th>
+      <th>Neighborhood</th>
+      <th>Condition1</th>
+      <th>Condition2</th>
+      <th>BldgType</th>
+      <th>HouseStyle</th>
+      <th>OverallQual</th>
+      <th>OverallCond</th>
+      <th>YearBuilt</th>
+      <th>YearRemodAdd</th>
+      <th>RoofStyle</th>
+      <th>RoofMatl</th>
+      <th>Exterior1st</th>
+      <th>Exterior2nd</th>
+      <th>MasVnrType</th>
+      <th>MasVnrArea</th>
+      <th>ExterQual</th>
+      <th>ExterCond</th>
+      <th>Foundation</th>
+      <th>BsmtQual</th>
+      <th>BsmtCond</th>
+      <th>BsmtExposure</th>
+      <th>BsmtFinType1</th>
+      <th>BsmtFinSF1</th>
+      <th>BsmtFinType2</th>
+      <th>BsmtFinSF2</th>
+      <th>BsmtUnfSF</th>
+      <th>TotalBsmtSF</th>
+      <th>Heating</th>
+      <th>HeatingQC</th>
+      <th>CentralAir</th>
+      <th>Electrical</th>
+      <th>1stFlrSF</th>
+      <th>2ndFlrSF</th>
+      <th>LowQualFinSF</th>
+      <th>GrLivArea</th>
+      <th>BsmtFullBath</th>
+      <th>BsmtHalfBath</th>
+      <th>FullBath</th>
+      <th>HalfBath</th>
+      <th>BedroomAbvGr</th>
+      <th>KitchenAbvGr</th>
+      <th>KitchenQual</th>
+      <th>TotRmsAbvGrd</th>
+      <th>Functional</th>
+      <th>Fireplaces</th>
+      <th>FireplaceQu</th>
+      <th>GarageType</th>
+      <th>GarageYrBlt</th>
+      <th>GarageFinish</th>
+      <th>GarageCars</th>
+      <th>GarageArea</th>
+      <th>GarageQual</th>
+      <th>GarageCond</th>
+      <th>PavedDrive</th>
+      <th>WoodDeckSF</th>
+      <th>OpenPorchSF</th>
+      <th>EnclosedPorch</th>
+      <th>3SsnPorch</th>
+      <th>ScreenPorch</th>
+      <th>PoolArea</th>
+      <th>PoolQC</th>
+      <th>Fence</th>
+      <th>MiscFeature</th>
+      <th>MiscVal</th>
+      <th>MoSold</th>
+      <th>YrSold</th>
+      <th>SaleType</th>
+      <th>SaleCondition</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>Id</th>
+      <th>0</th>
       <td>1461</td>
-      <td>1462</td>
-      <td>1463</td>
-      <td>1464</td>
-      <td>1465</td>
-    </tr>
-    <tr>
-      <th>MSSubClass</th>
       <td>20</td>
-      <td>20</td>
-      <td>60</td>
-      <td>60</td>
-      <td>120</td>
-    </tr>
-    <tr>
-      <th>MSZoning</th>
       <td>RH</td>
-      <td>RL</td>
-      <td>RL</td>
-      <td>RL</td>
-      <td>RL</td>
-    </tr>
-    <tr>
-      <th>LotFrontage</th>
-      <td>80</td>
-      <td>81</td>
-      <td>74</td>
-      <td>78</td>
-      <td>43</td>
-    </tr>
-    <tr>
-      <th>LotArea</th>
+      <td>80.0</td>
       <td>11622</td>
-      <td>14267</td>
-      <td>13830</td>
-      <td>9978</td>
-      <td>5005</td>
-    </tr>
-    <tr>
-      <th>Street</th>
       <td>Pave</td>
-      <td>Pave</td>
-      <td>Pave</td>
-      <td>Pave</td>
-      <td>Pave</td>
-    </tr>
-    <tr>
-      <th>Alley</th>
       <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>LotShape</th>
       <td>Reg</td>
-      <td>IR1</td>
-      <td>IR1</td>
-      <td>IR1</td>
-      <td>IR1</td>
-    </tr>
-    <tr>
-      <th>LandContour</th>
       <td>Lvl</td>
-      <td>Lvl</td>
-      <td>Lvl</td>
-      <td>Lvl</td>
-      <td>HLS</td>
-    </tr>
-    <tr>
-      <th>Utilities</th>
       <td>AllPub</td>
-      <td>AllPub</td>
-      <td>AllPub</td>
-      <td>AllPub</td>
-      <td>AllPub</td>
-    </tr>
-    <tr>
-      <th>LotConfig</th>
       <td>Inside</td>
-      <td>Corner</td>
-      <td>Inside</td>
-      <td>Inside</td>
-      <td>Inside</td>
-    </tr>
-    <tr>
-      <th>LandSlope</th>
       <td>Gtl</td>
-      <td>Gtl</td>
-      <td>Gtl</td>
-      <td>Gtl</td>
-      <td>Gtl</td>
-    </tr>
-    <tr>
-      <th>Neighborhood</th>
       <td>NAmes</td>
-      <td>NAmes</td>
-      <td>Gilbert</td>
-      <td>Gilbert</td>
-      <td>StoneBr</td>
-    </tr>
-    <tr>
-      <th>Condition1</th>
       <td>Feedr</td>
       <td>Norm</td>
-      <td>Norm</td>
-      <td>Norm</td>
-      <td>Norm</td>
-    </tr>
-    <tr>
-      <th>Condition2</th>
-      <td>Norm</td>
-      <td>Norm</td>
-      <td>Norm</td>
-      <td>Norm</td>
-      <td>Norm</td>
-    </tr>
-    <tr>
-      <th>BldgType</th>
       <td>1Fam</td>
-      <td>1Fam</td>
-      <td>1Fam</td>
-      <td>1Fam</td>
-      <td>TwnhsE</td>
-    </tr>
-    <tr>
-      <th>HouseStyle</th>
       <td>1Story</td>
-      <td>1Story</td>
-      <td>2Story</td>
-      <td>2Story</td>
-      <td>1Story</td>
-    </tr>
-    <tr>
-      <th>OverallQual</th>
       <td>5</td>
       <td>6</td>
-      <td>5</td>
-      <td>6</td>
-      <td>8</td>
-    </tr>
-    <tr>
-      <th>OverallCond</th>
-      <td>6</td>
-      <td>6</td>
-      <td>5</td>
-      <td>6</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>YearBuilt</th>
       <td>1961</td>
-      <td>1958</td>
-      <td>1997</td>
-      <td>1998</td>
-      <td>1992</td>
-    </tr>
-    <tr>
-      <th>YearRemodAdd</th>
       <td>1961</td>
-      <td>1958</td>
-      <td>1998</td>
-      <td>1998</td>
-      <td>1992</td>
-    </tr>
-    <tr>
-      <th>RoofStyle</th>
       <td>Gable</td>
-      <td>Hip</td>
-      <td>Gable</td>
-      <td>Gable</td>
-      <td>Gable</td>
-    </tr>
-    <tr>
-      <th>RoofMatl</th>
       <td>CompShg</td>
-      <td>CompShg</td>
-      <td>CompShg</td>
-      <td>CompShg</td>
-      <td>CompShg</td>
-    </tr>
-    <tr>
-      <th>Exterior1st</th>
-      <td>VinylSd</td>
-      <td>Wd Sdng</td>
       <td>VinylSd</td>
       <td>VinylSd</td>
-      <td>HdBoard</td>
-    </tr>
-    <tr>
-      <th>Exterior2nd</th>
-      <td>VinylSd</td>
-      <td>Wd Sdng</td>
-      <td>VinylSd</td>
-      <td>VinylSd</td>
-      <td>HdBoard</td>
-    </tr>
-    <tr>
-      <th>MasVnrType</th>
       <td>None</td>
-      <td>BrkFace</td>
-      <td>None</td>
-      <td>BrkFace</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>MasVnrArea</th>
-      <td>0</td>
-      <td>108</td>
-      <td>0</td>
-      <td>20</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>ExterQual</th>
+      <td>0.0</td>
       <td>TA</td>
       <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-      <td>Gd</td>
-    </tr>
-    <tr>
-      <th>ExterCond</th>
-      <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-    </tr>
-    <tr>
-      <th>Foundation</th>
       <td>CBlock</td>
-      <td>CBlock</td>
-      <td>PConc</td>
-      <td>PConc</td>
-      <td>PConc</td>
-    </tr>
-    <tr>
-      <th>BsmtQual</th>
       <td>TA</td>
       <td>TA</td>
-      <td>Gd</td>
-      <td>TA</td>
-      <td>Gd</td>
-    </tr>
-    <tr>
-      <th>BsmtCond</th>
-      <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-    </tr>
-    <tr>
-      <th>BsmtExposure</th>
       <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <th>BsmtFinType1</th>
       <td>Rec</td>
-      <td>ALQ</td>
-      <td>GLQ</td>
-      <td>GLQ</td>
-      <td>ALQ</td>
-    </tr>
-    <tr>
-      <th>BsmtFinSF1</th>
-      <td>468</td>
-      <td>923</td>
-      <td>791</td>
-      <td>602</td>
-      <td>263</td>
-    </tr>
-    <tr>
-      <th>BsmtFinType2</th>
+      <td>468.0</td>
       <td>LwQ</td>
-      <td>Unf</td>
-      <td>Unf</td>
-      <td>Unf</td>
-      <td>Unf</td>
-    </tr>
-    <tr>
-      <th>BsmtFinSF2</th>
-      <td>144</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>BsmtUnfSF</th>
-      <td>270</td>
-      <td>406</td>
-      <td>137</td>
-      <td>324</td>
-      <td>1017</td>
-    </tr>
-    <tr>
-      <th>TotalBsmtSF</th>
-      <td>882</td>
-      <td>1329</td>
-      <td>928</td>
-      <td>926</td>
-      <td>1280</td>
-    </tr>
-    <tr>
-      <th>Heating</th>
+      <td>144.0</td>
+      <td>270.0</td>
+      <td>882.0</td>
       <td>GasA</td>
-      <td>GasA</td>
-      <td>GasA</td>
-      <td>GasA</td>
-      <td>GasA</td>
-    </tr>
-    <tr>
-      <th>HeatingQC</th>
       <td>TA</td>
-      <td>TA</td>
-      <td>Gd</td>
-      <td>Ex</td>
-      <td>Ex</td>
-    </tr>
-    <tr>
-      <th>CentralAir</th>
       <td>Y</td>
-      <td>Y</td>
-      <td>Y</td>
-      <td>Y</td>
-      <td>Y</td>
-    </tr>
-    <tr>
-      <th>Electrical</th>
       <td>SBrkr</td>
-      <td>SBrkr</td>
-      <td>SBrkr</td>
-      <td>SBrkr</td>
-      <td>SBrkr</td>
-    </tr>
-    <tr>
-      <th>1stFlrSF</th>
       <td>896</td>
-      <td>1329</td>
-      <td>928</td>
-      <td>926</td>
-      <td>1280</td>
-    </tr>
-    <tr>
-      <th>2ndFlrSF</th>
       <td>0</td>
       <td>0</td>
-      <td>701</td>
-      <td>678</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>LowQualFinSF</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>GrLivArea</th>
       <td>896</td>
-      <td>1329</td>
-      <td>1629</td>
-      <td>1604</td>
-      <td>1280</td>
-    </tr>
-    <tr>
-      <th>BsmtFullBath</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>BsmtHalfBath</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>FullBath</th>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>1</td>
-      <td>1</td>
+      <td>0</td>
       <td>2</td>
-      <td>2</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>HalfBath</th>
-      <td>0</td>
       <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>BedroomAbvGr</th>
-      <td>2</td>
-      <td>3</td>
-      <td>3</td>
-      <td>3</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>KitchenAbvGr</th>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>KitchenQual</th>
       <td>TA</td>
-      <td>Gd</td>
-      <td>TA</td>
-      <td>Gd</td>
-      <td>Gd</td>
-    </tr>
-    <tr>
-      <th>TotRmsAbvGrd</th>
       <td>5</td>
-      <td>6</td>
-      <td>6</td>
-      <td>7</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>Functional</th>
       <td>Typ</td>
-      <td>Typ</td>
-      <td>Typ</td>
-      <td>Typ</td>
-      <td>Typ</td>
-    </tr>
-    <tr>
-      <th>Fireplaces</th>
       <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>FireplaceQu</th>
       <td>NaN</td>
-      <td>NaN</td>
-      <td>TA</td>
-      <td>Gd</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>GarageType</th>
       <td>Attchd</td>
-      <td>Attchd</td>
-      <td>Attchd</td>
-      <td>Attchd</td>
-      <td>Attchd</td>
-    </tr>
-    <tr>
-      <th>GarageYrBlt</th>
-      <td>1961</td>
-      <td>1958</td>
-      <td>1997</td>
-      <td>1998</td>
-      <td>1992</td>
-    </tr>
-    <tr>
-      <th>GarageFinish</th>
+      <td>1961.0</td>
       <td>Unf</td>
-      <td>Unf</td>
-      <td>Fin</td>
-      <td>Fin</td>
-      <td>RFn</td>
-    </tr>
-    <tr>
-      <th>GarageCars</th>
-      <td>1</td>
-      <td>1</td>
-      <td>2</td>
-      <td>2</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>GarageArea</th>
-      <td>730</td>
-      <td>312</td>
-      <td>482</td>
-      <td>470</td>
-      <td>506</td>
-    </tr>
-    <tr>
-      <th>GarageQual</th>
+      <td>1.0</td>
+      <td>730.0</td>
       <td>TA</td>
       <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-    </tr>
-    <tr>
-      <th>GarageCond</th>
-      <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-      <td>TA</td>
-    </tr>
-    <tr>
-      <th>PavedDrive</th>
       <td>Y</td>
-      <td>Y</td>
-      <td>Y</td>
-      <td>Y</td>
-      <td>Y</td>
-    </tr>
-    <tr>
-      <th>WoodDeckSF</th>
       <td>140</td>
-      <td>393</td>
-      <td>212</td>
-      <td>360</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>OpenPorchSF</th>
-      <td>0</td>
-      <td>36</td>
-      <td>34</td>
-      <td>36</td>
-      <td>82</td>
-    </tr>
-    <tr>
-      <th>EnclosedPorch</th>
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3SsnPorch</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>ScreenPorch</th>
       <td>120</td>
       <td>0</td>
+      <td>NaN</td>
+      <td>MnPrv</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>6</td>
+      <td>2010</td>
+      <td>WD</td>
+      <td>Normal</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1462</td>
+      <td>20</td>
+      <td>RL</td>
+      <td>81.0</td>
+      <td>14267</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR1</td>
+      <td>Lvl</td>
+      <td>AllPub</td>
+      <td>Corner</td>
+      <td>Gtl</td>
+      <td>NAmes</td>
+      <td>Norm</td>
+      <td>Norm</td>
+      <td>1Fam</td>
+      <td>1Story</td>
+      <td>6</td>
+      <td>6</td>
+      <td>1958</td>
+      <td>1958</td>
+      <td>Hip</td>
+      <td>CompShg</td>
+      <td>Wd Sdng</td>
+      <td>Wd Sdng</td>
+      <td>BrkFace</td>
+      <td>108.0</td>
+      <td>TA</td>
+      <td>TA</td>
+      <td>CBlock</td>
+      <td>TA</td>
+      <td>TA</td>
+      <td>No</td>
+      <td>ALQ</td>
+      <td>923.0</td>
+      <td>Unf</td>
+      <td>0.0</td>
+      <td>406.0</td>
+      <td>1329.0</td>
+      <td>GasA</td>
+      <td>TA</td>
+      <td>Y</td>
+      <td>SBrkr</td>
+      <td>1329</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1329</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>3</td>
+      <td>1</td>
+      <td>Gd</td>
+      <td>6</td>
+      <td>Typ</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>Attchd</td>
+      <td>1958.0</td>
+      <td>Unf</td>
+      <td>1.0</td>
+      <td>312.0</td>
+      <td>TA</td>
+      <td>TA</td>
+      <td>Y</td>
+      <td>393</td>
+      <td>36</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Gar2</td>
+      <td>12500</td>
+      <td>6</td>
+      <td>2010</td>
+      <td>WD</td>
+      <td>Normal</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1463</td>
+      <td>60</td>
+      <td>RL</td>
+      <td>74.0</td>
+      <td>13830</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR1</td>
+      <td>Lvl</td>
+      <td>AllPub</td>
+      <td>Inside</td>
+      <td>Gtl</td>
+      <td>Gilbert</td>
+      <td>Norm</td>
+      <td>Norm</td>
+      <td>1Fam</td>
+      <td>2Story</td>
+      <td>5</td>
+      <td>5</td>
+      <td>1997</td>
+      <td>1998</td>
+      <td>Gable</td>
+      <td>CompShg</td>
+      <td>VinylSd</td>
+      <td>VinylSd</td>
+      <td>None</td>
+      <td>0.0</td>
+      <td>TA</td>
+      <td>TA</td>
+      <td>PConc</td>
+      <td>Gd</td>
+      <td>TA</td>
+      <td>No</td>
+      <td>GLQ</td>
+      <td>791.0</td>
+      <td>Unf</td>
+      <td>0.0</td>
+      <td>137.0</td>
+      <td>928.0</td>
+      <td>GasA</td>
+      <td>Gd</td>
+      <td>Y</td>
+      <td>SBrkr</td>
+      <td>928</td>
+      <td>701</td>
+      <td>0</td>
+      <td>1629</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2</td>
+      <td>1</td>
+      <td>3</td>
+      <td>1</td>
+      <td>TA</td>
+      <td>6</td>
+      <td>Typ</td>
+      <td>1</td>
+      <td>TA</td>
+      <td>Attchd</td>
+      <td>1997.0</td>
+      <td>Fin</td>
+      <td>2.0</td>
+      <td>482.0</td>
+      <td>TA</td>
+      <td>TA</td>
+      <td>Y</td>
+      <td>212</td>
+      <td>34</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>MnPrv</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>3</td>
+      <td>2010</td>
+      <td>WD</td>
+      <td>Normal</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1464</td>
+      <td>60</td>
+      <td>RL</td>
+      <td>78.0</td>
+      <td>9978</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR1</td>
+      <td>Lvl</td>
+      <td>AllPub</td>
+      <td>Inside</td>
+      <td>Gtl</td>
+      <td>Gilbert</td>
+      <td>Norm</td>
+      <td>Norm</td>
+      <td>1Fam</td>
+      <td>2Story</td>
+      <td>6</td>
+      <td>6</td>
+      <td>1998</td>
+      <td>1998</td>
+      <td>Gable</td>
+      <td>CompShg</td>
+      <td>VinylSd</td>
+      <td>VinylSd</td>
+      <td>BrkFace</td>
+      <td>20.0</td>
+      <td>TA</td>
+      <td>TA</td>
+      <td>PConc</td>
+      <td>TA</td>
+      <td>TA</td>
+      <td>No</td>
+      <td>GLQ</td>
+      <td>602.0</td>
+      <td>Unf</td>
+      <td>0.0</td>
+      <td>324.0</td>
+      <td>926.0</td>
+      <td>GasA</td>
+      <td>Ex</td>
+      <td>Y</td>
+      <td>SBrkr</td>
+      <td>926</td>
+      <td>678</td>
+      <td>0</td>
+      <td>1604</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2</td>
+      <td>1</td>
+      <td>3</td>
+      <td>1</td>
+      <td>Gd</td>
+      <td>7</td>
+      <td>Typ</td>
+      <td>1</td>
+      <td>Gd</td>
+      <td>Attchd</td>
+      <td>1998.0</td>
+      <td>Fin</td>
+      <td>2.0</td>
+      <td>470.0</td>
+      <td>TA</td>
+      <td>TA</td>
+      <td>Y</td>
+      <td>360</td>
+      <td>36</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>6</td>
+      <td>2010</td>
+      <td>WD</td>
+      <td>Normal</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1465</td>
+      <td>120</td>
+      <td>RL</td>
+      <td>43.0</td>
+      <td>5005</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR1</td>
+      <td>HLS</td>
+      <td>AllPub</td>
+      <td>Inside</td>
+      <td>Gtl</td>
+      <td>StoneBr</td>
+      <td>Norm</td>
+      <td>Norm</td>
+      <td>TwnhsE</td>
+      <td>1Story</td>
+      <td>8</td>
+      <td>5</td>
+      <td>1992</td>
+      <td>1992</td>
+      <td>Gable</td>
+      <td>CompShg</td>
+      <td>HdBoard</td>
+      <td>HdBoard</td>
+      <td>None</td>
+      <td>0.0</td>
+      <td>Gd</td>
+      <td>TA</td>
+      <td>PConc</td>
+      <td>Gd</td>
+      <td>TA</td>
+      <td>No</td>
+      <td>ALQ</td>
+      <td>263.0</td>
+      <td>Unf</td>
+      <td>0.0</td>
+      <td>1017.0</td>
+      <td>1280.0</td>
+      <td>GasA</td>
+      <td>Ex</td>
+      <td>Y</td>
+      <td>SBrkr</td>
+      <td>1280</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1280</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>2</td>
+      <td>1</td>
+      <td>Gd</td>
+      <td>5</td>
+      <td>Typ</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>Attchd</td>
+      <td>1992.0</td>
+      <td>RFn</td>
+      <td>2.0</td>
+      <td>506.0</td>
+      <td>TA</td>
+      <td>TA</td>
+      <td>Y</td>
+      <td>0</td>
+      <td>82</td>
       <td>0</td>
       <td>0</td>
       <td>144</td>
-    </tr>
-    <tr>
-      <th>PoolArea</th>
       <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>PoolQC</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>Fence</th>
-      <td>MnPrv</td>
-      <td>NaN</td>
-      <td>MnPrv</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>MiscFeature</th>
-      <td>NaN</td>
-      <td>Gar2</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>MiscVal</th>
-      <td>0</td>
-      <td>12500</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>MoSold</th>
-      <td>6</td>
-      <td>6</td>
-      <td>3</td>
-      <td>6</td>
       <td>1</td>
-    </tr>
-    <tr>
-      <th>YrSold</th>
       <td>2010</td>
-      <td>2010</td>
-      <td>2010</td>
-      <td>2010</td>
-      <td>2010</td>
-    </tr>
-    <tr>
-      <th>SaleType</th>
       <td>WD</td>
-      <td>WD</td>
-      <td>WD</td>
-      <td>WD</td>
-      <td>WD</td>
-    </tr>
-    <tr>
-      <th>SaleCondition</th>
-      <td>Normal</td>
-      <td>Normal</td>
-      <td>Normal</td>
-      <td>Normal</td>
       <td>Normal</td>
     </tr>
   </tbody>
@@ -758,8 +610,8 @@ cont_fill_vals = {col: np.nanmedian(df.loc[df[val_col]==False, col]) for col in 
 cont_fill_vals
 ```
 
-    CPU times: user 10.5 ms, sys: 0 ns, total: 10.5 ms
-    Wall time: 10.7 ms
+    CPU times: user 11.2 ms, sys: 0 ns, total: 11.2 ms
+    Wall time: 12.1 ms
 
 
 
@@ -785,9 +637,13 @@ cont_fill_vals
 
 
 
+Defining fastai2's internal transforms
+
 ```python
 procs = [Categorify, FillMissing, Normalize]
 ```
+
+Providing training/validation split info using the `val_col` added to `df` above using `get_split`
 
 ```python
 splits = ColSplitter(col=val_col)(df)
@@ -800,6 +656,8 @@ ix_train = df[val_col]==False
 df.loc[~ix_train,:] = deal_with_continuous_nans(df.loc[ix_train,:], df.loc[~ix_train,:], 
                                                 cont_names, cont_fill_vals)
 ```
+
+Initializing a `TabularPandas` object to transform and feed data to the learner
 
 ```python
 to = TabularPandas(df, procs=procs, cat_names=list(cat_names), cont_names=list(cont_names),
@@ -1642,15 +1500,21 @@ display_all(to.valid.xs[cat_names].head())
 </div>
 
 
+Generating training and validation data loaders for the model development
+
 ```python
 dls = to.dataloaders()
 ```
 
 ## Fitting a deep net model using `TabularLearner`
 
+Defining the loss function
+
 ```python
 loss_fun = torch.nn.functional.mse_loss
 ```
+
+This step, defining `y_range`, is probably optional because in principle, given enough iterations, the model will predict `dep_var` in the correct range. But it is just a lot faster when using `y_range`.
 
 ```python
 y_range = [min(to.valid.ys.values.min(), to.train.ys.values.min()), 
@@ -1664,15 +1528,19 @@ y_range = [min(to.valid.ys.values.min(), to.train.ys.values.min()),
 
 
 
+Instantiating the learner using a `TabularModel` class where the `__init__` method was altered to allow other activation functions, e.g. `modelling.Mish`, to be used in the model than the default ReLu. See `kaggle_house_prices.modelling` or `02_modelling.ipynb` for details.
+
 ```python
 %%time
 learn = tabular_learner(dls, n_out=1, loss_func=loss_fun, config=dict(active_fun=Mish),
                         y_range=y_range)
 ```
 
-    CPU times: user 14.3 ms, sys: 0 ns, total: 14.3 ms
-    Wall time: 14.4 ms
+    CPU times: user 17.9 ms, sys: 1.32 ms, total: 19.2 ms
+    Wall time: 405 ms
 
+
+Looking for `max_lr`
 
 ```python
 %%time
@@ -1683,20 +1551,22 @@ learn.lr_find()
 
 
 
-    CPU times: user 3.24 s, sys: 14.7 ms, total: 3.25 s
-    Wall time: 3.33 s
+    CPU times: user 3.22 s, sys: 40.1 ms, total: 3.26 s
+    Wall time: 4.13 s
 
 
 
 
 
-    (0.003981071710586548, 2.5118865210060903e-07)
+    (0.004786301031708717, 3.6307804407442745e-07)
 
 
 
 
-![png](docs/images/output_26_3.png)
+![png](docs/images/output_35_3.png)
 
+
+Training using the [one-cycle policy](https://arxiv.org/abs/1708.07120)
 
 ```python
 %%time
@@ -1716,41 +1586,45 @@ learn.fit_one_cycle(5, 1e-3)
   <tbody>
     <tr>
       <td>0</td>
-      <td>0.081267</td>
-      <td>0.120376</td>
+      <td>0.111663</td>
+      <td>0.119455</td>
       <td>00:00</td>
     </tr>
     <tr>
       <td>1</td>
-      <td>0.046442</td>
-      <td>0.091020</td>
+      <td>0.059973</td>
+      <td>0.096834</td>
       <td>00:00</td>
     </tr>
     <tr>
       <td>2</td>
-      <td>0.031388</td>
-      <td>0.077165</td>
+      <td>0.037966</td>
+      <td>0.082006</td>
       <td>00:00</td>
     </tr>
     <tr>
       <td>3</td>
-      <td>0.021588</td>
-      <td>0.055759</td>
+      <td>0.025313</td>
+      <td>0.060234</td>
       <td>00:00</td>
     </tr>
     <tr>
       <td>4</td>
-      <td>0.015393</td>
-      <td>0.029812</td>
+      <td>0.017952</td>
+      <td>0.037233</td>
       <td>00:00</td>
     </tr>
   </tbody>
 </table>
 
 
-    CPU times: user 3.57 s, sys: 40.6 ms, total: 3.61 s
-    Wall time: 3.74 s
+    CPU times: user 3.66 s, sys: 20.3 ms, total: 3.68 s
+    Wall time: 3.87 s
 
+
+## Gauging model quality of the tabular learner
+
+Making predictions over the validation set
 
 ```python
 y_pred, y_true = learn.get_preds()
@@ -1765,11 +1639,11 @@ y_pred[:5], y_true[:5]
 
 
 
-    (tensor([[12.2211],
-             [12.9197],
-             [11.9060],
-             [12.0202],
-             [11.9555]]),
+    (tensor([[12.0984],
+             [12.8230],
+             [11.8075],
+             [11.9257],
+             [11.8775]]),
      tensor([[12.3673],
              [13.3455],
              [12.0494],
@@ -1777,6 +1651,8 @@ y_pred[:5], y_true[:5]
              [12.0547]]))
 
 
+
+Comparing the score to the leader board (does not replace submitting the predictions over the test set)
 
 ```python
 my_score = loss_fun(y_pred, y_true).item()
@@ -1851,10 +1727,10 @@ show_leaderboard(fname_leaderboard, score_bounds=(None, 1.25), bins=100, user_sc
 
 
 
-![png](docs/images/output_29_1.png)
+![png](docs/images/output_42_1.png)
 
 
-Computing SHAP values
+Computing SHAP values for later inspection of the model. Because of the pytorch model is set up with fastai2's `TabularModel` one cannot directly pass it to the `shap.DeepExplainer`, rather one needs to wrap it using `inspection.FastaiModel`
 
 ```python
 model = FastaiModel(learn, to)
@@ -1871,7 +1747,9 @@ shap_values = explainer.shap_values(X)
     Wall time: 14 s
 
 
-## Fitting an ensemble method using `RandomForestRegressor`
+## Fitting an ensemble model - `RandomForestRegressor`
+
+Yup
 
 ```python
 ens = ensemble.RandomForestRegressor(n_estimators=100, max_features="sqrt", max_samples=.9, oob_score=True)
@@ -1882,7 +1760,7 @@ ens = ensemble.RandomForestRegressor(n_estimators=100, max_features="sqrt", max_
 ens.fit(to.train.xs.values, to.train.ys.values.ravel())
 ```
 
-    CPU times: user 408 ms, sys: 7.97 ms, total: 416 ms
+    CPU times: user 416 ms, sys: 0 ns, total: 416 ms
     Wall time: 416 ms
 
 
@@ -1904,8 +1782,8 @@ ens.fit(to.train.xs.values, to.train.ys.values.ravel())
 y_pred_ens = ens.predict(to.valid.xs.values)
 ```
 
-    CPU times: user 16 ms, sys: 0 ns, total: 16 ms
-    Wall time: 16.1 ms
+    CPU times: user 12.1 ms, sys: 4.01 ms, total: 16.1 ms
+    Wall time: 16.5 ms
 
 
 ```python
@@ -1982,10 +1860,10 @@ show_leaderboard(fname_leaderboard, score_bounds=(None, 1.25), bins=100, user_sc
 
 
 
-![png](docs/images/output_37_1.png)
+![png](docs/images/output_51_1.png)
 
 
-Computing SHAP values
+Computing SHAP values for the ensemble model
 
 ```python
 %%time
@@ -2002,33 +1880,37 @@ ens_shap_values = ens_explainer.shap_values(_X)
 
 ## SHAP summary plots
 
-### Deep net
+The [`shap`](https://github.com/slundberg/shap) package can be used to inspect how neural net and tree based arrive at their prediction. The SHAP paper can be found [here](https://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions). Using `shap.summary_plot` one can gauge the order in which features are relevant for model predictions and how they generally contribute, increasing or decreasing the predicted values.
+
+Inspecting the fastai's tabular model
 
 ```python
 shap.summary_plot(shap_values, to.valid.xs)
 ```
 
 
-![png](docs/images/output_42_0.png)
+![png](docs/images/output_57_0.png)
 
 
-### Ensemble
+Inspecting the ensemble model
 
 ```python
 shap.summary_plot(ens_shap_values, to.valid.xs)
 ```
 
 
-![png](docs/images/output_44_0.png)
+![png](docs/images/output_59_0.png)
 
 
-## Making predictions over the test set
+## Making predictions over unseen data
 
-Taking care of any unexpected nan values in `df_test`
+To actually use the trained models we need to predict over unseen data, here contained in `df_test`. To do this we first  need to deal with any unexpected nan values.
 
 ```python
 df_test = deal_with_continuous_nans(df.loc[ix_train,:], df_test, cont_names, cont_fill_vals)
 ```
+
+### Predictions using `TabularModel`
 
 Creating `dl` for `learn.get_preds`
 
@@ -2143,5 +2025,272 @@ preds = pd.DataFrame({"Id": df_test["Id"], "SalePrice":preds.ravel()}); preds.he
 
 
 ```python
-preds.to_csv("../data/submission.csv", index=False)
+preds.to_csv("../data/submission_tm.csv", index=False)
+```
+
+### Predictions using the ensemble model
+
+```python
+dl.xs.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Id</th>
+      <th>MSSubClass</th>
+      <th>MSZoning</th>
+      <th>Street</th>
+      <th>Alley</th>
+      <th>LotShape</th>
+      <th>LandContour</th>
+      <th>Utilities</th>
+      <th>LotConfig</th>
+      <th>LandSlope</th>
+      <th>...</th>
+      <th>1stFlrSF</th>
+      <th>2ndFlrSF</th>
+      <th>GrLivArea</th>
+      <th>GarageYrBlt</th>
+      <th>GarageArea</th>
+      <th>WoodDeckSF</th>
+      <th>OpenPorchSF</th>
+      <th>LotFrontage</th>
+      <th>BsmtFinSF1</th>
+      <th>LowQualFinSF</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>1</td>
+      <td>3</td>
+      <td>2</td>
+      <td>0</td>
+      <td>4</td>
+      <td>4</td>
+      <td>1</td>
+      <td>5</td>
+      <td>1</td>
+      <td>...</td>
+      <td>-0.696760</td>
+      <td>-0.784944</td>
+      <td>-1.196857</td>
+      <td>-0.734762</td>
+      <td>1.223488</td>
+      <td>0.367464</td>
+      <td>-0.703697</td>
+      <td>0.471615</td>
+      <td>0.059819</td>
+      <td>-0.124196</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>1</td>
+      <td>4</td>
+      <td>2</td>
+      <td>0</td>
+      <td>1</td>
+      <td>4</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>...</td>
+      <td>0.462171</td>
+      <td>-0.784944</td>
+      <td>-0.341786</td>
+      <td>-0.860096</td>
+      <td>-0.759950</td>
+      <td>2.415426</td>
+      <td>-0.154205</td>
+      <td>0.518572</td>
+      <td>1.103552</td>
+      <td>-0.124196</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>6</td>
+      <td>4</td>
+      <td>2</td>
+      <td>0</td>
+      <td>1</td>
+      <td>4</td>
+      <td>1</td>
+      <td>5</td>
+      <td>1</td>
+      <td>...</td>
+      <td>-0.611111</td>
+      <td>0.836141</td>
+      <td>0.250642</td>
+      <td>0.769243</td>
+      <td>0.046711</td>
+      <td>0.950283</td>
+      <td>-0.184732</td>
+      <td>0.189876</td>
+      <td>0.800755</td>
+      <td>-0.124196</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>6</td>
+      <td>4</td>
+      <td>2</td>
+      <td>0</td>
+      <td>1</td>
+      <td>4</td>
+      <td>1</td>
+      <td>5</td>
+      <td>1</td>
+      <td>...</td>
+      <td>-0.616464</td>
+      <td>0.782953</td>
+      <td>0.201273</td>
+      <td>0.811021</td>
+      <td>-0.010230</td>
+      <td>2.148300</td>
+      <td>-0.154205</td>
+      <td>0.377702</td>
+      <td>0.367204</td>
+      <td>-0.124196</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>12</td>
+      <td>4</td>
+      <td>2</td>
+      <td>0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>1</td>
+      <td>5</td>
+      <td>1</td>
+      <td>...</td>
+      <td>0.331022</td>
+      <td>-0.784944</td>
+      <td>-0.438549</td>
+      <td>0.560354</td>
+      <td>0.160593</td>
+      <td>-0.765796</td>
+      <td>0.547924</td>
+      <td>-1.265774</td>
+      <td>-0.410435</td>
+      <td>-0.124196</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 82 columns</p>
+</div>
+
+
+
+```python
+preds = ens.predict(dl.xs); preds
+```
+
+
+
+
+    array([11.74127008, 11.92518284, 12.12089789, ..., 11.98033608,
+           11.62287129, 12.32773946])
+
+
+
+```python
+preds = np.exp(preds); preds
+```
+
+
+
+
+    array([125651.82625399, 151022.30843909, 183670.35645308, ...,
+           159585.65483606, 111621.76024587, 225875.54871928])
+
+
+
+```python
+preds = pd.DataFrame({"Id": df_test["Id"], "SalePrice":preds.ravel()}); preds.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Id</th>
+      <th>SalePrice</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1461</td>
+      <td>125651.826254</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1462</td>
+      <td>151022.308439</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1463</td>
+      <td>183670.356453</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1464</td>
+      <td>187329.820821</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1465</td>
+      <td>191847.379173</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+```python
+preds.to_csv("../data/submission_ens.csv", index=False)
 ```
