@@ -1,5 +1,5 @@
 # Kaggle house prices with fastai v2 & nbdev
-> This repo purpose is to highlight the [`nbdev` tool](https://github.com/fastai/nbdev) on the kagge house prices data set using the fastai2 package.
+> This repo purpose is to highlight the `nbdev` tool on the kagge house prices data set using the fastai2 package.
 
 
 ## Get leaderboard and competition data
@@ -610,8 +610,8 @@ cont_fill_vals = {col: np.nanmedian(df.loc[df[val_col]==False, col]) for col in 
 cont_fill_vals
 ```
 
-    CPU times: user 11.2 ms, sys: 0 ns, total: 11.2 ms
-    Wall time: 12.1 ms
+    CPU times: user 9.07 ms, sys: 23 µs, total: 9.09 ms
+    Wall time: 9.13 ms
 
 
 
@@ -1536,8 +1536,8 @@ learn = tabular_learner(dls, n_out=1, loss_func=loss_fun, config=dict(active_fun
                         y_range=y_range)
 ```
 
-    CPU times: user 17.9 ms, sys: 1.32 ms, total: 19.2 ms
-    Wall time: 405 ms
+    CPU times: user 13.9 ms, sys: 42 µs, total: 14 ms
+    Wall time: 14.2 ms
 
 
 Looking for `max_lr`
@@ -1551,14 +1551,14 @@ learn.lr_find()
 
 
 
-    CPU times: user 3.22 s, sys: 40.1 ms, total: 3.26 s
-    Wall time: 4.13 s
+    CPU times: user 3.46 s, sys: 11.8 ms, total: 3.47 s
+    Wall time: 3.56 s
 
 
 
 
 
-    (0.004786301031708717, 3.6307804407442745e-07)
+    (0.005754399299621582, 1.0964781722577754e-06)
 
 
 
@@ -1586,40 +1586,40 @@ learn.fit_one_cycle(5, 1e-3)
   <tbody>
     <tr>
       <td>0</td>
-      <td>0.111663</td>
-      <td>0.119455</td>
+      <td>0.112616</td>
+      <td>0.117678</td>
       <td>00:00</td>
     </tr>
     <tr>
       <td>1</td>
-      <td>0.059973</td>
-      <td>0.096834</td>
+      <td>0.060896</td>
+      <td>0.094943</td>
       <td>00:00</td>
     </tr>
     <tr>
       <td>2</td>
-      <td>0.037966</td>
-      <td>0.082006</td>
+      <td>0.038432</td>
+      <td>0.080558</td>
       <td>00:00</td>
     </tr>
     <tr>
       <td>3</td>
-      <td>0.025313</td>
-      <td>0.060234</td>
+      <td>0.025569</td>
+      <td>0.058460</td>
       <td>00:00</td>
     </tr>
     <tr>
       <td>4</td>
-      <td>0.017952</td>
-      <td>0.037233</td>
+      <td>0.018028</td>
+      <td>0.033467</td>
       <td>00:00</td>
     </tr>
   </tbody>
 </table>
 
 
-    CPU times: user 3.66 s, sys: 20.3 ms, total: 3.68 s
-    Wall time: 3.87 s
+    CPU times: user 3.55 s, sys: 3.99 ms, total: 3.56 s
+    Wall time: 3.68 s
 
 
 ## Gauging model quality of the tabular learner
@@ -1639,11 +1639,11 @@ y_pred[:5], y_true[:5]
 
 
 
-    (tensor([[12.0984],
-             [12.8230],
-             [11.8075],
-             [11.9257],
-             [11.8775]]),
+    (tensor([[12.1471],
+             [12.7953],
+             [11.8708],
+             [11.9638],
+             [11.9723]]),
      tensor([[12.3673],
              [13.3455],
              [12.0494],
@@ -1655,9 +1655,10 @@ y_pred[:5], y_true[:5]
 Comparing the score to the leader board (does not replace submitting the predictions over the test set)
 
 ```python
-my_score = loss_fun(y_pred, y_true).item()
+# my_score = loss_fun(y_pred, y_true).item()
+my_score = 0.17608  # after kaggle submission
 
-show_leaderboard(fname_leaderboard, score_bounds=(None, 1.25), bins=100, user_score=my_score, user="my")
+show_leaderboard(fname_leaderboard, score_bounds=(None, 1.25), bins=100, user_score=my_score, user="kaggle (tabular model)")
 ```
 
 
@@ -1743,8 +1744,8 @@ explainer = shap.DeepExplainer(model, X)
 shap_values = explainer.shap_values(X)
 ```
 
-    CPU times: user 13.2 s, sys: 678 ms, total: 13.9 s
-    Wall time: 14 s
+    CPU times: user 12.8 s, sys: 19.8 ms, total: 12.8 s
+    Wall time: 12.8 s
 
 
 ## Fitting an ensemble model - `RandomForestRegressor`
@@ -1760,8 +1761,8 @@ ens = ensemble.RandomForestRegressor(n_estimators=100, max_features="sqrt", max_
 ens.fit(to.train.xs.values, to.train.ys.values.ravel())
 ```
 
-    CPU times: user 416 ms, sys: 0 ns, total: 416 ms
-    Wall time: 416 ms
+    CPU times: user 412 ms, sys: 0 ns, total: 412 ms
+    Wall time: 412 ms
 
 
 
@@ -1782,15 +1783,16 @@ ens.fit(to.train.xs.values, to.train.ys.values.ravel())
 y_pred_ens = ens.predict(to.valid.xs.values)
 ```
 
-    CPU times: user 12.1 ms, sys: 4.01 ms, total: 16.1 ms
-    Wall time: 16.5 ms
+    CPU times: user 16.1 ms, sys: 1 µs, total: 16.1 ms
+    Wall time: 16.3 ms
 
 
 ```python
-my_score_ens = loss_fun(torch.from_numpy(y_pred_ens[:,None]).float(), y_true).item()
+# my_score_ens = loss_fun(torch.from_numpy(y_pred_ens[:,None]).float(), y_true).item()
+my_score_ens = 0.14745  # after kaggle submission
 
 show_leaderboard(fname_leaderboard, score_bounds=(None, 1.25), bins=100, user_score=my_score_ens, 
-                 user="my (ensemble)")
+                 user="kaggle (ensemble)")
 ```
 
 
@@ -1872,10 +1874,10 @@ ens_explainer = shap.TreeExplainer(ens, _X)
 ens_shap_values = ens_explainer.shap_values(_X)
 ```
 
-     99%|===================| 290/292 [00:40<00:00]        
+     98%|===================| 285/292 [00:39<00:00]        
 
-    CPU times: user 39.4 s, sys: 102 ms, total: 39.5 s
-    Wall time: 39.7 s
+    CPU times: user 39.3 s, sys: 99.4 ms, total: 39.4 s
+    Wall time: 39.5 s
 
 
 ## SHAP summary plots
@@ -1935,13 +1937,13 @@ res
 
 
 
-    (tensor([[11.7512],
-             [11.9980],
-             [12.1427],
+    (tensor([[11.7802],
+             [11.9543],
+             [12.0511],
              ...,
-             [12.0335],
-             [11.7913],
-             [12.2374]]),
+             [12.0673],
+             [11.7941],
+             [12.1762]]),
      None)
 
 
@@ -1953,13 +1955,13 @@ preds = np.exp(res[0].detach().numpy()); preds
 
 
 
-    array([[126903.9 ],
-           [162426.06],
-           [187725.38],
+    array([[130643.39],
+           [155490.8 ],
+           [171286.7 ],
            ...,
-           [168300.19],
-           [132091.77],
-           [206372.11]], dtype=float32)
+           [174084.83],
+           [132468.83],
+           [194114.36]], dtype=float32)
 
 
 
@@ -1996,27 +1998,27 @@ preds = pd.DataFrame({"Id": df_test["Id"], "SalePrice":preds.ravel()}); preds.he
     <tr>
       <th>0</th>
       <td>1461</td>
-      <td>126903.898438</td>
+      <td>130643.390625</td>
     </tr>
     <tr>
       <th>1</th>
       <td>1462</td>
-      <td>162426.062500</td>
+      <td>155490.796875</td>
     </tr>
     <tr>
       <th>2</th>
       <td>1463</td>
-      <td>187725.375000</td>
+      <td>171286.703125</td>
     </tr>
     <tr>
       <th>3</th>
       <td>1464</td>
-      <td>198973.656250</td>
+      <td>183443.734375</td>
     </tr>
     <tr>
       <th>4</th>
       <td>1465</td>
-      <td>180530.468750</td>
+      <td>186820.250000</td>
     </tr>
   </tbody>
 </table>
@@ -2213,8 +2215,8 @@ preds = ens.predict(dl.xs); preds
 
 
 
-    array([11.74127008, 11.92518284, 12.12089789, ..., 11.98033608,
-           11.62287129, 12.32773946])
+    array([11.73519834, 11.90454628, 12.0860886 , ..., 11.95083168,
+           11.67768641, 12.37100523])
 
 
 
@@ -2225,8 +2227,8 @@ preds = np.exp(preds); preds
 
 
 
-    array([125651.82625399, 151022.30843909, 183670.35645308, ...,
-           159585.65483606, 111621.76024587, 225875.54871928])
+    array([124891.21282583, 147937.66496196, 177386.91704102, ...,
+           154945.9582248 , 117911.12138264, 235862.72156739])
 
 
 
@@ -2263,27 +2265,27 @@ preds = pd.DataFrame({"Id": df_test["Id"], "SalePrice":preds.ravel()}); preds.he
     <tr>
       <th>0</th>
       <td>1461</td>
-      <td>125651.826254</td>
+      <td>124891.212826</td>
     </tr>
     <tr>
       <th>1</th>
       <td>1462</td>
-      <td>151022.308439</td>
+      <td>147937.664962</td>
     </tr>
     <tr>
       <th>2</th>
       <td>1463</td>
-      <td>183670.356453</td>
+      <td>177386.917041</td>
     </tr>
     <tr>
       <th>3</th>
       <td>1464</td>
-      <td>187329.820821</td>
+      <td>188663.373336</td>
     </tr>
     <tr>
       <th>4</th>
       <td>1465</td>
-      <td>191847.379173</td>
+      <td>191270.396420</td>
     </tr>
   </tbody>
 </table>

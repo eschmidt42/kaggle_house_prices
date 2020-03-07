@@ -5,8 +5,8 @@ title: Model inspection
 keywords: fastai
 sidebar: home_sidebar
 
-summary: "After generating a model we inspect it here to find its flaws."
-description: "After generating a model we inspect it here to find its flaws."
+summary: "After generating a model we inspect it here to learn how feature distributions differ between top and bottom quality predictions and which features are particularly relevant using SHAP values."
+description: "After generating a model we inspect it here to learn how feature distributions differ between top and bottom quality predictions and which features are particularly relevant using SHAP values."
 ---
 <!--
 
@@ -151,7 +151,7 @@ description: "After generating a model we inspect it here to find its flaws."
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_df_preds" class="doc_header"><code>get_df_preds</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/inspection.py#L22" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_df_preds</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>learn</code></strong>:<code>Learner</code>, <strong><code>cat_names</code></strong>:<code>List</code>[<code>str</code>], <strong><code>cont_names</code></strong>:<code>List</code>[<code>str</code>])</p>
+<h4 id="get_df_preds" class="doc_header"><code>get_df_preds</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/inspection.py#L23" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_df_preds</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>learn</code></strong>:<code>Learner</code>, <strong><code>cat_names</code></strong>:<code>List</code>[<code>str</code>], <strong><code>cont_names</code></strong>:<code>List</code>[<code>str</code>])</p>
 </blockquote>
 <p><code>df</code> is the <code>TabularPandas.valid.xs</code> attribute</p>
 
@@ -574,7 +574,7 @@ Wall time: 901 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="distribution_similarity" class="doc_header"><code>distribution_similarity</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/inspection.py#L30" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>distribution_similarity</code>(<strong><code>best</code></strong>:<code>Series</code>, <strong><code>worst</code></strong>:<code>Series</code>)</p>
+<h4 id="distribution_similarity" class="doc_header"><code>distribution_similarity</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/inspection.py#L31" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>distribution_similarity</code>(<strong><code>best</code></strong>:<code>Series</code>, <strong><code>worst</code></strong>:<code>Series</code>)</p>
 </blockquote>
 <p>Computing distribution similarity using <code>stats.wassertain_distance</code> assuming index based order</p>
 
@@ -635,7 +635,7 @@ Wall time: 901 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="element_comp" class="doc_header"><code>element_comp</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/inspection.py#L36" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>element_comp</code>(<strong><code>x</code></strong>:<code>ndarray</code>, <strong><code>y</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>str</code>])</p>
+<h4 id="element_comp" class="doc_header"><code>element_comp</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/inspection.py#L37" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>element_comp</code>(<strong><code>x</code></strong>:<code>ndarray</code>, <strong><code>y</code></strong>:<code>Union</code>[<code>int</code>, <code>float</code>, <code>str</code>])</p>
 </blockquote>
 <p>Element-wise comparison</p>
 
@@ -656,7 +656,7 @@ Wall time: 901 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_categorical_freqs_single_col" class="doc_header"><code>get_categorical_freqs_single_col</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/inspection.py#L40" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_categorical_freqs_single_col</code>(<strong><code>col</code></strong>:<code>str</code>, <strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>best</code></strong>:<code>ndarray</code>, <strong><code>worst</code></strong>:<code>ndarray</code>)</p>
+<h4 id="get_categorical_freqs_single_col" class="doc_header"><code>get_categorical_freqs_single_col</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/inspection.py#L41" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_categorical_freqs_single_col</code>(<strong><code>col</code></strong>:<code>str</code>, <strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>best</code></strong>:<code>ndarray</code>, <strong><code>worst</code></strong>:<code>ndarray</code>)</p>
 </blockquote>
 <p>Computing the frequencies of categorical variables</p>
 
@@ -677,7 +677,7 @@ Wall time: 901 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="plot_best_vs_worst_categorical" class="doc_header"><code>plot_best_vs_worst_categorical</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/inspection.py#L55" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_best_vs_worst_categorical</code>(<strong><code>col</code></strong>:<code>str</code>, <strong><code>best</code></strong>:<code>Series</code>, <strong><code>worst</code></strong>:<code>Series</code>, <strong><code>best_nas</code></strong>:<code>int</code>=<em><code>0</code></em>, <strong><code>worst_nas</code></strong>:<code>int</code>=<em><code>0</code></em>, <strong><code>w</code></strong>:<code>float</code>=<em><code>0.4</code></em>)</p>
+<h4 id="plot_best_vs_worst_categorical" class="doc_header"><code>plot_best_vs_worst_categorical</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/inspection.py#L56" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_best_vs_worst_categorical</code>(<strong><code>col</code></strong>:<code>str</code>, <strong><code>best</code></strong>:<code>Series</code>, <strong><code>worst</code></strong>:<code>Series</code>, <strong><code>best_nas</code></strong>:<code>int</code>=<em><code>0</code></em>, <strong><code>worst_nas</code></strong>:<code>int</code>=<em><code>0</code></em>, <strong><code>w</code></strong>:<code>float</code>=<em><code>0.4</code></em>)</p>
 </blockquote>
 <p>Plotting best/worst distribution for a categorical variable</p>
 
@@ -697,22 +697,25 @@ Wall time: 901 ms
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
 
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_all_categorical_freqs</span><span class="p">(</span><span class="n">decoded_xs</span><span class="p">:</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">best</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">worst</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
-    
-    <span class="n">cat_freqs</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">to</span><span class="o">.</span><span class="n">cat_names</span><span class="p">:</span>
-        <span class="n">_best</span><span class="p">,</span> <span class="n">_worst</span><span class="p">,</span> <span class="n">_best_nas</span><span class="p">,</span> <span class="n">_worst_nas</span> <span class="o">=</span> <span class="n">get_categorical_freqs_single_col</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">decoded_xs</span><span class="p">,</span> <span class="n">best</span><span class="p">,</span> <span class="n">worst</span><span class="p">)</span>
-        <span class="n">_score</span> <span class="o">=</span> <span class="n">distribution_similarity</span><span class="p">(</span><span class="n">_best</span><span class="p">,</span> <span class="n">_worst</span><span class="p">)</span>
-        <span class="n">cat_freqs</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;best&quot;</span><span class="p">:</span> <span class="n">_best</span><span class="p">,</span> <span class="s2">&quot;worst&quot;</span><span class="p">:</span><span class="n">_worst</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="n">_score</span><span class="p">,</span>
-                          <span class="s2">&quot;best_nas&quot;</span><span class="p">:</span> <span class="n">_best_nas</span><span class="p">,</span> <span class="s2">&quot;worst_nas&quot;</span><span class="p">:</span> <span class="n">_worst_nas</span><span class="p">}</span>
-    <span class="k">return</span> <span class="n">cat_freqs</span>
-</pre></div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
 
-    </div>
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="get_all_categorical_freqs" class="doc_header"><code>get_all_categorical_freqs</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/inspection.py#L81" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_all_categorical_freqs</code>(<strong><code>decoded_xs</code></strong>:<code>DataFrame</code>, <strong><code>best</code></strong>:<code>ndarray</code>, <strong><code>worst</code></strong>:<code>ndarray</code>)</p>
+</blockquote>
+<p>Computes value frequencies for each categorical feature for both best and worst predictions.</p>
+
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -745,6 +748,13 @@ Wall time: 345 ms
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Listing the categorical features whose value distribution most strongly deviates between best and worst predictions</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -828,7 +838,7 @@ Wall time: 345 ms
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Plotting the distributions of the selected best and worst predictions showing the most dissimilar distributions</p>
+<p>Plotting the value distributions for features of the selected best and worst predictions showing the most dissimilar distributions</p>
 
 </div>
 </div>
@@ -845,7 +855,7 @@ Wall time: 345 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="plot_top_distributions" class="doc_header"><code>plot_top_distributions</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/inspection.py#L80" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_top_distributions</code>(<strong><code>cat_freqs</code></strong>:<code>dict</code>=<em><code>None</code></em>, <strong><code>cont_freqs</code></strong>:<code>dict</code>=<em><code>None</code></em>, <strong><code>top_n</code></strong>:<code>int</code>=<em><code>5</code></em>)</p>
+<h4 id="plot_top_distributions" class="doc_header"><code>plot_top_distributions</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/inspection.py#L92" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_top_distributions</code>(<strong><code>cat_freqs</code></strong>:<code>dict</code>=<em><code>None</code></em>, <strong><code>cont_freqs</code></strong>:<code>dict</code>=<em><code>None</code></em>, <strong><code>top_n</code></strong>:<code>int</code>=<em><code>5</code></em>)</p>
 </blockquote>
 <p>Calling <a href="/kaggle_house_prices/model_inspection#plot_best_vs_worst_categorical"><code>plot_best_vs_worst_categorical</code></a> and <a href="/kaggle_house_prices/model_inspection#plot_best_vs_worst_continuous"><code>plot_best_vs_worst_continuous</code></a> showing distributions with the worst scores</p>
 
@@ -990,7 +1000,7 @@ Wall time: 345 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_continuous_freqs_single_col" class="doc_header"><code>get_continuous_freqs_single_col</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/inspection.py#L99" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_continuous_freqs_single_col</code>(<strong><code>col</code></strong>:<code>str</code>, <strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>best</code></strong>:<code>ndarray</code>, <strong><code>worst</code></strong>:<code>ndarray</code>, <strong><code>nbins</code></strong>:<code>int</code>=<em><code>50</code></em>)</p>
+<h4 id="get_continuous_freqs_single_col" class="doc_header"><code>get_continuous_freqs_single_col</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/inspection.py#L111" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_continuous_freqs_single_col</code>(<strong><code>col</code></strong>:<code>str</code>, <strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>best</code></strong>:<code>ndarray</code>, <strong><code>worst</code></strong>:<code>ndarray</code>, <strong><code>nbins</code></strong>:<code>int</code>=<em><code>50</code></em>)</p>
 </blockquote>
 <p>Computing the frequencies of continuous variables</p>
 
@@ -1011,7 +1021,7 @@ Wall time: 345 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="plot_best_vs_worst_continuous" class="doc_header"><code>plot_best_vs_worst_continuous</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/inspection.py#L122" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_best_vs_worst_continuous</code>(<strong><code>col</code></strong>:<code>str</code>, <strong><code>best</code></strong>:<code>Series</code>, <strong><code>worst</code></strong>:<code>Series</code>, <strong><code>best_nas</code></strong>:<code>int</code>=<em><code>0</code></em>, <strong><code>worst_nas</code></strong>:<code>int</code>=<em><code>0</code></em>)</p>
+<h4 id="plot_best_vs_worst_continuous" class="doc_header"><code>plot_best_vs_worst_continuous</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/inspection.py#L134" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_best_vs_worst_continuous</code>(<strong><code>col</code></strong>:<code>str</code>, <strong><code>best</code></strong>:<code>Series</code>, <strong><code>worst</code></strong>:<code>Series</code>, <strong><code>best_nas</code></strong>:<code>int</code>=<em><code>0</code></em>, <strong><code>worst_nas</code></strong>:<code>int</code>=<em><code>0</code></em>)</p>
 </blockquote>
 <p>Plotting best/worst distribution for a continuous variable</p>
 
@@ -1032,7 +1042,7 @@ Wall time: 345 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_all_continuous_freqs" class="doc_header"><code>get_all_continuous_freqs</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/inspection.py#L139" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_all_continuous_freqs</code>(<strong><code>decoded_xs</code></strong>:<code>DataFrame</code>, <strong><code>best</code></strong>:<code>ndarray</code>, <strong><code>worst</code></strong>:<code>ndarray</code>)</p>
+<h4 id="get_all_continuous_freqs" class="doc_header"><code>get_all_continuous_freqs</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/inspection.py#L151" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_all_continuous_freqs</code>(<strong><code>decoded_xs</code></strong>:<code>DataFrame</code>, <strong><code>best</code></strong>:<code>ndarray</code>, <strong><code>worst</code></strong>:<code>ndarray</code>)</p>
 </blockquote>
 
 </div>
@@ -1078,6 +1088,13 @@ Wall time: 64.1 ms
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Plotting the value distributions for features of the selected best and worst predictions showing the most dissimilar distributions</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -1170,6 +1187,13 @@ Wall time: 64.1 ms
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Listing the continuous features whose value distribution most strongly deviates between best and worst predictions</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -1252,7 +1276,8 @@ Wall time: 64.1 ms
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="SHAP">SHAP<a class="anchor-link" href="#SHAP"> </a></h2><ul>
+<h2 id="Model-inspection-using-SHAP-values">Model inspection using SHAP values<a class="anchor-link" href="#Model-inspection-using-SHAP-values"> </a></h2><p>Resources on the SHAP value and other methods/tools:</p>
+<ul>
 <li>shap on github: <a href="https://github.com/slundberg/shap">https://github.com/slundberg/shap</a></li>
 <li>shap article on arXiv: <a href="https://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions">https://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions</a></li>
 <li>towardsdatascience blog: <ul>
@@ -1281,29 +1306,9 @@ Wall time: 64.1 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="FastaiModel" class="doc_header"><code>class</code> <code>FastaiModel</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/inspection.py#L150" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>FastaiModel</code>(<strong><code>learn</code></strong>:<code>Learner</code>, <strong><code>to</code></strong>:<code>TabularPandas</code>) :: <code>Module</code></p>
+<h2 id="FastaiModel" class="doc_header"><code>class</code> <code>FastaiModel</code><a href="https://github.com/eschmidt42/kaggle_house_prices/tree/master/kaggle_house_prices/inspection.py#L162" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>FastaiModel</code>(<strong><code>learn</code></strong>:<code>Learner</code>, <strong><code>to</code></strong>:<code>TabularPandas</code>) :: <code>Module</code></p>
 </blockquote>
-<p>Base class for all neural network modules.</p>
-<p>Your models should also subclass this class.</p>
-<p>Modules can also contain other Modules, allowing to nest them in
-a tree structure. You can assign the submodules as regular attributes::</p>
-
-<pre><code>import torch.nn as nn
-import torch.nn.functional as F
-
-class Model(nn.Module):
-    def __init__(self):
-        super(Model, self).__init__()
-        self.conv1 = nn.Conv2d(1, 20, 5)
-        self.conv2 = nn.Conv2d(20, 20, 5)
-
-    def forward(self, x):
-        x = F.relu(self.conv1(x))
-        return F.relu(self.conv2(x))
-
-</code></pre>
-<p>Submodules assigned in this way will be registered, and will have their
-parameters converted too when you call :meth:<code>to</code>, etc.</p>
+<p>Wrapper class to make <code>TabularModel</code> usable with <code>shap.DeepExplainer</code></p>
 
 </div>
 
@@ -1312,6 +1317,13 @@ parameters converted too when you call :meth:<code>to</code>, etc.</p>
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Wrapping the learner</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -1325,6 +1337,13 @@ parameters converted too when you call :meth:<code>to</code>, etc.</p>
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Computing SHAP values</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -1402,7 +1421,8 @@ function r(t,e){if(!o.canUseDOM||e&&!("addEventListener"in document))return!1;va
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="DeepNet">DeepNet<a class="anchor-link" href="#DeepNet"> </a></h3>
+<p>Looking into the <code>TabularModel</code></p>
+
 </div>
 </div>
 </div>
@@ -1481,7 +1501,8 @@ function r(t,e){if(!o.canUseDOM||e&&!("addEventListener"in document))return!1;va
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Ensemble-model">Ensemble model<a class="anchor-link" href="#Ensemble-model"> </a></h3>
+<p>Looking into the ensemble model</p>
+
 </div>
 </div>
 </div>
