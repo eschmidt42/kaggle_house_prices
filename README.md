@@ -614,8 +614,8 @@ cont_fill_vals = {col: np.nanmedian(df.loc[df[val_col]==False, col]) for col in 
 cont_fill_vals
 ```
 
-    CPU times: user 9.63 ms, sys: 680 µs, total: 10.3 ms
-    Wall time: 10.6 ms
+    CPU times: user 9.96 ms, sys: 0 ns, total: 9.96 ms
+    Wall time: 10.2 ms
 
 
 
@@ -1540,8 +1540,8 @@ learn = tabular_learner(dls, n_out=1, loss_func=loss_fun, config=dict(active_fun
                         y_range=y_range)
 ```
 
-    CPU times: user 14.7 ms, sys: 0 ns, total: 14.7 ms
-    Wall time: 14.8 ms
+    CPU times: user 13.2 ms, sys: 47 µs, total: 13.2 ms
+    Wall time: 13.4 ms
 
 
 Looking for `max_lr`
@@ -1555,14 +1555,14 @@ learn.lr_find()
 
 
 
-    CPU times: user 3.27 s, sys: 21.9 ms, total: 3.29 s
-    Wall time: 3.41 s
+    CPU times: user 3.08 s, sys: 484 µs, total: 3.08 s
+    Wall time: 3.16 s
 
 
 
 
 
-    (0.006918309628963471, 4.3651581904669e-07)
+    (0.004786301031708717, 2.75422871709452e-06)
 
 
 
@@ -1590,40 +1590,40 @@ learn.fit_one_cycle(5, 1e-3)
   <tbody>
     <tr>
       <td>0</td>
-      <td>0.115388</td>
-      <td>0.111801</td>
+      <td>0.083458</td>
+      <td>0.113579</td>
       <td>00:00</td>
     </tr>
     <tr>
       <td>1</td>
-      <td>0.061526</td>
-      <td>0.087842</td>
+      <td>0.049674</td>
+      <td>0.096065</td>
       <td>00:00</td>
     </tr>
     <tr>
       <td>2</td>
-      <td>0.039219</td>
-      <td>0.074567</td>
+      <td>0.032974</td>
+      <td>0.081038</td>
       <td>00:00</td>
     </tr>
     <tr>
       <td>3</td>
-      <td>0.026554</td>
-      <td>0.052907</td>
+      <td>0.022836</td>
+      <td>0.058839</td>
       <td>00:00</td>
     </tr>
     <tr>
       <td>4</td>
-      <td>0.019083</td>
-      <td>0.033261</td>
+      <td>0.016811</td>
+      <td>0.036855</td>
       <td>00:00</td>
     </tr>
   </tbody>
 </table>
 
 
-    CPU times: user 3.67 s, sys: 24.7 ms, total: 3.69 s
-    Wall time: 3.85 s
+    CPU times: user 3.55 s, sys: 8.09 ms, total: 3.56 s
+    Wall time: 3.69 s
 
 
 ## Gauging model quality of the tabular learner
@@ -1643,11 +1643,11 @@ y_pred[:5], y_true[:5]
 
 
 
-    (tensor([[12.1796],
-             [12.8250],
-             [11.9164],
-             [11.9764],
-             [11.9624]]),
+    (tensor([[12.0477],
+             [12.8262],
+             [11.8787],
+             [11.8917],
+             [11.9607]]),
      tensor([[12.3673],
              [13.3455],
              [12.0494],
@@ -1748,13 +1748,13 @@ explainer = shap.DeepExplainer(model, X)
 shap_values = explainer.shap_values(X)
 ```
 
-    CPU times: user 13.1 s, sys: 819 ms, total: 13.9 s
-    Wall time: 13.9 s
+    CPU times: user 12.7 s, sys: 216 ms, total: 12.9 s
+    Wall time: 13 s
 
 
 ## Inspecting the embeddings
 
-The "Id" embeddings are still very much normally distributed without significant clusters. Which liekly means that this columns was not really used at all by the embedding model
+The "Id" embeddings are still very much normally distributed without significant clusters and there is no obvious sorting by `dep_var` visible. Which liekly means that this columns was not really used at all by the embedding model. Although there is some odd cluster of outliers
 
 ```python
 show_embeddings_with_pca(learn, to, "Id");
