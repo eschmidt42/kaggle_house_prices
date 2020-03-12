@@ -2,6 +2,10 @@
 > This repo purpose is to highlight the `nbdev` tool on the kagge house prices data set using the fastai2 package.
 
 
+```python
+mpl.style.use("bmh")
+```
+
 ## Get leaderboard and competition data
 
 First you will need to collect the train and test data from kaggle. Because it is instructive to visualize where the field is in terms of scores we also download the leaderboard data. The following assumed you have set up a kaggle account. If that's not the case check out this site [here](https://github.com/Kaggle/kaggle-api).
@@ -610,8 +614,8 @@ cont_fill_vals = {col: np.nanmedian(df.loc[df[val_col]==False, col]) for col in 
 cont_fill_vals
 ```
 
-    CPU times: user 9.07 ms, sys: 23 µs, total: 9.09 ms
-    Wall time: 9.13 ms
+    CPU times: user 9.63 ms, sys: 680 µs, total: 10.3 ms
+    Wall time: 10.6 ms
 
 
 
@@ -1536,8 +1540,8 @@ learn = tabular_learner(dls, n_out=1, loss_func=loss_fun, config=dict(active_fun
                         y_range=y_range)
 ```
 
-    CPU times: user 13.9 ms, sys: 42 µs, total: 14 ms
-    Wall time: 14.2 ms
+    CPU times: user 14.7 ms, sys: 0 ns, total: 14.7 ms
+    Wall time: 14.8 ms
 
 
 Looking for `max_lr`
@@ -1551,19 +1555,19 @@ learn.lr_find()
 
 
 
-    CPU times: user 3.46 s, sys: 11.8 ms, total: 3.47 s
-    Wall time: 3.56 s
+    CPU times: user 3.27 s, sys: 21.9 ms, total: 3.29 s
+    Wall time: 3.41 s
 
 
 
 
 
-    (0.005754399299621582, 1.0964781722577754e-06)
+    (0.006918309628963471, 4.3651581904669e-07)
 
 
 
 
-![png](docs/images/output_35_3.png)
+![png](docs/images/output_36_3.png)
 
 
 Training using the [one-cycle policy](https://arxiv.org/abs/1708.07120)
@@ -1586,40 +1590,40 @@ learn.fit_one_cycle(5, 1e-3)
   <tbody>
     <tr>
       <td>0</td>
-      <td>0.112616</td>
-      <td>0.117678</td>
+      <td>0.115388</td>
+      <td>0.111801</td>
       <td>00:00</td>
     </tr>
     <tr>
       <td>1</td>
-      <td>0.060896</td>
-      <td>0.094943</td>
+      <td>0.061526</td>
+      <td>0.087842</td>
       <td>00:00</td>
     </tr>
     <tr>
       <td>2</td>
-      <td>0.038432</td>
-      <td>0.080558</td>
+      <td>0.039219</td>
+      <td>0.074567</td>
       <td>00:00</td>
     </tr>
     <tr>
       <td>3</td>
-      <td>0.025569</td>
-      <td>0.058460</td>
+      <td>0.026554</td>
+      <td>0.052907</td>
       <td>00:00</td>
     </tr>
     <tr>
       <td>4</td>
-      <td>0.018028</td>
-      <td>0.033467</td>
+      <td>0.019083</td>
+      <td>0.033261</td>
       <td>00:00</td>
     </tr>
   </tbody>
 </table>
 
 
-    CPU times: user 3.55 s, sys: 3.99 ms, total: 3.56 s
-    Wall time: 3.68 s
+    CPU times: user 3.67 s, sys: 24.7 ms, total: 3.69 s
+    Wall time: 3.85 s
 
 
 ## Gauging model quality of the tabular learner
@@ -1639,11 +1643,11 @@ y_pred[:5], y_true[:5]
 
 
 
-    (tensor([[12.1471],
-             [12.7953],
-             [11.8708],
-             [11.9638],
-             [11.9723]]),
+    (tensor([[12.1796],
+             [12.8250],
+             [11.9164],
+             [11.9764],
+             [11.9624]]),
      tensor([[12.3673],
              [13.3455],
              [12.0494],
@@ -1728,7 +1732,7 @@ show_leaderboard(fname_leaderboard, score_bounds=(None, 1.25), bins=100, user_sc
 
 
 
-![png](docs/images/output_42_1.png)
+![png](docs/images/output_43_1.png)
 
 
 Computing SHAP values for later inspection of the model. Because of the pytorch model is set up with fastai2's `TabularModel` one cannot directly pass it to the `shap.DeepExplainer`, rather one needs to wrap it using `inspection.FastaiModel`
@@ -1744,13 +1748,25 @@ explainer = shap.DeepExplainer(model, X)
 shap_values = explainer.shap_values(X)
 ```
 
-    CPU times: user 12.8 s, sys: 19.8 ms, total: 12.8 s
-    Wall time: 12.8 s
+    CPU times: user 13.1 s, sys: 819 ms, total: 13.9 s
+    Wall time: 13.9 s
+
+
+## Inspecting the embeddings
+
+The "Id" embeddings are still very much normally distributed without significant clusters. Which liekly means that this columns was not really used at all by the embedding model
+
+```python
+show_embeddings_with_pca(learn, to, "Id");
+```
+
+
+![png](docs/images/output_49_0.png)
 
 
 ## Fitting an ensemble model - `RandomForestRegressor`
 
-Yup
+In order to sanity check the fastai tabular model based on embeddings and a neural net let's fit a standard model
 
 ```python
 ens = ensemble.RandomForestRegressor(n_estimators=100, max_features="sqrt", max_samples=.9, oob_score=True)
@@ -1761,8 +1777,8 @@ ens = ensemble.RandomForestRegressor(n_estimators=100, max_features="sqrt", max_
 ens.fit(to.train.xs.values, to.train.ys.values.ravel())
 ```
 
-    CPU times: user 412 ms, sys: 0 ns, total: 412 ms
-    Wall time: 412 ms
+    CPU times: user 415 ms, sys: 20 ms, total: 435 ms
+    Wall time: 436 ms
 
 
 
@@ -1783,8 +1799,8 @@ ens.fit(to.train.xs.values, to.train.ys.values.ravel())
 y_pred_ens = ens.predict(to.valid.xs.values)
 ```
 
-    CPU times: user 16.1 ms, sys: 1 µs, total: 16.1 ms
-    Wall time: 16.3 ms
+    CPU times: user 15.8 ms, sys: 0 ns, total: 15.8 ms
+    Wall time: 16 ms
 
 
 ```python
@@ -1862,7 +1878,7 @@ show_leaderboard(fname_leaderboard, score_bounds=(None, 1.25), bins=100, user_sc
 
 
 
-![png](docs/images/output_51_1.png)
+![png](docs/images/output_55_1.png)
 
 
 Computing SHAP values for the ensemble model
@@ -1874,24 +1890,24 @@ ens_explainer = shap.TreeExplainer(ens, _X)
 ens_shap_values = ens_explainer.shap_values(_X)
 ```
 
-     98%|===================| 285/292 [00:39<00:00]        
+     97%|=================== | 284/292 [00:39<00:01]       
 
-    CPU times: user 39.3 s, sys: 99.4 ms, total: 39.4 s
-    Wall time: 39.5 s
+    CPU times: user 39.5 s, sys: 93.2 ms, total: 39.6 s
+    Wall time: 39.9 s
 
 
 ## SHAP summary plots
 
 The [`shap`](https://github.com/slundberg/shap) package can be used to inspect how neural net and tree based arrive at their prediction. The SHAP paper can be found [here](https://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions). Using `shap.summary_plot` one can gauge the order in which features are relevant for model predictions and how they generally contribute, increasing or decreasing the predicted values.
 
-Inspecting the fastai's tabular model
+Inspecting the fastai's tabular model. It's quite suspicious that the shap value is approximately zero for the 16th/17th feature onwards
 
 ```python
 shap.summary_plot(shap_values, to.valid.xs)
 ```
 
 
-![png](docs/images/output_57_0.png)
+![png](docs/images/output_61_0.png)
 
 
 Inspecting the ensemble model
@@ -1901,7 +1917,7 @@ shap.summary_plot(ens_shap_values, to.valid.xs)
 ```
 
 
-![png](docs/images/output_59_0.png)
+![png](docs/images/output_63_0.png)
 
 
 ## Making predictions over unseen data
@@ -1937,13 +1953,13 @@ res
 
 
 
-    (tensor([[11.7802],
-             [11.9543],
-             [12.0511],
+    (tensor([[11.8924],
+             [11.9983],
+             [12.0890],
              ...,
-             [12.0673],
-             [11.7941],
-             [12.1762]]),
+             [12.0910],
+             [11.7224],
+             [12.1997]]),
      None)
 
 
@@ -1955,13 +1971,13 @@ preds = np.exp(res[0].detach().numpy()); preds
 
 
 
-    array([[130643.39],
-           [155490.8 ],
-           [171286.7 ],
+    array([[146151.05],
+           [162474.86],
+           [177904.23],
            ...,
-           [174084.83],
-           [132468.83],
-           [194114.36]], dtype=float32)
+           [178251.7 ],
+           [123299.32],
+           [198735.83]], dtype=float32)
 
 
 
@@ -1998,27 +2014,27 @@ preds = pd.DataFrame({"Id": df_test["Id"], "SalePrice":preds.ravel()}); preds.he
     <tr>
       <th>0</th>
       <td>1461</td>
-      <td>130643.390625</td>
+      <td>146151.046875</td>
     </tr>
     <tr>
       <th>1</th>
       <td>1462</td>
-      <td>155490.796875</td>
+      <td>162474.859375</td>
     </tr>
     <tr>
       <th>2</th>
       <td>1463</td>
-      <td>171286.703125</td>
+      <td>177904.234375</td>
     </tr>
     <tr>
       <th>3</th>
       <td>1464</td>
-      <td>183443.734375</td>
+      <td>191884.875000</td>
     </tr>
     <tr>
       <th>4</th>
       <td>1465</td>
-      <td>186820.250000</td>
+      <td>173687.828125</td>
     </tr>
   </tbody>
 </table>
@@ -2215,8 +2231,8 @@ preds = ens.predict(dl.xs); preds
 
 
 
-    array([11.73519834, 11.90454628, 12.0860886 , ..., 11.95083168,
-           11.67768641, 12.37100523])
+    array([11.68657222, 11.9093085 , 12.10909732, ..., 12.00105714,
+           11.637718  , 12.34619474])
 
 
 
@@ -2227,8 +2243,8 @@ preds = np.exp(preds); preds
 
 
 
-    array([124891.21282583, 147937.66496196, 177386.91704102, ...,
-           154945.9582248 , 117911.12138264, 235862.72156739])
+    array([118963.52623408, 148643.85728658, 181515.67986175, ...,
+           162926.93737562, 113291.33939604, 230082.8500568 ])
 
 
 
@@ -2265,27 +2281,27 @@ preds = pd.DataFrame({"Id": df_test["Id"], "SalePrice":preds.ravel()}); preds.he
     <tr>
       <th>0</th>
       <td>1461</td>
-      <td>124891.212826</td>
+      <td>118963.526234</td>
     </tr>
     <tr>
       <th>1</th>
       <td>1462</td>
-      <td>147937.664962</td>
+      <td>148643.857287</td>
     </tr>
     <tr>
       <th>2</th>
       <td>1463</td>
-      <td>177386.917041</td>
+      <td>181515.679862</td>
     </tr>
     <tr>
       <th>3</th>
       <td>1464</td>
-      <td>188663.373336</td>
+      <td>189349.977314</td>
     </tr>
     <tr>
       <th>4</th>
       <td>1465</td>
-      <td>191270.396420</td>
+      <td>192518.245261</td>
     </tr>
   </tbody>
 </table>
