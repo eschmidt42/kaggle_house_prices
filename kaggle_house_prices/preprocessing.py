@@ -10,6 +10,7 @@ from zipfile import ZipFile
 from pathlib import Path
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib as mpl
 import numpy as np
 from typing import List
 from fastai2.tabular.all import *
